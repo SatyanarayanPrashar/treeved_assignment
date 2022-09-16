@@ -94,14 +94,17 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       PeopleTabs(
                         name: 'Sam Sharma',
                         about: 'Designer/Animator/Feminist',
+                        imageDes: 'assets/girl1.jpg',
                       ),
                       PeopleTabs(
                         name: 'Vaibhav Raj',
                         about: 'Entrepreneur/Founder: Risk',
+                        imageDes: 'assets/boy1.png',
                       ),
                       PeopleTabs(
                         name: 'Sam Sharma',
                         about: 'Designer/Animator/Feminist',
+                        imageDes: 'assets/girl1.jpg',
                       ),
                     ],
                   ),
@@ -134,12 +137,18 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     children: const [
                       Pagestabs(
                         name: 'Microanimations',
+                        imageDes: 'assets/girl2.jpg',
+                        bgimage: 'assets/back1.jpg',
                       ),
                       Pagestabs(
                         name: 'Cinematography and Design',
+                        imageDes: 'assets/boy2.png',
+                        bgimage: 'assets/back2.jpg',
                       ),
                       Pagestabs(
                         name: 'Art Club',
+                        imageDes: 'assets/girl2.jpg',
+                        bgimage: 'assets/back1.jpg',
                       ),
                     ],
                   ),
@@ -161,7 +170,28 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       child: const Text("See more"))
                 ],
               ),
-              const ExploreListTabs()
+              const ExploreListTabs(),
+              const ExploreListTabs(),
+              const ExploreListTabs(),
+              Row(
+                children: [
+                  const Icon(Icons.local_movies_outlined),
+                  const SizedBox(width: 20),
+                  Text("Movies",
+                      style: GoogleFonts.roboto(
+                          fontSize: 17, fontWeight: FontWeight.w400)),
+                  const Spacer(),
+                  TextButton(
+                      onPressed: () {
+                        //
+                      },
+                      child: const Text("See more"))
+                ],
+              ),
+              MovieListTab(),
+              MovieListTab(),
+              MovieListTab(),
+              MovieListTab(),
             ],
           ),
         ),
