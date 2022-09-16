@@ -37,7 +37,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
       ),
       //
       body: Padding(
-        padding: const EdgeInsets.only(left: 11, right: 11),
+        padding: const EdgeInsets.only(left: 11),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -123,7 +123,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       onPressed: () {
                         //
                       },
-                      child: const Text("See all"))
+                      child: const Text("See more")),
+                  const SizedBox(width: 11),
                 ],
               ),
               Container(
@@ -167,7 +168,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       onPressed: () {
                         //
                       },
-                      child: const Text("See more"))
+                      child: const Text("See more")),
+                  const SizedBox(width: 11),
                 ],
               ),
               const ExploreListTabs(),
@@ -185,7 +187,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       onPressed: () {
                         //
                       },
-                      child: const Text("See more"))
+                      child: const Text("See more")),
+                  const SizedBox(width: 11),
                 ],
               ),
               MovieListTab(),
