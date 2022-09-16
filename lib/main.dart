@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/discover.dart';
+import 'package:treeved_assignment/Screens/homePage.dart';
 import 'package:treeved_assignment/Screens/ss.dart';
 
 void main() {
@@ -13,8 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DiscoverPage(),
+      // home: DiscoverPage(),
       // home: MainHome(),
+      home: HomePage(),
     );
   }
 }
