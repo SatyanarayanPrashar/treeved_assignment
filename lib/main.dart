@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/discover.dart';
+import 'package:treeved_assignment/Screens/peopleScreen.dart';
 import 'package:treeved_assignment/Screens/homePage.dart';
-import 'package:treeved_assignment/Screens/ss.dart';
+import 'package:treeved_assignment/Screens/DiscoverPage.dart';
 
 void main() {
   runApp(const MyApp());

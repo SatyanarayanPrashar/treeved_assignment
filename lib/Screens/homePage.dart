@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/discover.dart';
+import 'package:treeved_assignment/Screens/DiscoverPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   final screens = [
     Center(child: Text("feed")),
     DiscoverPage(),
-    Center(child: Text("Peofile")),
+    Center(child: Text("Profile")),
     Center(child: Text("diary")),
   ];
 
