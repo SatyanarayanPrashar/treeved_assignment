@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/WidgetpeopleScreen.dart';
 import 'package:treeved_assignment/package/flutter_slidable.dart';
@@ -33,23 +34,7 @@ class _SlideLinkState extends State<SlideLink> {
             label: "Add to List",
             backgroundColor: const Color.fromARGB(255, 211, 231, 244),
           ),
-          // SlidableAction(
-          //   onPressed: (context) {
-          //     //
-          //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          //       content: Actionmessage(
-          //         message: 'Link added to Diary!',
-          //       ),
-          //       duration: Duration(seconds: 2),
-          //       behavior: SnackBarBehavior.floating,
-          //       elevation: 0,
-          //       backgroundColor: Colors.transparent,
-          //     ));
-          //   },
-          //   icon: Icons.book_outlined,
-          //   label: "Add to Diary",
-          //   backgroundColor: Color.fromARGB(255, 211, 231, 244),
-          // ),
+          // Slid
         ],
       ),
       endActionPane: ActionPane(
