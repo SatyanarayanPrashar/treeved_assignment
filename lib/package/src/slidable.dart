@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:treeved_assignment/package/src/auto_close_behavior.dart';
 import 'package:treeved_assignment/package/src/notifications_old.dart';
+
 import 'action_pane_configuration.dart';
 import 'controller.dart';
 import 'dismissal.dart';
@@ -23,7 +24,6 @@ class Slidable extends StatefulWidget {
     this.closeOnScroll = true,
     this.startActionPane,
     this.endActionPane,
-    this.direction = Axis.horizontal,
     this.dragStartBehavior = DragStartBehavior.down,
     this.useTextDirection = true,
     required this.child,
@@ -67,7 +67,6 @@ class Slidable extends StatefulWidget {
   /// The direction in which this [Slidable] can be dragged.
   ///
   /// Defaults to [Axis.horizontal].
-  final Axis direction;
 
   /// Whether the ambient [TextDirection] should be used to determine how
   /// [startActionPane] and [endActionPane] should be revealed.
@@ -140,7 +139,7 @@ class _SlidableState extends State<Slidable>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    updateIsLeftToRight();
+    // updateIsLeftToRight();
     updateController();
     updateMoveAnimation();
   }
@@ -148,7 +147,7 @@ class _SlidableState extends State<Slidable>
   @override
   void didUpdateWidget(covariant Slidable oldWidget) {
     super.didUpdateWidget(oldWidget);
-    updateIsLeftToRight();
+    // updateIsLeftToRight();
     updateController();
   }
 
@@ -169,13 +168,6 @@ class _SlidableState extends State<Slidable>
       ..endActionPaneExtentRatio = endActionPane?.extentRatio ?? 0;
   }
 
-  void updateIsLeftToRight() {
-    final textDirection = Directionality.of(context);
-    controller.isLeftToRight = widget.direction == Axis.vertical ||
-        !widget.useTextDirection ||
-        textDirection == TextDirection.ltr;
-  }
-
   void handleActionPanelTypeChanged() {
     setState(() {
       updateMoveAnimation();
@@ -191,12 +183,7 @@ class _SlidableState extends State<Slidable>
   void updateMoveAnimation() {
     final double end = controller.direction.value.toDouble();
     moveAnimation = controller.animation.drive(
-      Tween<Offset>(
-        begin: Offset.zero,
-        end: widget.direction == Axis.horizontal
-            ? Offset(end, 0)
-            : Offset(0, end),
-      ),
+      Tween<Offset>(begin: Offset.zero, end: Offset(end, 0)),
     );
   }
 
@@ -216,11 +203,7 @@ class _SlidableState extends State<Slidable>
 
   Alignment get actionPaneAlignment {
     final sign = controller.direction.value.toDouble();
-    if (widget.direction == Axis.horizontal) {
-      return Alignment(-sign, 0);
-    } else {
-      return Alignment(0, -sign);
-    }
+    return Alignment(-sign, 0);
   }
 
   @override
@@ -242,7 +225,7 @@ class _SlidableState extends State<Slidable>
           Positioned.fill(
             child: ClipRect(
               clipper: _SlidableClipper(
-                axis: widget.direction,
+                axis: Axis.horizontal,
                 controller: controller,
               ),
               child: actionPane,
@@ -255,7 +238,6 @@ class _SlidableState extends State<Slidable>
     return SlidableGestureDetector(
       enabled: widget.enabled,
       controller: controller,
-      direction: widget.direction,
       dragStartBehavior: widget.dragStartBehavior,
       child: SlidableNotificationSender(
         tag: widget.groupTag,
@@ -264,11 +246,11 @@ class _SlidableState extends State<Slidable>
           controller: controller,
           closeOnScroll: widget.closeOnScroll,
           child: SlidableDismissal(
-            axis: flipAxis(widget.direction),
+            axis: flipAxis(Axis.horizontal),
             controller: controller,
             child: ActionPaneConfiguration(
               alignment: actionPaneAlignment,
-              direction: widget.direction,
+              direction: Axis.horizontal,
               isStartActionPane:
                   controller.actionPaneType.value == ActionPaneType.start,
               child: _SlidableControllerScope(
@@ -309,25 +291,30 @@ class _SlidableClipper extends CustomClipper<Rect> {
 
   @override
   Rect getClip(Size size) {
-    switch (axis) {
-      case Axis.horizontal:
-        final double offset = controller.ratio * size.width;
-        if (offset < 0) {
-          return Rect.fromLTRB(size.width + offset, 0, size.width, size.height);
-        }
-        return Rect.fromLTRB(0, 0, offset, size.height);
-      case Axis.vertical:
-        final double offset = controller.ratio * size.height;
-        if (offset < 0) {
-          return Rect.fromLTRB(
-            0,
-            size.height + offset,
-            size.width,
-            size.height,
-          );
-        }
-        return Rect.fromLTRB(0, 0, size.width, offset);
+    final double offset = controller.ratio * size.width;
+    if (offset < 0) {
+      return Rect.fromLTRB(size.width + offset, 0, size.width, size.height);
     }
+    return Rect.fromLTRB(0, 0, offset, size.height);
+    // switch (axis) {
+    //   case Axis.horizontal:
+    //     final double offset = controller.ratio * size.width * 0.7;
+    //     if (offset < 0) {
+    //       return Rect.fromLTRB(size.width + offset, 0, size.width, size.height);
+    //     }
+    //     return Rect.fromLTRB(0, 0, offset, size.height);
+    //   case Axis.vertical:
+    //     final double offset = controller.ratio * size.height;
+    //     if (offset < 0) {
+    //       return Rect.fromLTRB(
+    //         0,
+    //         size.height + offset,
+    //         size.width,
+    //         size.height,
+    //       );
+    //     }
+    //     return Rect.fromLTRB(0, 0, size.width, offset);
+    // }
   }
 
   @override
