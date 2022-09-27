@@ -8,12 +8,10 @@ import 'controller.dart';
 class SlidableDismissal extends StatefulWidget {
   const SlidableDismissal({
     Key? key,
-    required this.axis,
     required this.controller,
     required this.child,
   }) : super(key: key);
 
-  final Axis axis;
   final Widget child;
   final SlidableController controller;
 
@@ -92,7 +90,6 @@ class _SlidableDismissalState extends State<SlidableDismissal>
 
     return _SizeTransition(
       sizeFactor: resizeAnimation,
-      axis: widget.axis,
       child: widget.child,
     );
   }
@@ -102,26 +99,15 @@ class _SlidableDismissalState extends State<SlidableDismissal>
 class _SizeTransition extends AnimatedWidget {
   /// Creates a size transition.
   ///
-  /// The [axis], [sizeFactor], and [axisAlignment] arguments must not be null.
-  /// The [axis] argument defaults to [Axis.vertical]. The [axisAlignment]
-  /// defaults to 0.0, which centers the child along the main axis during the
-  /// transition.
+  ///[sizeFactor], and [axisAlignment] arguments must not be null.
+
   const _SizeTransition({
     Key? key,
-    this.axis = Axis.vertical,
     required Animation<double> sizeFactor,
     this.child,
   }) : super(key: key, listenable: sizeFactor);
 
-  /// [Axis.horizontal] if [sizeFactor] modifies the width, otherwise
-  /// [Axis.vertical].
-  final Axis axis;
-
   /// The animation that controls the (clipped) size of the child.
-  ///
-  /// The width or height (depending on the [axis] value) of this widget will be
-  /// its intrinsic width or height multiplied by [sizeFactor]'s value at the
-  /// current point in the animation.
   ///
   /// If the value of [sizeFactor] is less than one, the child will be clipped
   /// in the appropriate axis.
@@ -136,18 +122,15 @@ class _SizeTransition extends AnimatedWidget {
   Widget build(BuildContext context) {
     final value = math.max<double>(sizeFactor.value, 0);
     final AlignmentDirectional alignment;
-    if (axis == Axis.vertical) {
-      alignment = const AlignmentDirectional(-1, 0);
-    } else {
-      alignment = const AlignmentDirectional(0, -1);
-    }
+
+    alignment = const AlignmentDirectional(0, -1);
 
     return ClipRect(
       clipBehavior: value == 1 ? Clip.none : Clip.hardEdge,
       child: Align(
         alignment: alignment,
-        heightFactor: axis == Axis.vertical ? value : null,
-        widthFactor: axis == Axis.horizontal ? value : null,
+        heightFactor: null,
+        widthFactor: value,
         child: child,
       ),
     );
