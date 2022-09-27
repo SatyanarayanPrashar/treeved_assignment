@@ -8,14 +8,12 @@ class FlexExitTransition extends MultiChildRenderObjectWidget {
   FlexExitTransition({
     Key? key,
     required this.mainAxisExtent,
-    required this.direction,
     required this.startToEnd,
     required this.initialExtentRatio,
     required List<Widget> children,
   }) : super(key: key, children: children);
 
   /// The direction to use as the main axis.
-  final Axis direction;
 
   /// Indicates whether the children are shown from start to end.
   final bool startToEnd;
@@ -31,7 +29,6 @@ class FlexExitTransition extends MultiChildRenderObjectWidget {
   RenderObject createRenderObject(BuildContext context) {
     return _RenderFlexExitTransition(
       mainAxisExtent: mainAxisExtent,
-      direction: direction,
       initialExtentRatio: initialExtentRatio,
       startToEnd: startToEnd,
     );
@@ -42,7 +39,6 @@ class FlexExitTransition extends MultiChildRenderObjectWidget {
       BuildContext context, _RenderFlexExitTransition renderObject) {
     renderObject
       ..mainAxisExtent = mainAxisExtent
-      ..direction = direction
       ..initialExtentRatio = initialExtentRatio
       ..startToEnd = startToEnd;
   }
@@ -173,38 +169,51 @@ class _RenderFlexExitTransition extends RenderBox
       final extentFactor = parentData!.flex! / totalFlex * initialExtentRatio;
       late BoxConstraints innerConstraints;
       double? initialMainAxisExtent;
-      switch (_direction) {
-        case Axis.horizontal:
-          initialMainAxisExtent = constraints.maxWidth * extentFactor;
-          final extent = Tween(
-                  begin: initialMainAxisExtent,
-                  end: totalMainAxisExtent - totalMainAxisExtentSoFar)
-              .evaluate(_mainAxisExtent);
-          final begin = startToEnd
-              ? totalMainAxisExtentSoFar
-              : totalMainAxisExtent - totalMainAxisExtentSoFar - extent;
-          parentData.offset = Offset(begin, 0);
-          innerConstraints = BoxConstraints.tightFor(
-            height: constraints.maxHeight,
-            width: extent,
-          );
-          break;
-        case Axis.vertical:
-          initialMainAxisExtent = constraints.maxHeight * extentFactor;
-          final extent = Tween(
-                  begin: initialMainAxisExtent,
-                  end: totalMainAxisExtent - totalMainAxisExtentSoFar)
-              .evaluate(_mainAxisExtent);
-          final begin = startToEnd
-              ? totalMainAxisExtentSoFar
-              : totalMainAxisExtent - totalMainAxisExtentSoFar - extent;
-          parentData.offset = Offset(0, begin);
-          innerConstraints = BoxConstraints.tightFor(
-            height: extent,
-            width: constraints.maxWidth,
-          );
-          break;
-      }
+      initialMainAxisExtent = constraints.maxWidth * extentFactor;
+      final extent = Tween(
+              begin: initialMainAxisExtent,
+              end: totalMainAxisExtent - totalMainAxisExtentSoFar)
+          .evaluate(_mainAxisExtent);
+      final begin = startToEnd
+          ? totalMainAxisExtentSoFar
+          : totalMainAxisExtent - totalMainAxisExtentSoFar - extent;
+      parentData.offset = Offset(begin, 0);
+      innerConstraints = BoxConstraints.tightFor(
+        height: constraints.maxHeight,
+        width: extent,
+      );
+      // switch (_direction) {
+      //   case Axis.horizontal:
+      //     initialMainAxisExtent = constraints.maxWidth * extentFactor;
+      //     final extent = Tween(
+      //             begin: initialMainAxisExtent,
+      //             end: totalMainAxisExtent - totalMainAxisExtentSoFar)
+      //         .evaluate(_mainAxisExtent);
+      //     final begin = startToEnd
+      //         ? totalMainAxisExtentSoFar
+      //         : totalMainAxisExtent - totalMainAxisExtentSoFar - extent;
+      //     parentData.offset = Offset(begin, 0);
+      //     innerConstraints = BoxConstraints.tightFor(
+      //       height: constraints.maxHeight,
+      //       width: extent,
+      //     );
+      //     break;
+      //   case Axis.vertical:
+      //     initialMainAxisExtent = constraints.maxHeight * extentFactor;
+      //     final extent = Tween(
+      //             begin: initialMainAxisExtent,
+      //             end: totalMainAxisExtent - totalMainAxisExtentSoFar)
+      //         .evaluate(_mainAxisExtent);
+      //     final begin = startToEnd
+      //         ? totalMainAxisExtentSoFar
+      //         : totalMainAxisExtent - totalMainAxisExtentSoFar - extent;
+      //     parentData.offset = Offset(0, begin);
+      //     innerConstraints = BoxConstraints.tightFor(
+      //       height: extent,
+      //       width: constraints.maxWidth,
+      //     );
+      //     break;
+      // }
 
       totalMainAxisExtentSoFar += initialMainAxisExtent;
 

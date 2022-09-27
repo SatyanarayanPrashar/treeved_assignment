@@ -11,14 +11,14 @@ class SlidableGestureDetector extends StatefulWidget {
     Key? key,
     this.enabled = true,
     required this.controller,
-    required this.direction,
+    // required this.direction,
     required this.child,
     this.dragStartBehavior = DragStartBehavior.start,
   }) : super(key: key);
 
   final SlidableController controller;
   final Widget child;
-  final Axis direction;
+  // final Axis direction;
   final bool enabled;
 
   /// Determines the way that drag start behavior is handled.
@@ -48,21 +48,13 @@ class _SlidableGestureDetectorState extends State<SlidableGestureDetector> {
   late Offset startPosition;
   late Offset lastPosition;
 
-  bool get directionIsXAxis {
-    return widget.direction == Axis.horizontal;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final canDragHorizontally = directionIsXAxis && widget.enabled;
-    final canDragVertically = !directionIsXAxis && widget.enabled;
+    final canDragHorizontally = widget.enabled;
     return GestureDetector(
       onHorizontalDragStart: canDragHorizontally ? handleDragStart : null,
       onHorizontalDragUpdate: canDragHorizontally ? handleDragUpdate : null,
       onHorizontalDragEnd: canDragHorizontally ? handleDragEnd : null,
-      onVerticalDragStart: canDragVertically ? handleDragStart : null,
-      onVerticalDragUpdate: canDragVertically ? handleDragUpdate : null,
-      onVerticalDragEnd: canDragVertically ? handleDragEnd : null,
       behavior: HitTestBehavior.opaque,
       dragStartBehavior: widget.dragStartBehavior,
       child: widget.child,
@@ -71,7 +63,7 @@ class _SlidableGestureDetectorState extends State<SlidableGestureDetector> {
 
   double get overallDragAxisExtent {
     final Size? size = context.size;
-    return directionIsXAxis ? size!.width : size!.height;
+    return size!.width;
   }
 
   void handleDragStart(DragStartDetails details) {
@@ -92,7 +84,7 @@ class _SlidableGestureDetectorState extends State<SlidableGestureDetector> {
 
   void handleDragEnd(DragEndDetails details) {
     final delta = lastPosition - startPosition;
-    final primaryDelta = directionIsXAxis ? delta.dx : delta.dy;
+    final primaryDelta = delta.dx;
     final gestureDirection =
         primaryDelta >= 0 ? GestureDirection.opening : GestureDirection.closing;
 

@@ -21,7 +21,6 @@ class InversedDrawerMotion extends StatelessWidget {
     return FlexExitTransition(
       mainAxisExtent: animation,
       initialExtentRatio: paneData.extentRatio,
-      direction: paneData.direction,
       startToEnd: paneData.fromStart,
       children: paneData.children,
     );

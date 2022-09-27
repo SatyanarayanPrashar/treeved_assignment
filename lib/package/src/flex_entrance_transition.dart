@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,13 +10,9 @@ class FlexEntranceTransition extends MultiChildRenderObjectWidget {
   FlexEntranceTransition({
     Key? key,
     required this.mainAxisPosition,
-    required this.direction,
     required this.startToEnd,
     required List<Widget> children,
   }) : super(key: key, children: children);
-
-  /// The direction to use as the main axis.
-  final Axis direction;
 
   /// Indicates whether the children are shown from start to end.
   final bool startToEnd;
@@ -26,7 +24,6 @@ class FlexEntranceTransition extends MultiChildRenderObjectWidget {
   RenderObject createRenderObject(BuildContext context) {
     return _RenderFlexEntranceTransition(
       mainAxisPosition: mainAxisPosition,
-      direction: direction,
       startToEnd: startToEnd,
     );
   }
@@ -36,7 +33,6 @@ class FlexEntranceTransition extends MultiChildRenderObjectWidget {
       BuildContext context, _RenderFlexEntranceTransition renderObject) {
     renderObject
       ..mainAxisPosition = mainAxisPosition
-      ..direction = direction
       ..startToEnd = startToEnd;
   }
 }
@@ -178,24 +174,12 @@ class _RenderFlexEntranceTransition extends RenderBox
       late BoxConstraints innerConstraints;
       double? mainAxisExtent;
       double? begin;
-      switch (_direction) {
-        case Axis.horizontal:
-          mainAxisExtent = constraints.maxWidth * extentFactor;
-          begin = startToEnd ? -mainAxisExtent : size.width;
-          innerConstraints = BoxConstraints.tightFor(
-            height: constraints.maxHeight,
-            width: mainAxisExtent,
-          );
-          break;
-        case Axis.vertical:
-          mainAxisExtent = constraints.maxHeight * extentFactor;
-          begin = startToEnd ? -mainAxisExtent : size.height;
-          innerConstraints = BoxConstraints.tightFor(
-            height: mainAxisExtent,
-            width: constraints.maxWidth,
-          );
-          break;
-      }
+
+      mainAxisExtent = constraints.maxWidth * extentFactor;
+      begin = startToEnd ? -mainAxisExtent : size.width;
+      innerConstraints = BoxConstraints.tightFor(
+          height: constraints.maxHeight, width: mainAxisExtent);
+
       parentData.mainAxisPosition = Tween(
         begin: begin,
         end: totalMainAxisExtent,
@@ -210,6 +194,7 @@ class _RenderFlexEntranceTransition extends RenderBox
   bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
     // The x, y parameters have the top left of the node's box as the origin.
     RenderBox? child = startToEnd ? firstChild : lastChild;
+
     while (child != null) {
       final childParentData =
           child.parentData as _FlexEntranceTransitionParentData?;
@@ -234,12 +219,14 @@ class _RenderFlexEntranceTransition extends RenderBox
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    RenderBox? child = startToEnd ? lastChild : firstChild;
+    // RenderBox? child = startToEnd ? lastChild : firstChild;
+    RenderBox? child = firstChild;
     while (child != null) {
       final childParentData =
           child.parentData as _FlexEntranceTransitionParentData?;
       context.paintChild(child, childParentData!.offset + offset);
 
+      child = childParentData.previousSibling;
       child = startToEnd
           ? childParentData.previousSibling
           : childParentData.nextSibling;
