@@ -15,17 +15,15 @@ part 'action_pane.dart';
 class Slidable extends StatefulWidget {
   /// Creates a [Slidable].
   ///
-  /// The [enabled], [closeOnScroll], [direction], [dragStartBehavior],
-  /// [useTextDirection] and [child] arguments must not be null.
+  /// The  [closeOnScroll], [dragStartBehavior],
+  ///and [child] arguments must not be null.
   const Slidable({
     Key? key,
     this.groupTag,
-    this.enabled = true,
     this.closeOnScroll = true,
     this.startActionPane,
     this.endActionPane,
     this.dragStartBehavior = DragStartBehavior.down,
-    this.useTextDirection = true,
     required this.child,
   }) : super(key: key);
 
@@ -34,7 +32,6 @@ class Slidable extends StatefulWidget {
   /// If false, the child will not slid to show actions.
   ///
   /// Defaults to true.
-  final bool enabled;
 
   /// Specifies to close this [Slidable] after the closest [Scrollable]'s
   /// position changed.
@@ -51,31 +48,10 @@ class Slidable extends StatefulWidget {
   final Object? groupTag;
 
   /// A widget which is shown when the user drags the [Slidable] to the right or
-  /// to the bottom.
-  ///
-  /// When [direction] is [Axis.horizontal] and [useTextDirection] is true, the
-  /// [startActionPane] is determined by the ambient [TextDirection].
   final ActionPane? startActionPane;
 
   /// A widget which is shown when the user drags the [Slidable] to the left or
-  /// to the top.
-  ///
-  /// When [direction] is [Axis.horizontal] and [useTextDirection] is true, the
-  /// [startActionPane] is determined by the ambient [TextDirection].
   final ActionPane? endActionPane;
-
-  /// The direction in which this [Slidable] can be dragged.
-  ///
-  /// Defaults to [Axis.horizontal].
-
-  /// Whether the ambient [TextDirection] should be used to determine how
-  /// [startActionPane] and [endActionPane] should be revealed.
-  ///
-  /// If [direction] is [Axis.vertical], this has no effect.
-  /// If [direction] is [Axis.horizontal], then [startActionPane] is revealed
-  /// when the users drags to the reading direction (and in the inverse of the
-  /// reading direction for [endActionPane]).
-  final bool useTextDirection;
 
   /// Determines the way that drag start behavior is handled.
   ///
@@ -236,7 +212,7 @@ class _SlidableState extends State<Slidable>
     );
 
     return SlidableGestureDetector(
-      enabled: widget.enabled,
+      enabled: true,
       controller: controller,
       dragStartBehavior: widget.dragStartBehavior,
       child: SlidableNotificationSender(
@@ -296,25 +272,6 @@ class _SlidableClipper extends CustomClipper<Rect> {
       return Rect.fromLTRB(size.width + offset, 0, size.width, size.height);
     }
     return Rect.fromLTRB(0, 0, offset, size.height);
-    // switch (axis) {
-    //   case Axis.horizontal:
-    //     final double offset = controller.ratio * size.width * 0.7;
-    //     if (offset < 0) {
-    //       return Rect.fromLTRB(size.width + offset, 0, size.width, size.height);
-    //     }
-    //     return Rect.fromLTRB(0, 0, offset, size.height);
-    //   case Axis.vertical:
-    //     final double offset = controller.ratio * size.height;
-    //     if (offset < 0) {
-    //       return Rect.fromLTRB(
-    //         0,
-    //         size.height + offset,
-    //         size.width,
-    //         size.height,
-    //       );
-    //     }
-    //     return Rect.fromLTRB(0, 0, size.width, offset);
-    // }
   }
 
   @override

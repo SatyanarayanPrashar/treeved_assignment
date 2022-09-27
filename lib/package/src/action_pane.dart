@@ -1,6 +1,6 @@
 part of 'slidable.dart';
 
-const _defaultExtentRatio = 0.5;
+const _defaultExtentRatio = 0.37;
 
 /// Data of the ambient [ActionPane] accessible from its children.
 @immutable
@@ -9,7 +9,6 @@ class ActionPaneData {
   const ActionPaneData({
     required this.extentRatio,
     required this.alignment,
-    required this.direction,
     required this.fromStart,
     required this.children,
   });
@@ -24,7 +23,6 @@ class ActionPaneData {
   final Alignment alignment;
 
   /// The axis in which the slidable can slide.
-  final Axis direction;
 
   /// Whether the current action pane is the start one.
   final bool fromStart;
@@ -233,7 +231,6 @@ class _ActionPaneState extends State<ActionPane> implements RatioConfigurator {
     return _ActionPaneScope(
       actionPaneData: ActionPaneData(
         alignment: config.alignment,
-        direction: config.direction,
         fromStart: config.isStartActionPane,
         extentRatio: widget.extentRatio,
         children: widget.children,
