@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/peopleScreen.dart';
-import 'package:treeved_assignment/Screens/homePage.dart';
-import 'package:treeved_assignment/Screens/DiscoverPage.dart';
+import 'package:treeved_assignment/Screens/authpages/loginpage.dart';
+import 'package:treeved_assignment/Screens/homePage/homePage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: DiscoverPage(),
       // home: MainHome(),
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }

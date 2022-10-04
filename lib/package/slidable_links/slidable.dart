@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:treeved_assignment/package/src/auto_close_behavior.dart';
-import 'package:treeved_assignment/package/src/notifications_old.dart';
+import 'package:treeved_assignment/package/slidable_links/auto_close_behavior.dart';
+import 'package:treeved_assignment/package/slidable_links/notifications_old.dart';
 
 import 'action_pane_configuration.dart';
 import 'controller.dart';

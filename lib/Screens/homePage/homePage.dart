@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/DiscoverPage.dart';
-import 'package:treeved_assignment/Screens/profilePage.dart';
+import 'package:treeved_assignment/Screens/discoverPages/DiscoverPage.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

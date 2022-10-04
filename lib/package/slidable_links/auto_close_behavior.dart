@@ -1,7 +1,7 @@
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
-import 'package:treeved_assignment/package/src/controller.dart';
-import 'package:treeved_assignment/package/src/notifications.dart';
+import 'package:treeved_assignment/package/slidable_links/controller.dart';
+import 'package:treeved_assignment/package/slidable_links/notifications.dart';
 
 /// A widget that forces the [Slidable] widgets below it to close when another
 /// [Slidable] widget with the same [groupTag] opens.

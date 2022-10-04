@@ -1,6 +1,7 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/peopleScreen.dart';
+import 'package:treeved_assignment/Screens/discoverPages/peopleScreen.dart';
+
+import '../../package/button_tabbar/buttons_tabbar.dart';
 
 class DiscoverPage extends StatelessWidget {
   const DiscoverPage({super.key});

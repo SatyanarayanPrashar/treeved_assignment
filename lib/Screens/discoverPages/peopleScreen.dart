@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:treeved_assignment/Screens/WidgetpeopleScreen.dart';
-import 'package:treeved_assignment/Screens/slideLink.dart';
+import 'package:treeved_assignment/Screens/discoverPages/WidgetpeopleScreen.dart';
+import 'package:treeved_assignment/package/slideLink.dart';
 
 class PeopleScreen extends StatefulWidget {
   const PeopleScreen({super.key});

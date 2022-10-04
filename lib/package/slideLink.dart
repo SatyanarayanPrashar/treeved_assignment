@@ -1,7 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/WidgetpeopleScreen.dart';
-import 'package:treeved_assignment/package/flutter_slidable.dart';
+import 'package:treeved_assignment/Screens/discoverPages/WidgetpeopleScreen.dart';
+import 'package:treeved_assignment/package/slidable_links/slidable.dart';
+import 'slidable_links/action_pane_motions.dart';
+import 'slidable_links/actions.dart';
 
 class SlideLink extends StatefulWidget {
   const SlideLink({super.key});
@@ -57,23 +58,6 @@ class _SlideLinkState extends State<SlideLink> {
             label: "Add to Diary",
             backgroundColor: Color.fromARGB(255, 211, 231, 244),
           ),
-          // SlidableAction(
-          //   onPressed: (context) => {
-          //     //
-          //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          //       content: Actionmessage(
-          //         message: 'Link added to list!',
-          //       ),
-          //       duration: Duration(seconds: 2),
-          //       behavior: SnackBarBehavior.floating,
-          //       elevation: 0,
-          //       backgroundColor: Colors.transparent,
-          //     ))
-          //   },
-          //   icon: Icons.list,
-          //   label: "Add to List",
-          //   backgroundColor: const Color.fromARGB(255, 211, 231, 244),
-          // ),
         ],
       ),
       child: MovieListTab(),
