@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treeved_assignment/Screens/Feedpage/FeedScreen.dart';
 import 'package:treeved_assignment/Screens/discoverPages/DiscoverPage.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 
@@ -10,12 +11,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int index = 1;
+  int index = 0;
   final screens = [
-    Center(child: Text("feed")),
+    FeedPage(),
     DiscoverPage(),
     ProfilePage(),
-    // Center(child: Text("Profile")),
     Center(child: Text("diary")),
   ];
 

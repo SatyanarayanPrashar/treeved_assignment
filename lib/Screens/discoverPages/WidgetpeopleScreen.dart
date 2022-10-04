@@ -227,104 +227,100 @@ class MovieListTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 11),
-      child: Container(
-        margin: const EdgeInsets.all(5),
-        height: 100,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(4),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(255, 173, 173, 173),
-              blurRadius: 5,
-              spreadRadius: 1,
-            ),
-          ],
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              height: 80,
-              width: 85,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  image: const DecorationImage(
-                      image: AssetImage("assets/movie1.jpg"),
-                      fit: BoxFit.cover)),
-            ),
-            Flexible(
-              flex: 7,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 11),
-                  Flexible(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Flexible(
-                          flex: 3,
-                          child: Text(
-                            "Fight Club",
-                            style: GoogleFonts.roboto(
-                                fontSize: 16, fontWeight: FontWeight.w600),
-                          ),
+    return Container(
+      margin: const EdgeInsets.all(5),
+      height: 100,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(255, 173, 173, 173),
+            blurRadius: 5,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            height: 80,
+            width: 85,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                image: const DecorationImage(
+                    image: AssetImage("assets/movie1.jpg"), fit: BoxFit.cover)),
+          ),
+          Flexible(
+            flex: 7,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 11),
+                Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Flexible(
+                        flex: 3,
+                        child: Text(
+                          "Fight Club",
+                          style: GoogleFonts.roboto(
+                              fontSize: 16, fontWeight: FontWeight.w600),
                         ),
-                        Flexible(
-                          flex: 1,
-                          child: Container(
-                              width: 35,
-                              decoration: const BoxDecoration(
-                                  color: Colors.lightGreenAccent,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7))),
-                              child: Row(
-                                children: const [
-                                  Text(" 4 "),
-                                  Icon(Icons.star, size: 15)
-                                ],
-                              )),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                            width: 35,
+                            decoration: const BoxDecoration(
+                                color: Colors.lightGreenAccent,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(7))),
+                            child: Row(
+                              children: const [
+                                Text(" 4 "),
+                                Icon(Icons.star, size: 15)
+                              ],
+                            )),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 5),
-                  Container(
-                    padding: const EdgeInsets.only(right: 13.0),
-                    child: Text(
-                      "Movie",
-                      style: GoogleFonts.roboto(fontSize: 13),
-                    ),
+                ),
+                const SizedBox(height: 5),
+                Container(
+                  padding: const EdgeInsets.only(right: 13.0),
+                  child: Text(
+                    "Movie",
+                    style: GoogleFonts.roboto(fontSize: 13),
                   ),
-                  const SizedBox(height: 20),
-                  InkWell(
-                    onTap: () {
-                      // launchUrl('https://www.imdb.com/title/tt0137523/);
-                    },
-                    child: const Text(
-                      "https://www.imdb.com/title/tt0137523/",
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 11, color: Colors.blue),
-                    ),
-                  )
-                ],
-              ),
+                ),
+                const SizedBox(height: 20),
+                InkWell(
+                  onTap: () {
+                    // launchUrl('https://www.imdb.com/title/tt0137523/);
+                  },
+                  child: const Text(
+                    "https://www.imdb.com/title/tt0137523/",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 11, color: Colors.blue),
+                  ),
+                )
+              ],
             ),
-            const Flexible(
-              flex: 1,
-              child: Padding(
-                padding: EdgeInsets.only(top: 5.0),
-                child: Icon(Icons.more_vert),
-              ),
-            )
-          ],
-        ),
+          ),
+          const Flexible(
+            flex: 1,
+            child: Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child: Icon(Icons.more_vert),
+            ),
+          )
+        ],
       ),
     );
   }
