@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:treeved_assignment/Screens/discoverPages/listScreen.dart';
+import 'package:treeved_assignment/Screens/discoverPages/pagesScreen.dart';
 import 'package:treeved_assignment/Screens/discoverPages/peopleScreen.dart';
 
 import '../../package/button_tabbar/buttons_tabbar.dart';
@@ -11,13 +13,23 @@ class DiscoverPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 3,
         backgroundColor: Colors.white,
         title: const Text(
           "Discover",
           style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
         ),
-        actions: const [Icon(Icons.search)],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 11),
+            child: Icon(
+              Icons.search,
+              color: Colors.black,
+              size: 27,
+            ),
+          )
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -48,12 +60,8 @@ class DiscoverPage extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       PeopleScreen(),
-                      Center(
-                        child: Icon(Icons.table_chart_outlined),
-                      ),
-                      Center(
-                        child: Icon(Icons.list),
-                      ),
+                      PagesScreen(),
+                      ListScreen(),
                       Center(
                         child: Icon(Icons.local_movies_outlined),
                       ),

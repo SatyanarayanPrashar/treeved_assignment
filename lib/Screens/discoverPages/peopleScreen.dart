@@ -10,31 +10,19 @@ class PeopleScreen extends StatefulWidget {
   State<PeopleScreen> createState() => _PeopleScreenState();
 }
 
-List<String> tabs = ["People", "Pages", "Lists", "Movies", "Books", "Art"];
-
-int current = 0;
-
 class _PeopleScreenState extends State<PeopleScreen> {
-  // int _selectedIndex = 0;
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 11),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              const SizedBox(height: 7),
-              //
-              Container(
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            const SizedBox(height: 7),
+            //
+            Padding(
+              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              child: Container(
                 color:
                     const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
                 height: 240,
@@ -62,11 +50,14 @@ class _PeopleScreenState extends State<PeopleScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
-              Row(
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              child: Row(
                 children: [
                   const Icon(Icons.table_chart_outlined),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 10),
                   Text("Pages you may like",
                       style: GoogleFonts.roboto(
                           fontSize: 17, fontWeight: FontWeight.w400)),
@@ -76,10 +67,12 @@ class _PeopleScreenState extends State<PeopleScreen> {
                         //
                       },
                       child: const Text("See more")),
-                  const SizedBox(width: 11),
                 ],
               ),
-              Container(
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              child: Container(
                 color:
                     const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
                 height: 240,
@@ -107,8 +100,11 @@ class _PeopleScreenState extends State<PeopleScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
-              Row(
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              child: Row(
                 children: [
                   const Icon(Icons.list),
                   const SizedBox(width: 20),
@@ -121,13 +117,15 @@ class _PeopleScreenState extends State<PeopleScreen> {
                         //
                       },
                       child: const Text("See more")),
-                  const SizedBox(width: 11),
                 ],
               ),
-              const ExploreListTabs(),
-              const ExploreListTabs(),
-              const ExploreListTabs(),
-              Row(
+            ),
+            const ExploreListTabs(),
+            const ExploreListTabs(),
+            const ExploreListTabs(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              child: Row(
                 children: [
                   const Icon(Icons.local_movies_outlined),
                   const SizedBox(width: 20),
@@ -143,11 +141,11 @@ class _PeopleScreenState extends State<PeopleScreen> {
                   const SizedBox(width: 11),
                 ],
               ),
-              SlideLink(),
-              SlideLink(),
-              SlideLink(),
-            ],
-          ),
+            ),
+            SlideLink(),
+            SlideLink(),
+            SlideLink(),
+          ],
         ),
       ),
     );

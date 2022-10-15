@@ -23,6 +23,7 @@ class PeopleTabs extends StatelessWidget {
       width: 170,
       decoration: BoxDecoration(
         color: Colors.white,
+        border: Border.all(color: Colors.grey.withOpacity(0.3)),
         borderRadius: BorderRadius.circular(7),
       ),
       child: Column(
@@ -90,6 +91,7 @@ class Pagestabs extends StatelessWidget {
       width: 170,
       decoration: BoxDecoration(
         color: Colors.white,
+        border: Border.all(color: Colors.grey.withOpacity(0.3)),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Column(
@@ -149,7 +151,7 @@ class ExploreListTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 11),
+      padding: const EdgeInsets.only(left: 11, right: 11),
       child: Container(
         margin: const EdgeInsets.all(5),
         height: 100,
@@ -159,9 +161,10 @@ class ExploreListTabs extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
           boxShadow: const [
             BoxShadow(
-              color: Color.fromARGB(255, 173, 173, 173),
+              color: Color.fromARGB(255, 223, 223, 223),
               blurRadius: 5,
               spreadRadius: 1,
+              offset: Offset(0, 3),
             ),
           ],
         ),
@@ -228,7 +231,7 @@ class MovieListTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.fromLTRB(11, 7, 11, 4),
       height: 100,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -236,9 +239,10 @@ class MovieListTab extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         boxShadow: const [
           BoxShadow(
-            color: Color.fromARGB(255, 173, 173, 173),
+            color: Color.fromARGB(255, 223, 223, 223),
             blurRadius: 5,
             spreadRadius: 1,
+            offset: Offset(0, 3),
           ),
         ],
       ),

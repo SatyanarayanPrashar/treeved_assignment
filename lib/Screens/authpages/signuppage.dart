@@ -30,7 +30,11 @@ class _SignupPageState extends State<SignupPage> {
                 child: CircleAvatar(
                   radius: 57.0,
                   backgroundColor: Colors.blue,
-                  //
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: AssetImage("assets/Icons/treeved.png"),
+                  ),
                 ),
               ),
               const Padding(
@@ -86,14 +90,14 @@ class _SignupPageState extends State<SignupPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AuthButton(
-                    buttonLogo: '',
+                    buttonLogo: 'assets/Icons/googleLogo.png',
                     route: () {
                       //
                     },
                   ),
                   const SizedBox(width: 20),
                   AuthButton(
-                    buttonLogo: '',
+                    buttonLogo: 'assets/Icons/appleLogo.png',
                     route: () {
                       //
                     },

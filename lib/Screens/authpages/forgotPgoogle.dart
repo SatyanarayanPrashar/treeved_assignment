@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/authpages/authWidgets/textField.dart';
 
-class ForgotPasswordPage extends StatelessWidget {
-  const ForgotPasswordPage({super.key});
+class ForgotPgoogelPage extends StatelessWidget {
+  const ForgotPgoogelPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    TextEditingController emailController = TextEditingController();
+    TextEditingController usernameController = TextEditingController();
 
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
-          title: Text(
+          iconTheme: const IconThemeData(color: Colors.black),
+          title: const Text(
             "Forgot Password",
             style: TextStyle(
               color: Colors.black,
@@ -22,8 +22,6 @@ class ForgotPasswordPage extends StatelessWidget {
           ),
         ),
         body: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(),
             SizedBox(height: size.height * 0.03),
@@ -52,16 +50,10 @@ class ForgotPasswordPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.04),
-            Padding(
-              padding: const EdgeInsets.all(11),
-              child: Text(
-                  "Enter your email to set a new password for your account so  you can login and access all the features",
-                  style: TextStyle(fontSize: 15)),
-            ),
             Text_Field(
-              title: "Email",
-              inputcontroller: emailController,
-              fieldicon: Icon(Icons.email),
+              title: "Username",
+              inputcontroller: usernameController,
+              fieldicon: Icon(Icons.person_outline),
             ),
             Padding(
               padding: const EdgeInsets.all(11),
