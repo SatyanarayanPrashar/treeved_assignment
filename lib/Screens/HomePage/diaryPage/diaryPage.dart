@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/HomePage/diaryPage/calenderHeader.dart';
 import 'package:treeved_assignment/Screens/HomePage/diaryPage/diaryContent.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 
 class DiaryPage extends StatefulWidget {
   const DiaryPage({super.key});
@@ -33,9 +34,17 @@ class _DiaryPageState extends State<DiaryPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 11, right: 4),
-                          child: CircleAvatar(
-                            radius: 20,
-                            backgroundImage: AssetImage("assets/boy1.png"),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return ProfilePage(isUserProfile: true);
+                              }));
+                            },
+                            child: const CircleAvatar(
+                              radius: 20,
+                              backgroundImage: AssetImage("assets/boy1.png"),
+                            ),
                           ),
                         ),
                         SizedBox(width: 10),
