@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/Feedpage/FeedScreen.dart';
-import 'package:treeved_assignment/Screens/Feedpage/postTile.dart';
+import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
+import 'package:treeved_assignment/Screens/HomePage/Feedpage/postTile.dart';
 
 class PostTab extends StatelessWidget {
   const PostTab({super.key});

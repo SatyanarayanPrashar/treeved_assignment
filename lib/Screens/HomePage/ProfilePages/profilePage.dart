@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/Feedpage/FeedScreen.dart';
-import 'package:treeved_assignment/Screens/ProfilePages/aboutTab.dart';
-import 'package:treeved_assignment/Screens/ProfilePages/collectionTab.dart';
-import 'package:treeved_assignment/Screens/ProfilePages/postsTab.dart';
-import 'package:treeved_assignment/Screens/ProfilePages/profile_header.dart';
+import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
+import 'package:treeved_assignment/Screens/HomePage/ProfilePages/aboutTab.dart';
+import 'package:treeved_assignment/Screens/HomePage/ProfilePages/collectionTab.dart';
+import 'package:treeved_assignment/Screens/HomePage/ProfilePages/postsTab.dart';
+import 'package:treeved_assignment/Screens/HomePage/ProfilePages/profile_header.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final bool isUserProfile;
+  const ProfilePage({super.key, required this.isUserProfile});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -29,14 +30,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 headerSliverBuilder: (context, innerBoxIsScrolled) {
                   return <Widget>[
                     SliverAppBar.large(
+                      // automaticallyImplyLeading: !widget.isUserProfile,
                       collapsedHeight: 0,
                       expandedHeight: 300,
                       toolbarHeight: 0,
                       backgroundColor: Colors.white,
-                      flexibleSpace: Profile_Header(),
+                      flexibleSpace:
+                          Profile_Header(isUserProfile: widget.isUserProfile),
                     ),
                     const SliverAppBar(
-                      expandedHeight: 120,
+                      expandedHeight: 80,
                       collapsedHeight: 0,
                       backgroundColor: Colors.transparent,
                       toolbarHeight: 0,
@@ -61,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ];
                 },
-                body: TabBarView(children: [
+                body: const TabBarView(children: [
                   AboutTab(),
                   CollectionTab(),
                   PostTab(),

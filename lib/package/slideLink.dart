@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/discoverPages/WidgetpeopleScreen.dart';
+import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleScreen.dart';
 import 'package:treeved_assignment/package/slidable_links/slidable.dart';
 import 'slidable_links/action_pane_motions.dart';
 import 'slidable_links/actions.dart';

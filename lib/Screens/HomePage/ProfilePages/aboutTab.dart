@@ -1,6 +1,6 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/discoverPages/WidgetpeopleScreen.dart';
+import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleScreen.dart';
 import 'package:treeved_assignment/package/slideLink.dart';
 
 class AboutTab extends StatefulWidget {
@@ -41,7 +41,7 @@ class _AboutTabState extends State<AboutTab> {
               children: [
                 Image(image: AssetImage("assets/Icons/pin.png")),
                 Text(
-                  "Pinned Lists",
+                  "  Pinned Lists",
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                 ),
               ],

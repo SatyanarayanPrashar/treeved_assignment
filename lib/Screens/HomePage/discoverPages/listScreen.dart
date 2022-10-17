@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/discoverPages/WidgetpeopleScreen.dart';
+import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleScreen.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({super.key});

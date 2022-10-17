@@ -1,6 +1,7 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/Feedpage/FeedScreen.dart';
+import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
+import 'package:treeved_assignment/Screens/HomePage/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/package/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
@@ -16,55 +17,62 @@ class PostTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 14),
-          Padding(
-            padding: const EdgeInsets.all(11),
-            child: Row(
-              children: [
-                // Avatar , about and options
-                const CircleAvatar(
-                  radius: 27,
-                  backgroundImage: AssetImage("assets/boy1.png"),
-                ),
-                const SizedBox(
-                  width: 7,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Anupam Mishra",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      "Entrepreneur",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                      ),
-                    ),
-                    Text(
-                      "18 minutes ago",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {
-                    //
-                  },
-                  icon: Icon(
-                    Icons.more_vert,
-                    color: Colors.black.withOpacity(0.6),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ProfilePage(isUserProfile: false);
+              }));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(11),
+              child: Row(
+                children: [
+                  // Avatar , about and options
+                  const CircleAvatar(
+                    radius: 27,
+                    backgroundImage: AssetImage("assets/boy1.png"),
                   ),
-                )
-              ],
+                  const SizedBox(
+                    width: 7,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Anupam Mishra",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(
+                        "Entrepreneur",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                      Text(
+                        "18 minutes ago",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {
+                      //
+                    },
+                    icon: Icon(
+                      Icons.more_vert,
+                      color: Colors.black.withOpacity(0.6),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
 

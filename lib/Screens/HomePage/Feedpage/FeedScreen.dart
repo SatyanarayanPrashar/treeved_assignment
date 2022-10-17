@@ -1,6 +1,6 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/Feedpage/postTile.dart';
+import 'package:treeved_assignment/Screens/HomePage/Feedpage/postTile.dart';
 import 'package:treeved_assignment/package/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 

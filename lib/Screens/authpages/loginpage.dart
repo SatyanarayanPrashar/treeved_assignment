@@ -1,12 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/authpages/authWidgets/authButtons.dart';
-import 'package:treeved_assignment/Screens/authpages/authWidgets/textField.dart';
-import 'package:treeved_assignment/Screens/authpages/forgotPgoogle.dart';
-import 'package:treeved_assignment/Screens/authpages/forgotPpage.dart';
-import 'package:treeved_assignment/Screens/authpages/signuppage.dart';
-import 'package:treeved_assignment/Screens/homePage.dart';
+import 'package:treeved_assignment/Screens/AuthPages/authWidgets/authButtons.dart';
+import 'package:treeved_assignment/Screens/AuthPages/authWidgets/textField.dart';
+import 'package:treeved_assignment/Screens/AuthPages/forgotPgoogle.dart';
+import 'package:treeved_assignment/Screens/AuthPages/forgotPpage.dart';
+import 'package:treeved_assignment/Screens/AuthPages/signuppage.dart';
+import 'package:treeved_assignment/Screens/HomePage/homePage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.all(11),
               child: ElevatedButton(
                 onPressed: () {
-                  log("to forgot password page");
+                  log("to forgot Home page");
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return HomePage();
                   }));

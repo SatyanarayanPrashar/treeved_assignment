@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:treeved_assignment/Screens/discoverPages/WidgetpeopleScreen.dart';
+import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleScreen.dart';
 import 'package:treeved_assignment/package/slideLink.dart';
 
 class PeopleScreen extends StatefulWidget {
@@ -26,27 +26,14 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 color:
                     const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
                 height: 240,
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: const [
-                      PeopleTabs(
-                        name: 'Sam Sharma',
-                        about: 'Designer/Animator/Feminist',
-                        imageDes: 'assets/girl1.jpg',
-                      ),
-                      PeopleTabs(
-                        name: 'Vaibhav Raj',
-                        about: 'Entrepreneur/Founder: Risk',
-                        imageDes: 'assets/boy1.png',
-                      ),
-                      PeopleTabs(
-                        name: 'Sam Sharma',
-                        about: 'Designer/Animator/Feminist',
-                        imageDes: 'assets/girl1.jpg',
-                      ),
-                    ],
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 6,
+                  itemBuilder: (context, index) => PeopleTabs(
+                    name: 'Sam Sharma',
+                    about: 'Designer/Animator/Feminist',
+                    imageDes: 'assets/girl1.jpg',
                   ),
                 ),
               ),
@@ -76,27 +63,14 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 color:
                     const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
                 height: 240,
-                child: SingleChildScrollView(
+                child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: const [
-                      Pagestabs(
-                        name: 'Microanimations',
-                        imageDes: 'assets/girl2.jpg',
-                        bgimage: 'assets/back1.jpg',
-                      ),
-                      Pagestabs(
-                        name: 'Cinematography and Design',
-                        imageDes: 'assets/boy2.png',
-                        bgimage: 'assets/back2.jpg',
-                      ),
-                      Pagestabs(
-                        name: 'Art Club',
-                        imageDes: 'assets/girl2.jpg',
-                        bgimage: 'assets/back1.jpg',
-                      ),
-                    ],
+                  itemCount: 6,
+                  itemBuilder: (context, index) => Pagestabs(
+                    name: 'Microanimations',
+                    imageDes: 'assets/girl2.jpg',
+                    bgimage: 'assets/back1.jpg',
                   ),
                 ),
               ),

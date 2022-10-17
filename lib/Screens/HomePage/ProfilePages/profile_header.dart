@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Profile_Header extends StatelessWidget {
+  final bool isUserProfile; /* shall be removed on addition of sharedPref. */
+
   const Profile_Header({
     Key? key,
+    required this.isUserProfile,
   }) : super(key: key);
 
   @override
@@ -116,32 +119,102 @@ class Profile_Header extends StatelessWidget {
                   flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: InkWell(
-                      onTap: () {
-                        //
-                      },
-                      child: Container(
-                        height: 32,
-                        width: 105,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  spreadRadius: 1,
-                                  blurRadius: 5)
-                            ]),
-                        child: const Center(
-                          child: Text(
-                            "  Edit Profie  ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.blue,
+                    child: isUserProfile
+                        ? InkWell(
+                            onTap: () {
+                              //
+                            },
+                            child: Container(
+                              height: 32,
+                              width: 105,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        spreadRadius: 1,
+                                        blurRadius: 5)
+                                  ]),
+                              child: const Center(
+                                child: Text(
+                                  "  Edit Profie  ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ),
                             ),
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  //
+                                },
+                                child: Container(
+                                  height: 32,
+                                  width: size.width * 0.4,
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(4),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.2),
+                                            spreadRadius: 1,
+                                            blurRadius: 5)
+                                      ]),
+                                  child: const Center(
+                                    child: Text(
+                                      "  Connect  ",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: size.width * 0.02),
+                              InkWell(
+                                onTap: () {
+                                  //
+                                },
+                                child: Container(
+                                  height: 32,
+                                  width: size.width * 0.4,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(4),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.2),
+                                            spreadRadius: 1,
+                                            blurRadius: 5)
+                                      ]),
+                                  child: const Center(
+                                    child: Text(
+                                      "  Recommend  ",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: size.width * 0.02),
+                              InkWell(
+                                  onTap: () {},
+                                  child: Icon(
+                                    Icons.more_vert,
+                                    color: Colors.black.withOpacity(0.6),
+                                  ))
+                            ],
                           ),
-                        ),
-                      ),
-                    ),
                   ),
                 ),
               ],
