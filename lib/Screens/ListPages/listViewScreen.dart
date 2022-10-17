@@ -1,6 +1,8 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
+import 'package:treeved_assignment/Screens/ListPages/addLink.dart';
+import 'package:treeved_assignment/Screens/ListPages/createList.dart';
 import 'package:treeved_assignment/package/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
@@ -41,6 +43,16 @@ class listScreen extends StatelessWidget {
               },
               icon: Icon(TreevedIcons.discover))
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return addLink();
+          }));
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: const Icon(Icons.add),
       ),
       body: Column(
         children: [
@@ -150,7 +162,10 @@ class listScreen extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.folder_outlined),
+                                  Icon(
+                                    Icons.folder_outlined,
+                                    color: Colors.blue,
+                                  ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 7),
                                     child: Text(

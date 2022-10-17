@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/AuthPages/authWidgets/authButtons.dart';
-import 'package:treeved_assignment/Screens/AuthPages/authWidgets/textField.dart';
+import 'package:treeved_assignment/Screens/AuthPages/authButtons.dart';
+import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
 import 'package:treeved_assignment/Screens/AuthPages/forgotPgoogle.dart';
 import 'package:treeved_assignment/Screens/AuthPages/forgotPpage.dart';
 import 'package:treeved_assignment/Screens/AuthPages/signuppage.dart';

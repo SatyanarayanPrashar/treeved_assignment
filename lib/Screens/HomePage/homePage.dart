@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
 import 'package:treeved_assignment/Screens/HomePage/diaryPage/diaryPage.dart';
 import 'package:treeved_assignment/Screens/HomePage/discoverPages/DiscoverPage.dart';
-import 'package:treeved_assignment/Screens/HomePage/ProfilePages/profilePage.dart';
+import 'package:treeved_assignment/Screens/HomePage/notificationPages/notificationScreen.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   final screens = [
     FeedPage(),
     DiscoverPage(),
-    ProfilePage(isUserProfile: true),
+    NotificationScreen(),
     DiaryPage(),
   ];
 
@@ -45,8 +46,8 @@ class _HomePageState extends State<HomePage> {
             label: 'Discover',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
+            icon: Icon(Icons.notifications_none_rounded),
+            label: 'Notifications',
           ),
           BottomNavigationBarItem(
             icon: Icon(TreevedIcons.diary),

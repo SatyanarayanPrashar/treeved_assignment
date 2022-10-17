@@ -101,7 +101,9 @@ class _CalenderTabState extends State<CalenderTab> {
                         decoration: BoxDecoration(
                             color: (today > currenDateTime.day)
                                 ? Colors.white
-                                : const Color(0xffF4F6F9),
+                                : (today == currenDateTime.day)
+                                    ? Colors.blue
+                                    : Color(0xffF4F6F9),
                             borderRadius: BorderRadius.circular(12)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,8 +116,10 @@ class _CalenderTabState extends State<CalenderTab> {
                                       currentMonthList[index].weekday - 1],
                                   overflow: TextOverflow.clip,
                                   style: TextStyle(
-                                      color: const Color(0xff658AC7)
-                                          .withOpacity(0.5),
+                                      color: (today == currenDateTime.day)
+                                          ? Colors.white
+                                          : const Color(0xff658AC7)
+                                              .withOpacity(0.5),
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),
@@ -127,7 +131,10 @@ class _CalenderTabState extends State<CalenderTab> {
                                 child: Text(
                                   currentMonthList[index].day.toString(),
                                   style: TextStyle(
-                                      color: Color(0xff658AC7).withOpacity(0.5),
+                                      color: (today == currenDateTime.day)
+                                          ? Colors.white
+                                          : const Color(0xff658AC7)
+                                              .withOpacity(0.5),
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500),
                                 ),

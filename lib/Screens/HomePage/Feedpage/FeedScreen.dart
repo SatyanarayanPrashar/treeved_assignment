@@ -1,6 +1,7 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/HomePage/Feedpage/postTile.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/package/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
@@ -16,17 +17,27 @@ class _FeedPageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: const Text(
-          "TreeVed",
-          style: TextStyle(
-            color: Colors.blue,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1,
-          ),
-        ),
-      ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          title: Row(
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ProfilePage(isUserProfile: true);
+                  }));
+                },
+                child: CircleAvatar(
+                  backgroundImage: AssetImage("assets/boy1.png"),
+                ),
+              ),
+              SizedBox(width: 10),
+              // CircleAvatar(
+              //   backgroundImage: AssetImage("assets/Icons/treeved.png"),
+              // ),
+              Image(image: AssetImage("assets/Icons/TreeVedtext.png"))
+            ],
+          )),
       body: ListView.builder(
         physics: BouncingScrollPhysics(),
         itemCount: 10,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/AuthPages/authWidgets/textField.dart';
+import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});

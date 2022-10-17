@@ -26,17 +26,30 @@ class Profile_Header extends StatelessWidget {
             child: Column(
               children: [
                 Flexible(
-                  flex: 1,
+                  flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: InkWell(
+                            onTap: () {
+                              print("tapped");
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_back,
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: IconButton(
                             onPressed: () {
                               //
+                              print("tapped");
                             },
                             icon: const Icon(Icons.menu),
                           ),
@@ -123,6 +136,7 @@ class Profile_Header extends StatelessWidget {
                         ? InkWell(
                             onTap: () {
                               //
+                              print("tapped");
                             },
                             child: Container(
                               height: 32,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/AuthPages/authWidgets/authButtons.dart';
-import 'package:treeved_assignment/Screens/AuthPages/authWidgets/textField.dart';
+import 'package:treeved_assignment/Screens/AuthPages/authButtons.dart';
+import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
 import 'package:treeved_assignment/Screens/AuthPages/loginpage.dart';
 
 class SignupPage extends StatefulWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treeved_assignment/Screens/ListPages/createList.dart';
 
 class CollectionTab extends StatelessWidget {
   const CollectionTab({super.key});
@@ -11,6 +12,9 @@ class CollectionTab extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return createList();
+          }));
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: const Icon(Icons.add),

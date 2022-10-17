@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
-import 'package:treeved_assignment/Screens/HomePage/ProfilePages/aboutTab.dart';
-import 'package:treeved_assignment/Screens/HomePage/ProfilePages/collectionTab.dart';
-import 'package:treeved_assignment/Screens/HomePage/ProfilePages/postsTab.dart';
-import 'package:treeved_assignment/Screens/HomePage/ProfilePages/profile_header.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/aboutTab.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/collectionTab.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/postsTab.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/profile_header.dart';
 
 class ProfilePage extends StatefulWidget {
   final bool isUserProfile;
