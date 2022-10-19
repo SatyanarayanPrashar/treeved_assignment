@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/HomePage/diaryPage/calenderHeader.dart';
 import 'package:treeved_assignment/Screens/HomePage/diaryPage/diaryContent.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
+import 'package:treeved_assignment/package/date_utils.dart' as date_util;
 
 class DiaryPage extends StatefulWidget {
   const DiaryPage({super.key});
@@ -12,6 +13,20 @@ class DiaryPage extends StatefulWidget {
 bool isGridView = false;
 
 class _DiaryPageState extends State<DiaryPage> {
+  late ScrollController scrollController;
+  List<DateTime> currentMonthList = List.empty();
+  DateTime currenDateTime = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    currentMonthList = date_util.DateUtils.daysInMonth(currenDateTime);
+    currentMonthList.sort((a, b) => a.day.compareTo(b.day));
+    currentMonthList = currentMonthList.toSet().toList();
+    scrollController =
+        ScrollController(initialScrollOffset: 45.0 * currenDateTime.day);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -85,13 +100,18 @@ class _DiaryPageState extends State<DiaryPage> {
                     ),
                   ),
                 ),
-                CalenderTab(),
+                CalenderTab(
+                  currentMonthList: currentMonthList,
+                  scrollController: scrollController,
+                ),
               ],
             ),
           ),
           body: DiaryContent(
             isGridview: isGridView,
-            entryDate: 'October 17',
+            entryDate: date_util.DateUtils.months[currenDateTime.month - 1] +
+                " " +
+                currenDateTime.day.toString(),
           )),
     );
   }

@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
-import 'package:treeved_assignment/Screens/ProfilePages/aboutTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/collectionTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/postsTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profile_header.dart';
+import 'package:treeved_assignment/Screens/pagePages/pageHeader.dart';
 
-class ProfilePage extends StatefulWidget {
-  final bool isUserProfile;
-  const ProfilePage({super.key, required this.isUserProfile});
+class pageScreen extends StatelessWidget {
+  const pageScreen({super.key});
 
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Container(
       color: Colors.white,
       child: SafeArea(
         child: DefaultTabController(
-          length: 3,
+          length: 2,
           child: Scaffold(
             body: Container(
               color: Colors.white,
@@ -31,21 +22,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 floatHeaderSlivers: true,
                 headerSliverBuilder: (context, innerBoxIsScrolled) {
                   return <Widget>[
-                    SliverAppBar.large(
-                      // automaticallyImplyLeading: !widget.isUserProfile,
+                    SliverAppBar(
                       collapsedHeight: 0,
-                      expandedHeight: 300,
+                      expandedHeight: 310,
                       toolbarHeight: 0,
                       backgroundColor: Colors.white,
-                      flexibleSpace:
-                          Profile_Header(isUserProfile: widget.isUserProfile),
-                    ),
-                    const SliverAppBar(
-                      expandedHeight: 80,
-                      collapsedHeight: 0,
-                      backgroundColor: Colors.transparent,
-                      toolbarHeight: 0,
-                      flexibleSpace: group_section(),
+                      flexibleSpace: Page_Header(isUserProfile: false),
                     ),
                     SliverPersistentHeader(
                       delegate: _SliverAppBarDelegate(
@@ -56,9 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           labelColor: Colors.blue,
                           labelStyle: TextStyle(fontWeight: FontWeight.bold),
                           tabs: [
-                            Tab(child: Text("About")),
                             Tab(child: Text("Collections")),
-                            Tab(child: Text("Posts"))
+                            Tab(child: Text("Posts")),
                           ],
                         ),
                       ),
@@ -66,10 +47,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ];
                 },
-                body: const TabBarView(
+                body: TabBarView(
                   physics: BouncingScrollPhysics(),
                   children: [
-                    AboutTab(),
                     CollectionTab(),
                     PostTab(),
                   ],

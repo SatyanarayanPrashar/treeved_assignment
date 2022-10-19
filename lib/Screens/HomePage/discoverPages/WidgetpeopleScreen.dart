@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:treeved_assignment/Screens/HomePage/discoverPages/listScreen.dart';
 import 'package:treeved_assignment/Screens/ListPages/listViewScreen.dart';
+import 'package:treeved_assignment/Screens/pagePages/pageScreen.dart';
 
 class PeopleTabs extends StatelessWidget {
   const PeopleTabs({
@@ -90,6 +91,9 @@ class Pagestabs extends StatelessWidget {
     return InkWell(
       onTap: () {
         //
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return pageScreen();
+        }));
       },
       child: Container(
         margin: const EdgeInsets.only(right: 10),

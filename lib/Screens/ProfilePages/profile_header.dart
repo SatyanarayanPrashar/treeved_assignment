@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treeved_assignment/Screens/GroupPages/groupScreen.dart';
 
 class Profile_Header extends StatelessWidget {
   final bool isUserProfile; /* shall be removed on addition of sharedPref. */
@@ -263,31 +264,29 @@ class group_section extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-            child: Flexible(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Flexible(
+                  child: CircleAvatar(
+                    radius: 24,
                     child: CircleAvatar(
-                      radius: 24,
-                      child: CircleAvatar(
-                        radius: 23,
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.add),
-                      ),
+                      radius: 23,
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.add),
                     ),
                   ),
-                  Flexible(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        "New Group",
-                        style: TextStyle(fontSize: 11, color: Colors.blue),
-                      ),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      "New Group",
+                      style: TextStyle(fontSize: 11, color: Colors.blue),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
           Expanded(
@@ -296,31 +295,37 @@ class group_section extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               itemCount: 4,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Flexible(
-                        child: CircleAvatar(
-                          radius: 24,
-                          backgroundImage: AssetImage("assets/back1.jpg"),
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => groupPage()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Flexible(
+                          child: CircleAvatar(
+                            radius: 24,
+                            backgroundImage: AssetImage("assets/back1.jpg"),
+                          ),
                         ),
-                      ),
-                      Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Container(
-                            width: 52,
-                            child: const Text(
-                              "Flim and Cinema",
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 11),
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Container(
+                              width: 52,
+                              child: const Text(
+                                "Flim and Cinema",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(fontSize: 11),
+                              ),
                             ),
                           ),
                         ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
