@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   log("to forgot password page");
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ForgotPgoogelPage();
+                    return ForgotPgooglePage();
                   }));
                 },
                 child: const Text(

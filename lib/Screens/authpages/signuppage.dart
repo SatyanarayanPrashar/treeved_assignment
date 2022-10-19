@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/AuthPages/authButtons.dart';
+import 'package:treeved_assignment/Screens/AuthPages/otpPage.dart';
 import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
 import 'package:treeved_assignment/Screens/AuthPages/loginpage.dart';
 
@@ -69,6 +70,10 @@ class _SignupPageState extends State<SignupPage> {
                 child: ElevatedButton(
                   onPressed: () {
                     //
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return optPage();
+                    }));
                   },
                   child: SizedBox(
                     height: 45,

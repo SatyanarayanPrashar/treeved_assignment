@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+import 'package:otp_text_field/style.dart';
 import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
 
-class ForgotPgooglePage extends StatelessWidget {
-  const ForgotPgooglePage({super.key});
+class optPage extends StatelessWidget {
+  const optPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,10 @@ class ForgotPgooglePage extends StatelessWidget {
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(color: Colors.black),
           title: const Text(
-            "Forgot Password",
+            "Enter OTP",
             style: TextStyle(
               color: Colors.black,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -50,13 +52,56 @@ class ForgotPgooglePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.04),
-            Text_Field(
-              title: "Username",
-              inputcontroller: usernameController,
-              fieldicon: Icon(Icons.person_outline),
+            Padding(
+              padding: const EdgeInsets.only(left: 11, bottom: 7),
+              child: Row(
+                children: [
+                  Text(
+                    "We have sent an OTP on ",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    "XXXXXX7296",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 11, bottom: 11, top: 11),
+                  child: Text(
+                    "Enter OTP",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, color: Colors.blue),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  width: size.width * 0.74,
+                  child: OTPTextField(
+                    length: 4,
+                    fieldWidth: 50,
+                    style: TextStyle(fontSize: 17),
+                    textFieldAlignment: MainAxisAlignment.spaceAround,
+                    fieldStyle: FieldStyle.underline,
+                    onCompleted: (value) {
+                      //
+                    },
+                  ),
+                ),
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.all(11),
+              padding: const EdgeInsets.fromLTRB(11, 41, 11, 11),
               child: ElevatedButton(
                 onPressed: () {
                   //

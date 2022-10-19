@@ -40,6 +40,7 @@ dependencies:
   url_launcher: ^6.1.5
   expandable_text: ^2.3.0
   intl: ^0.17.0
+  otp_text_field: ^1.1.3
 
 
 
