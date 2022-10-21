@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/ListPages/createList.dart';
+import 'package:treeved_assignment/commons/collecctionBottomsheet.dart';
 
 class CollectionTab extends StatelessWidget {
-  const CollectionTab({super.key});
+  const CollectionTab({super.key, this.isUserCollection});
+  final bool? isUserCollection;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,8 @@ class CollectionTab extends StatelessWidget {
         ),
         itemCount: 18,
         itemBuilder: (context, inddex) {
-          return const CollectionBloc(
+          return CollectionBloc(
+            isUserCollection: isUserCollection,
             name: "Entrepreneurship Resources",
             linkCount: '52',
             listCount: '7',
@@ -49,11 +52,13 @@ class CollectionBloc extends StatelessWidget {
       {super.key,
       required this.name,
       required this.listCount,
-      required this.linkCount});
+      required this.linkCount,
+      this.isUserCollection});
 
   final String name;
   final String? listCount;
   final String? linkCount;
+  final bool? isUserCollection;
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +108,12 @@ class CollectionBloc extends StatelessWidget {
                   child: IconButton(
                     onPressed: () {
                       //
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) =>
+                            collectionsheet(isUserCollection: isUserCollection),
+                      );
                     },
                     icon: Icon(Icons.more_vert),
                   ),

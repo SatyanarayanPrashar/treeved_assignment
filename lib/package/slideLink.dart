@@ -5,7 +5,9 @@ import 'slidable_links/action_pane_motions.dart';
 import 'slidable_links/actions.dart';
 
 class SlideLink extends StatefulWidget {
-  const SlideLink({super.key});
+  const SlideLink({super.key, this.isUserLink});
+
+  final bool? isUserLink;
 
   @override
   State<SlideLink> createState() => _SlideLinkState();
@@ -60,7 +62,7 @@ class _SlideLinkState extends State<SlideLink> {
           ),
         ],
       ),
-      child: MovieListTab(),
+      child: MovieListTab(isUserLink: widget.isUserLink),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/HomePage/Feedpage/postTile.dart';
+import 'package:treeved_assignment/commons/postTile.dart';
+import 'package:treeved_assignment/Screens/ListPages/addLink.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/package/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
@@ -38,11 +39,21 @@ class _FeedPageState extends State<FeedPage> {
               Image(image: AssetImage("assets/Icons/TreeVedtext.png"))
             ],
           )),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return addLink();
+          }));
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: const Icon(Icons.add),
+      ),
       body: ListView.builder(
         physics: BouncingScrollPhysics(),
         itemCount: 10,
         itemBuilder: (context, index) {
-          return PostTile();
+          return PostTile(isUserPost: false);
         },
       ),
     );
@@ -68,11 +79,7 @@ class FeedIcons extends StatefulWidget {
   final Color? color;
   final Size screenSize;
   final VoidCallback onTap;
-
-  // ignore: prefer_typing_uninitialized_variables
   final height;
-
-  // ignore: prefer_typing_uninitialized_variables
   final width;
 
   @override

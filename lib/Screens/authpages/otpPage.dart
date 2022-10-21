@@ -90,7 +90,7 @@ class optPage extends StatelessWidget {
                   child: OTPTextField(
                     length: 4,
                     fieldWidth: 50,
-                    style: TextStyle(fontSize: 17),
+                    style: TextStyle(fontSize: 21),
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldStyle: FieldStyle.underline,
                     onCompleted: (value) {

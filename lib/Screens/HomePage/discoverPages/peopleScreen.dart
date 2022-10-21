@@ -94,9 +94,10 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 ],
               ),
             ),
-            const ExploreListTabs(),
-            const ExploreListTabs(),
-            const ExploreListTabs(),
+            const ExploreListTabs(isUserList: false),
+            const ExploreListTabs(isUserList: false),
+            const ExploreListTabs(isUserList: false),
+
             Padding(
               padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
               child: Row(

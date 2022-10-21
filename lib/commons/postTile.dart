@@ -2,12 +2,21 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
+import 'package:treeved_assignment/commons/bottomSheet.dart';
+import 'package:treeved_assignment/commons/bottomsheetItem.dart';
 import 'package:treeved_assignment/package/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
-class PostTile extends StatelessWidget {
-  const PostTile({super.key});
+class PostTile extends StatefulWidget {
+  final bool? isUserPost;
 
+  const PostTile({super.key, this.isUserPost});
+
+  @override
+  State<PostTile> createState() => _PostTileState();
+}
+
+class _PostTileState extends State<PostTile> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,6 +74,54 @@ class PostTile extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       //
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => CustomBottomSheet(
+                          height: size.height * 0.25,
+                          childern: widget.isUserPost ?? false
+                              ? [
+                                  BottomSheetItems(
+                                    onTap: () {
+                                      //
+                                    },
+                                    title: "Copy Post URL",
+                                  ),
+                                  BottomSheetItems(
+                                    onTap: () {
+                                      //
+                                    },
+                                    title: "Share Post",
+                                  ),
+                                  BottomSheetItems(
+                                    onTap: () {
+                                      //
+                                    },
+                                    title: "Delete",
+                                  ),
+                                ]
+                              : [
+                                  BottomSheetItems(
+                                    onTap: () {
+                                      //
+                                    },
+                                    title: "Copy Post URL",
+                                  ),
+                                  BottomSheetItems(
+                                    onTap: () {
+                                      //
+                                    },
+                                    title: "Share Post",
+                                  ),
+                                  BottomSheetItems(
+                                    onTap: () {
+                                      //
+                                    },
+                                    title: "Report this Post",
+                                  ),
+                                ],
+                        ),
+                      );
                     },
                     icon: Icon(
                       Icons.more_vert,
@@ -90,10 +147,7 @@ class PostTile extends StatelessWidget {
           ),
 
           // link here
-          Padding(
-            padding: const EdgeInsets.only(right: 0),
-            child: SlideLink(),
-          ),
+          SlideLink(isUserLink: widget.isUserPost),
 
           const Padding(
             padding: EdgeInsets.fromLTRB(11, 4, 11, 0),

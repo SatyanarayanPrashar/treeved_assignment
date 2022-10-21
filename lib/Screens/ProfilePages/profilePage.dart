@@ -40,13 +40,19 @@ class _ProfilePageState extends State<ProfilePage> {
                       flexibleSpace:
                           Profile_Header(isUserProfile: widget.isUserProfile),
                     ),
-                    const SliverAppBar(
-                      expandedHeight: 80,
-                      collapsedHeight: 0,
-                      backgroundColor: Colors.transparent,
-                      toolbarHeight: 0,
-                      flexibleSpace: group_section(),
-                    ),
+                    widget.isUserProfile
+                        ? SliverAppBar(
+                            expandedHeight: 80,
+                            collapsedHeight: 0,
+                            backgroundColor: Colors.transparent,
+                            toolbarHeight: 0,
+                            flexibleSpace: group_section(),
+                          )
+                        : SliverAppBar(
+                            expandedHeight: 0,
+                            collapsedHeight: 0,
+                            toolbarHeight: 0,
+                          ),
                     SliverPersistentHeader(
                       delegate: _SliverAppBarDelegate(
                         const TabBar(
@@ -66,12 +72,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ];
                 },
-                body: const TabBarView(
+                body: TabBarView(
                   physics: BouncingScrollPhysics(),
                   children: [
-                    AboutTab(),
-                    CollectionTab(),
-                    PostTab(),
+                    AboutTab(isUserList: widget.isUserProfile),
+                    CollectionTab(isUserCollection: widget.isUserProfile),
+                    PostTab(isUserPost: widget.isUserProfile),
                   ],
                 ),
               ),

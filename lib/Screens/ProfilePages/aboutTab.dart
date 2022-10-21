@@ -4,7 +4,8 @@ import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleSc
 import 'package:treeved_assignment/package/slideLink.dart';
 
 class AboutTab extends StatefulWidget {
-  const AboutTab({super.key});
+  const AboutTab({super.key, this.isUserList});
+  final bool? isUserList;
 
   @override
   State<AboutTab> createState() => _AboutTabState();
@@ -47,9 +48,9 @@ class _AboutTabState extends State<AboutTab> {
               ],
             ),
           ),
-          const ExploreListTabs(),
-          const ExploreListTabs(),
-          const ExploreListTabs(),
+          ExploreListTabs(isUserList: widget.isUserList),
+          ExploreListTabs(isUserList: widget.isUserList),
+          ExploreListTabs(isUserList: widget.isUserList),
           Padding(
             padding: const EdgeInsets.all(11),
             child: Container(

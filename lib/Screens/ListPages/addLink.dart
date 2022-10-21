@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
+import 'package:treeved_assignment/Screens/ListPages/createList.dart';
+import 'package:treeved_assignment/Screens/ListPages/selectList.dart';
 import 'package:treeved_assignment/commons/commonTextField.dart';
 
 class addLink extends StatefulWidget {
@@ -9,13 +11,36 @@ class addLink extends StatefulWidget {
   State<addLink> createState() => _addLinkState();
 }
 
+double sliderValue = 0;
+int resourceExpanded = 0;
+bool resourceExpandisTapped = false;
+String selectedresourceType = "Other";
+String selectedPrefrence = "";
+
 class _addLinkState extends State<addLink> {
   @override
   Widget build(BuildContext context) {
     TextEditingController nameController = TextEditingController();
     TextEditingController noteController = TextEditingController();
-
-    bool resourceExpanded = false;
+    final resourcetype = [
+      'Cource',
+      'Lecture',
+      'Tutorials',
+      'Article',
+      'Website',
+      'Profiles',
+      'Posdcast',
+      'Documentary',
+      'Movie',
+      'TV Show',
+      'Book',
+      'Game',
+      'Music',
+      'Playlist',
+      'YouTube',
+      'Video',
+      'Other',
+    ];
 
     Size size = MediaQuery.of(context).size;
 
@@ -27,8 +52,32 @@ class _addLinkState extends State<addLink> {
         ),
         backgroundColor: Colors.white,
         title: const Text(
-          "Create list",
+          "Add Link",
           style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(11),
+        child: SizedBox(
+          height: 50,
+          width: size.width,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return selectList();
+              }));
+            },
+            backgroundColor: Colors.blue,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+            child: Center(
+              child: Text(
+                "Select List",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -39,8 +88,8 @@ class _addLinkState extends State<addLink> {
             SizedBox(height: size.height * 0.05),
             commonTextField(
               inputcontroller: nameController,
-              title: "List name",
-              hint: "Name of your list",
+              title: "URL*",
+              hint: "Paste your link here",
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 21),
@@ -49,10 +98,22 @@ class _addLinkState extends State<addLink> {
                   Padding(
                     padding: const EdgeInsets.only(left: 11),
                     child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          selectedPrefrence = "Completed";
+                        });
+                      },
                       child: Container(
                         padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
+                          color: selectedPrefrence == "Completed"
+                              ? Color(0xffCEFFD9)
+                              : Colors.white,
+                          border: Border.all(
+                            color: selectedPrefrence == "Completed"
+                                ? Color(0xff40804E)
+                                : Colors.grey,
+                          ),
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Row(
@@ -62,7 +123,7 @@ class _addLinkState extends State<addLink> {
                               size: 17,
                             ),
                             Text(
-                              "   Completed",
+                              "  Completed",
                               style: TextStyle(color: Colors.black),
                             ),
                           ],
@@ -73,10 +134,22 @@ class _addLinkState extends State<addLink> {
                   Padding(
                     padding: const EdgeInsets.only(left: 11),
                     child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          selectedPrefrence = "Save for later";
+                        });
+                      },
                       child: Container(
                         padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
+                          color: selectedPrefrence == "Save for later"
+                              ? Color(0xffCEFFD9)
+                              : Colors.white,
+                          border: Border.all(
+                            color: selectedPrefrence == "Save for later"
+                                ? Color(0xff40804E)
+                                : Colors.grey,
+                          ),
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Row(
@@ -86,7 +159,7 @@ class _addLinkState extends State<addLink> {
                               size: 17,
                             ),
                             Text(
-                              "   Save for later",
+                              "  Save for later",
                               style: TextStyle(color: Colors.black),
                             ),
                           ],
@@ -98,12 +171,74 @@ class _addLinkState extends State<addLink> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.all(11),
+              padding: EdgeInsets.fromLTRB(11, 0, 11, 11),
               child: Text(
                 "Rating",
                 style: TextStyle(
                     fontWeight: FontWeight.w600, color: Color(0xff385585)),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(11, 0, 11, 21),
+              child: Container(
+                height: size.height * 0.1,
+                width: size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(color: Color(0xffEAEAEA)),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 223, 223, 223),
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Slider(
+                        divisions: 10,
+                        activeColor: Colors.blue,
+                        thumbColor: Colors.blue,
+                        value: sliderValue,
+                        min: 0.0,
+                        max: 5.0,
+                        onChanged: (value) {
+                          setState(() {
+                            sliderValue = value;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xffCEFFD9),
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(14, 11, 14, 11),
+                        child: Text(
+                          sliderValue.toString(),
+                          // sliderValue.toStringAsFixed(1),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            commonTextField(
+              inputcontroller: noteController,
+              title: "Add tags",
+              hint: "Add hashtags",
             ),
             commonTextField(
               inputcontroller: noteController,
@@ -119,91 +254,101 @@ class _addLinkState extends State<addLink> {
                     fontWeight: FontWeight.w600, color: Color(0xff385585)),
               ),
             ),
-            AnimatedContainer(
-              height: resourceExpanded ? 100 : 200,
-              duration: Duration(milliseconds: 400),
-              child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.only(
-                  top: 0.02 * size.width,
-                  left: 0.03 * size.width,
-                  right: 0.03 * size.width,
-                ),
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  // crossAxisCount: 2,
-                  crossAxisSpacing: 17,
-                  mainAxisSpacing: 17,
-                  mainAxisExtent: 40, maxCrossAxisExtent: size.width * 0.4,
-                ),
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(color: Colors.grey.withOpacity(0.3)),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromARGB(255, 223, 223, 223),
-                          blurRadius: 5,
-                          spreadRadius: 1,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
+            Stack(
+              children: [
+                Container(
+                  height: 100,
+                  child: GridView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.only(
+                      top: 0.02 * size.width,
+                      left: 0.03 * size.width,
+                      right: 0.03 * size.width,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(11.0),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 10,
-                            height: size.height * 0.027,
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      crossAxisSpacing: 4,
+                      mainAxisSpacing: 7,
+                      mainAxisExtent: size.width * 0.3,
+                      maxCrossAxisExtent: 30,
+                    ),
+                    itemCount: resourcetype.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 2),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedresourceType = resourcetype[index];
+                            });
+                          },
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(7, 2, 7, 2),
                             decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(2)),
-                          ),
-                          const Flexible(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                "Must watch movies",
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 14),
+                              color: selectedresourceType == resourcetype[index]
+                                  ? Colors.blue
+                                  : Colors.white,
+                              border: Border.all(
+                                  color: selectedresourceType ==
+                                          resourcetype[index]
+                                      ? Colors.blue
+                                      : Color(0xffA6BBDE)),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Container(
+                              width: size.width * 0.3,
+                              child: Center(
+                                child: FittedBox(
+                                  fit: BoxFit.fitWidth,
+                                  child: Text(
+                                    resourcetype[index],
+                                    maxLines: 1,
+                                    style: selectedresourceType ==
+                                            resourcetype[index]
+                                        ? TextStyle(color: Colors.white)
+                                        : TextStyle(color: Color(0xffA6BBDE)),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Positioned(
+                  right: 0,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: 0.02 * size.width,
+                    ),
+                    child: Container(
+                      height: 100,
+                      width: 17,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white.withOpacity(0.5),
+                            Colors.grey.withOpacity(0.1)
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.arrow_forward_ios, color: Colors.white),
                         ],
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(11),
-              child: InkWell(
-                onTap: () {
-                  // create list function here
-                },
-                child: Container(
-                  height: 47,
-                  width: size.width,
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(4)),
-                  child: const Center(
-                      child: Text(
-                    "Select List",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )),
+                  ),
                 ),
-              ),
+              ],
             ),
+            Container(height: 100),
           ],
         ),
       ),

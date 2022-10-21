@@ -5,6 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:treeved_assignment/Screens/HomePage/discoverPages/listScreen.dart';
 import 'package:treeved_assignment/Screens/ListPages/listViewScreen.dart';
 import 'package:treeved_assignment/Screens/pagePages/pageScreen.dart';
+import 'package:treeved_assignment/commons/bottomSheet.dart';
+import 'package:treeved_assignment/commons/bottomsheetItem.dart';
+import 'package:treeved_assignment/commons/linkBottomsheet.dart';
+import 'package:treeved_assignment/commons/listBottomSheet.dart';
 
 class PeopleTabs extends StatelessWidget {
   const PeopleTabs({
@@ -157,7 +161,8 @@ class Pagestabs extends StatelessWidget {
 }
 
 class ExploreListTabs extends StatelessWidget {
-  const ExploreListTabs({super.key});
+  const ExploreListTabs({super.key, this.isUserList});
+  final bool? isUserList;
 
   @override
   Widget build(BuildContext context) {
@@ -232,11 +237,21 @@ class ExploreListTabs extends StatelessWidget {
                   ],
                 ),
               ),
-              const Flexible(
+              Flexible(
                 flex: 1,
                 child: Padding(
                   padding: EdgeInsets.only(top: 11),
-                  child: Icon(Icons.more_vert),
+                  child: InkWell(
+                      onTap: () {
+                        //
+                        showModalBottomSheet(
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) =>
+                              listsheet(isUserList: isUserList),
+                        );
+                      },
+                      child: Icon(Icons.more_vert)),
                 ),
               )
             ],
@@ -248,10 +263,13 @@ class ExploreListTabs extends StatelessWidget {
 }
 
 class MovieListTab extends StatelessWidget {
-  const MovieListTab({super.key});
+  const MovieListTab({super.key, this.isUserLink});
+  final bool? isUserLink;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
       margin: const EdgeInsets.fromLTRB(11, 7, 11, 4),
       height: 100,
@@ -340,11 +358,19 @@ class MovieListTab extends StatelessWidget {
               ],
             ),
           ),
-          const Flexible(
+          Flexible(
             flex: 1,
             child: Padding(
               padding: EdgeInsets.only(top: 5.0),
-              child: Icon(Icons.more_vert),
+              child: InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) =>
+                            userLinksheet(isUserPost: isUserLink));
+                  },
+                  child: Icon(Icons.more_vert)),
             ),
           )
         ],
