@@ -23,8 +23,6 @@ class _Profile_HeaderState extends State<Profile_Header> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    ThemeProvider themeProvider =
-        Provider.of<ThemeProvider>(context, listen: true);
 
     return Column(
       children: [
@@ -46,18 +44,20 @@ class _Profile_HeaderState extends State<Profile_Header> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: InkWell(
-                            onTap: () {
-                              print("tapped");
-                              Navigator.pop(context);
-                            },
-                            child: Icon(
-                              Icons.arrow_back,
-                            ),
-                          ),
-                        ),
+                        !widget.isUserProfile
+                            ? Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: InkWell(
+                                  onTap: () {
+                                    print("tapped");
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_back,
+                                  ),
+                                ),
+                              )
+                            : Container(),
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: IconButton(
@@ -244,7 +244,6 @@ class _Profile_HeaderState extends State<Profile_Header> {
                                   onTap: () {},
                                   child: Icon(
                                     Icons.more_vert,
-                                    color: Colors.black.withOpacity(0.6),
                                   ))
                             ],
                           ),
@@ -254,10 +253,6 @@ class _Profile_HeaderState extends State<Profile_Header> {
             ),
           ),
         ),
-        // const Flexible(
-        //   flex: 1,
-        //   child: group_section(),
-        // ),
       ],
     );
   }

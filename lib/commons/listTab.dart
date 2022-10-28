@@ -48,7 +48,8 @@ class _ListTabsState extends State<ListTabs> {
               BoxShadow(
                 color: themeProvider.themeMode == ThemeMode.light
                     ? Color.fromARGB(255, 223, 223, 223)
-                    : Colors.white.withOpacity(0.3),
+                    // : Colors.white.withOpacity(0.3),
+                    : Colors.transparent,
                 blurRadius: 5,
                 spreadRadius: 1,
                 offset: Offset(0, 3),

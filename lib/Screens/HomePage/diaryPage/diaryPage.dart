@@ -47,25 +47,16 @@ class _DiaryPageState extends State<DiaryPage> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 11, right: 4),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return ProfilePage(isUserProfile: true);
-                              }));
-                            },
-                            child: const CircleAvatar(
-                              radius: 20,
-                              backgroundImage: AssetImage("assets/boy1.png"),
-                            ),
+                          padding: EdgeInsets.only(left: 11, right: 4),
+                          child: CircleAvatar(
+                            radius: 20,
+                            backgroundImage: AssetImage("assets/boy1.png"),
                           ),
                         ),
                         SizedBox(width: 10),
                         Text(
                           "My Diary",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, color: Colors.black),
+                          style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         Spacer(),
                         IconButton(

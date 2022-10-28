@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treeved_assignment/Constants/colors.dart';
 import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
-import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
-import 'package:treeved_assignment/Screens/ListPages/createList.dart';
 import 'package:treeved_assignment/Screens/ListPages/selectList.dart';
 import 'package:treeved_assignment/commons/commonTextField.dart';
 
-class addLink extends StatefulWidget {
-  const addLink({super.key});
+class addPost extends StatefulWidget {
+  const addPost({super.key});
 
   @override
-  State<addLink> createState() => _addLinkState();
+  State<addPost> createState() => _addPostState();
 }
 
 double sliderValue = 0;
@@ -20,7 +18,7 @@ bool resourceExpandisTapped = false;
 String selectedresourceType = "Other";
 String selectedPrefrence = "";
 
-class _addLinkState extends State<addLink> {
+class _addPostState extends State<addPost> {
   @override
   Widget build(BuildContext context) {
     TextEditingController nameController = TextEditingController();
@@ -53,13 +51,12 @@ class _addLinkState extends State<addLink> {
       appBar: AppBar(
         elevation: 2,
         title: Text(
-          "Add Link",
+          "Create Post",
           style: TextStyle(
-            fontWeight: FontWeight.w500,
-            color: themeProvider.themeMode == ThemeMode.light
-                ? Colors.black
-                : Colors.white,
-          ),
+              fontWeight: FontWeight.w500,
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Colors.black
+                  : Colors.white),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -70,16 +67,14 @@ class _addLinkState extends State<addLink> {
           width: size.width,
           child: FloatingActionButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return selectList();
-              }));
+              //
             },
             backgroundColor: Colors.blue,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
-            child: Center(
+            child: const Center(
               child: Text(
-                "Select List",
+                "Create Post",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -96,89 +91,6 @@ class _addLinkState extends State<addLink> {
               inputcontroller: nameController,
               title: "URL*",
               hint: "Paste your link here",
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 21),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 11),
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          selectedPrefrence = "Completed";
-                        });
-                      },
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
-                        decoration: BoxDecoration(
-                          color: selectedPrefrence == "Completed"
-                              ? themeProvider.themeMode == ThemeMode.light
-                                  ? Color(0xffCEFFD9)
-                                  : Color.fromARGB(255, 43, 73, 49)
-                              : themeProvider.themeMode == ThemeMode.light
-                                  ? Colors.white
-                                  : TreeVedAppTheme.boxColorDark,
-                          border: Border.all(
-                            color: selectedPrefrence == "Completed"
-                                ? Color(0xff40804E)
-                                : Colors.grey,
-                          ),
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.done,
-                              size: 17,
-                            ),
-                            Text(
-                              "  Completed",
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 11),
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          selectedPrefrence = "Save for later";
-                        });
-                      },
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
-                        decoration: BoxDecoration(
-                          color: selectedPrefrence == "Save for later"
-                              ? themeProvider.themeMode == ThemeMode.light
-                                  ? Color(0xffCEFFD9)
-                                  : Color.fromARGB(255, 43, 73, 49)
-                              : themeProvider.themeMode == ThemeMode.light
-                                  ? Colors.white
-                                  : TreeVedAppTheme.boxColorDark,
-                          border: Border.all(
-                            color: selectedPrefrence == "Save for later"
-                                ? Color(0xff40804E)
-                                : Colors.grey,
-                          ),
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.bookmark_outline_rounded,
-                              size: 17,
-                            ),
-                            Text("  Save for later"),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ),
             const Padding(
               padding: EdgeInsets.fromLTRB(11, 0, 11, 11),
@@ -199,10 +111,11 @@ class _addLinkState extends State<addLink> {
                       : TreeVedAppTheme.boxColorDark.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(4),
                   border: Border.all(
-                      width: themeProvider.themeMode == ThemeMode.light ? 1 : 3,
-                      color: themeProvider.themeMode == ThemeMode.light
-                          ? Color(0xffEAEAEA)
-                          : TreeVedAppTheme.boxBorderdark),
+                    width: themeProvider.themeMode == ThemeMode.light ? 1 : 3,
+                    color: themeProvider.themeMode == ThemeMode.light
+                        ? Color(0xffEAEAEA)
+                        : TreeVedAppTheme.boxBorderdark,
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: themeProvider.themeMode == ThemeMode.light
