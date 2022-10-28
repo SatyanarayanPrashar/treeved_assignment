@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
 import 'package:treeved_assignment/Screens/ListPages/createList.dart';
 import 'package:treeved_assignment/Screens/ListPages/selectList.dart';
@@ -43,12 +46,19 @@ class _createDiaryState extends State<createDiary> {
     ];
 
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Diary Entry",
-          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            color: themeProvider.themeMode == ThemeMode.light
+                ? Colors.black
+                : Colors.white,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -64,7 +74,12 @@ class _createDiaryState extends State<createDiary> {
             child: Center(
               child: Text(
                 "Add to Diary",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: themeProvider.themeMode == ThemeMode.light
+                      ? Colors.black
+                      : Colors.white,
+                ),
               ),
             ),
           ),
@@ -97,8 +112,12 @@ class _createDiaryState extends State<createDiary> {
                         padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
                         decoration: BoxDecoration(
                           color: selectedPrefrence == "Completed"
-                              ? Color(0xffCEFFD9)
-                              : Colors.white,
+                              ? themeProvider.themeMode == ThemeMode.light
+                                  ? Color(0xffCEFFD9)
+                                  : Color.fromARGB(255, 43, 73, 49)
+                              : themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.white
+                                  : TreeVedAppTheme.boxColorDark,
                           border: Border.all(
                             color: selectedPrefrence == "Completed"
                                 ? Color(0xff40804E)
@@ -112,10 +131,7 @@ class _createDiaryState extends State<createDiary> {
                               Icons.done,
                               size: 17,
                             ),
-                            Text(
-                              "  Completed",
-                              style: TextStyle(color: Colors.black),
-                            ),
+                            Text("  Completed"),
                           ],
                         ),
                       ),
@@ -133,8 +149,12 @@ class _createDiaryState extends State<createDiary> {
                         padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
                         decoration: BoxDecoration(
                           color: selectedPrefrence == "Save for later"
-                              ? Color(0xffCEFFD9)
-                              : Colors.white,
+                              ? themeProvider.themeMode == ThemeMode.light
+                                  ? Color(0xffCEFFD9)
+                                  : Color.fromARGB(255, 43, 73, 49)
+                              : themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.white
+                                  : TreeVedAppTheme.boxColorDark,
                           border: Border.all(
                             color: selectedPrefrence == "Save for later"
                                 ? Color(0xff40804E)
@@ -148,10 +168,7 @@ class _createDiaryState extends State<createDiary> {
                               Icons.bookmark_outline_rounded,
                               size: 17,
                             ),
-                            Text(
-                              "  Save for later",
-                              style: TextStyle(color: Colors.black),
-                            ),
+                            Text("  Save for later"),
                           ],
                         ),
                       ),
@@ -174,12 +191,20 @@ class _createDiaryState extends State<createDiary> {
                 height: size.height * 0.1,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: themeProvider.themeMode == ThemeMode.light
+                      ? Colors.white
+                      : TreeVedAppTheme.boxColorDark.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(4),
-                  border: Border.all(color: Color(0xffEAEAEA)),
-                  boxShadow: const [
+                  border: Border.all(
+                      width: themeProvider.themeMode == ThemeMode.light ? 1 : 3,
+                      color: themeProvider.themeMode == ThemeMode.light
+                          ? Color(0xffEAEAEA)
+                          : TreeVedAppTheme.boxBorderdark),
+                  boxShadow: [
                     BoxShadow(
-                      color: Color.fromARGB(255, 223, 223, 223),
+                      color: themeProvider.themeMode == ThemeMode.light
+                          ? Color.fromARGB(255, 223, 223, 223)
+                          : Colors.transparent,
                       blurRadius: 5,
                       spreadRadius: 1,
                       offset: Offset(0, 3),
@@ -277,7 +302,9 @@ class _createDiaryState extends State<createDiary> {
                             decoration: BoxDecoration(
                               color: selectedresourceType == resourcetype[index]
                                   ? Colors.blue
-                                  : Colors.white,
+                                  : themeProvider.themeMode == ThemeMode.light
+                                      ? Colors.white
+                                      : TreeVedAppTheme.boxColorDark,
                               border: Border.all(
                                   color: selectedresourceType ==
                                           resourcetype[index]

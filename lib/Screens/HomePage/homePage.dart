@@ -74,7 +74,9 @@ class _HomePageState extends State<HomePage> {
             this.index = index;
           });
         },
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: themeProvider.themeMode == ThemeMode.light
+            ? Colors.black
+            : Colors.white,
         selectedItemColor: Colors.blue,
         showUnselectedLabels: true,
         currentIndex: index,
