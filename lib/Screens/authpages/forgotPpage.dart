@@ -11,8 +11,6 @@ class ForgotPasswordPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
           title: Text(
             "Forgot Password",
             style: TextStyle(

@@ -19,7 +19,7 @@ class _userLinksheetState extends State<userLinksheet> {
     return CustomBottomSheet(
         height: (widget.isUserPost ?? false)
             ? size.height * 0.47
-            : size.height * 0.24,
+            : size.height * 0.34,
         childern: (widget.isUserPost ?? false)
             ? [
                 BottomSheetItems(
@@ -62,12 +62,24 @@ class _userLinksheetState extends State<userLinksheet> {
                   onTap: () {
                     //
                   },
-                  title: "Block",
+                  title: "Delete",
                 ),
               ]
             :
             // other user
             [
+                BottomSheetItems(
+                  onTap: () {
+                    //
+                  },
+                  title: "Bookmark",
+                ),
+                BottomSheetItems(
+                  onTap: () {
+                    //
+                  },
+                  title: "Share as a post",
+                ),
                 BottomSheetItems(
                   onTap: () {
                     //

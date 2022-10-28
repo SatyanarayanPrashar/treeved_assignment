@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 
 class BottomSheetItems extends StatelessWidget {
   const BottomSheetItems({
@@ -14,8 +16,13 @@ class BottomSheetItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
+
     return Material(
-      color: Theme.of(context).scaffoldBackgroundColor,
+      color: themeProvider.themeMode == ThemeMode.light
+          ? Colors.white
+          : Color.fromARGB(255, 57, 60, 72),
       child: InkWell(
         onTap: onTap,
         child: Container(
@@ -26,7 +33,10 @@ class BottomSheetItems extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                  color: title == "Block" || title == "Delete"
+                  color: title == "Block" ||
+                          title == "Delete" ||
+                          title == "Report" ||
+                          title == "Log Out"
                       ? Colors.red
                       : color ?? Theme.of(context).iconTheme.color,
                   fontSize: 16,

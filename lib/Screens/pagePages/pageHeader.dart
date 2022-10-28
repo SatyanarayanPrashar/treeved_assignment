@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 
 class Page_Header extends StatelessWidget {
   final bool isUserProfile; /* shall be removed on addition of sharedPref. */
@@ -11,6 +13,8 @@ class Page_Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
 
     return Column(
       children: [
@@ -137,7 +141,9 @@ class Page_Header extends StatelessWidget {
                         Text(
                           "45K",
                           style: TextStyle(
-                            color: Colors.black.withOpacity(0.6),
+                            color: themeProvider.themeMode == ThemeMode.light
+                                ? Colors.black.withOpacity(0.6)
+                                : Colors.grey,
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
@@ -176,7 +182,6 @@ class Page_Header extends StatelessWidget {
                             onTap: () {},
                             child: Icon(
                               Icons.more_vert,
-                              color: Colors.black.withOpacity(0.6),
                             ))
                       ],
                     ),

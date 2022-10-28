@@ -1,7 +1,11 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleScreen.dart';
-import 'package:treeved_assignment/package/slideLink.dart';
+import 'package:treeved_assignment/commons/listTab.dart';
+import 'package:treeved_assignment/commons/slideLink.dart';
 
 class AboutTab extends StatefulWidget {
   const AboutTab({super.key, this.isUserList});
@@ -32,10 +36,10 @@ class _AboutTabState extends State<AboutTab> {
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
             ),
           ),
-          const SlideLink(),
-          const SlideLink(),
-          const SlideLink(),
-          const SlideLink(),
+          SlideLink(isUserLink: widget.isUserList),
+          SlideLink(isUserLink: widget.isUserList),
+          SlideLink(isUserLink: widget.isUserList),
+          SlideLink(isUserLink: widget.isUserList),
           Padding(
             padding: EdgeInsets.fromLTRB(11, 21, 11, 11),
             child: Row(
@@ -48,9 +52,9 @@ class _AboutTabState extends State<AboutTab> {
               ],
             ),
           ),
-          ExploreListTabs(isUserList: widget.isUserList),
-          ExploreListTabs(isUserList: widget.isUserList),
-          ExploreListTabs(isUserList: widget.isUserList),
+          ListTabs(isUserList: widget.isUserList),
+          ListTabs(isUserList: widget.isUserList),
+          ListTabs(isUserList: widget.isUserList),
           Padding(
             padding: const EdgeInsets.all(11),
             child: Container(
@@ -108,17 +112,27 @@ class InterestsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
     return Padding(
       padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
       child: Container(
         // height: 180,
         width: size.width,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: themeProvider.themeMode == ThemeMode.light
+              ? Colors.white
+              : TreeVedAppTheme.boxColorDark,
           borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color(0xffEAEAEA)
+                  : TreeVedAppTheme.boxBorderdark),
           boxShadow: [
             BoxShadow(
-              color: Color.fromARGB(255, 223, 223, 223),
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color.fromARGB(255, 223, 223, 223)
+                  : Colors.white.withOpacity(0.3),
               blurRadius: 5,
               spreadRadius: 1,
               offset: Offset(0, 3),
@@ -203,17 +217,28 @@ class IntroductionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
       child: Container(
         padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
         width: size.width,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: themeProvider.themeMode == ThemeMode.light
+              ? Colors.white
+              : TreeVedAppTheme.boxColorDark,
           borderRadius: BorderRadius.circular(4),
-          boxShadow: const [
+          border: Border.all(
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color(0xffEAEAEA)
+                  : TreeVedAppTheme.boxBorderdark),
+          boxShadow: [
             BoxShadow(
-              color: Color.fromARGB(255, 223, 223, 223),
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color.fromARGB(255, 223, 223, 223)
+                  : Colors.white.withOpacity(0.3),
               blurRadius: 5,
               spreadRadius: 1,
               offset: Offset(0, 3),
@@ -238,7 +263,8 @@ class IntroductionTile extends StatelessWidget {
               padding: EdgeInsets.all(7),
               child: ExpandableText(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu sed ipsum nunc a id dictumst dolor a quis suspendisse Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu sed ipsum nunc a id dictumst dolor a quis suspendisse Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu sed ipsum nunc a id dictumst dolor a quis suspendisse",
-                expandText: "more",
+                // style: TextStyle(color: Colors.black),
+                expandText: "show more",
                 collapseText: "show less",
                 maxLines: 3,
                 linkColor: Colors.grey,

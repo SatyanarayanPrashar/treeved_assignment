@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({Key? key, required this.childern, this.height})
@@ -9,11 +12,16 @@ class CustomBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
+
     return Container(
       height: height ?? 0.3 * size.height,
       width: size.longestSide,
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: themeProvider.themeMode == ThemeMode.light
+            ? Colors.white
+            : Color.fromARGB(255, 57, 60, 72),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),

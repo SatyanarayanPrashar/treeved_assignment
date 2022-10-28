@@ -1,9 +1,11 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:treeved_assignment/Screens/HomePage/diaryPage/createDiary.dart';
+import 'dart:math' as math;
 import 'package:treeved_assignment/commons/postTile.dart';
 import 'package:treeved_assignment/Screens/ListPages/addLink.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
-import 'package:treeved_assignment/package/slideLink.dart';
+import 'package:treeved_assignment/commons/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
 class FeedPage extends StatefulWidget {
@@ -13,41 +15,102 @@ class FeedPage extends StatefulWidget {
   State<FeedPage> createState() => _FeedPageState();
 }
 
-class _FeedPageState extends State<FeedPage> {
+class _FeedPageState extends State<FeedPage> with TickerProviderStateMixin {
+  late AnimationController _controller;
+
+  static const List<IconData> icons = [
+    TreevedIcons.diary,
+    Icons.post_add_outlined,
+    Icons.list_outlined
+  ];
+
   @override
+  void initState() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
           title: Row(
             children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ProfilePage(isUserProfile: true);
-                  }));
-                },
-                child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/boy1.png"),
-                ),
-              ),
-              SizedBox(width: 10),
-              // CircleAvatar(
-              //   backgroundImage: AssetImage("assets/Icons/treeved.png"),
-              // ),
-              Image(image: AssetImage("assets/Icons/TreeVedtext.png"))
+              // Container(
+              //     height: 35,
+              //     child: Image(image: AssetImage("assets/Icons/appicon.png"))),
+              Container(
+                  child:
+                      Image(image: AssetImage("assets/Icons/TreeVedtext.png"))),
             ],
           )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return addLink();
-          }));
-        },
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: const Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(icons.length, (int index) {
+          Widget child = Container(
+            height: 55,
+            width: 60,
+            alignment: FractionalOffset.topCenter,
+            child: ScaleTransition(
+              scale: CurvedAnimation(
+                parent: _controller,
+                curve: Interval(0.0, 1.0 - index / icons.length / 2.0,
+                    curve: Curves.easeOut),
+              ),
+              child: FloatingActionButton(
+                heroTag: index == 0
+                    ? "btn1"
+                    : index == 1
+                        ? "btn2"
+                        : "btn3",
+                mini: true,
+                child: Icon(icons[index]),
+                onPressed: () {
+                  index == 0
+                      ? Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                          return createDiary();
+                        }))
+                      : index == 1
+                          ? Navigator.push(context, //share as post
+                              MaterialPageRoute(builder: (context) {
+                              return addLink();
+                            }))
+                          : Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                              return addLink();
+                            }));
+                },
+              ),
+            ),
+          );
+          return child;
+        }).toList()
+          ..add(
+            FloatingActionButton(
+              child: AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Transform(
+                    transform:
+                        Matrix4.rotationZ(_controller.value * 0.5 * math.pi),
+                    alignment: FractionalOffset.center,
+                    child:
+                        Icon(_controller.isDismissed ? Icons.add : Icons.close),
+                  );
+                },
+              ),
+              onPressed: () {
+                if (_controller.isDismissed) {
+                  _controller.forward();
+                } else {
+                  _controller.reverse();
+                }
+              },
+            ),
+          ),
       ),
       body: ListView.builder(
         physics: BouncingScrollPhysics(),

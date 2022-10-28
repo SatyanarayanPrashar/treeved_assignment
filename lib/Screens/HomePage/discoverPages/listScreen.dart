@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleScreen.dart';
+import 'package:treeved_assignment/commons/listTab.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({super.key});
@@ -10,7 +10,7 @@ class ListScreen extends StatelessWidget {
       body: ListView.builder(
         physics: BouncingScrollPhysics(),
         itemCount: 10,
-        itemBuilder: (context, index) => ExploreListTabs(),
+        itemBuilder: (context, index) => ListTabs(),
       ),
     );
   }

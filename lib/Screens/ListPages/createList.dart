@@ -13,11 +13,6 @@ class createList extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 2,
-        iconTheme: const IconThemeData(
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.white,
         title: const Text(
           "Create list",
           style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),

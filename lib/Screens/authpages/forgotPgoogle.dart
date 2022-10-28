@@ -11,8 +11,6 @@ class ForgotPgooglePage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          iconTheme: const IconThemeData(color: Colors.black),
           title: const Text(
             "Forgot Password",
             style: TextStyle(

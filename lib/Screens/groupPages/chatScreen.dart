@@ -16,11 +16,6 @@ class channelChatScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            elevation: 4,
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            ),
-            backgroundColor: Colors.white,
             title: Row(
               children: [
                 Flexible(

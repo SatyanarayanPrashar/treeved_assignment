@@ -2,13 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:treeved_assignment/Screens/HomePage/discoverPages/listScreen.dart';
-import 'package:treeved_assignment/Screens/ListPages/listViewScreen.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/pagePages/pageScreen.dart';
-import 'package:treeved_assignment/commons/bottomSheet.dart';
-import 'package:treeved_assignment/commons/bottomsheetItem.dart';
-import 'package:treeved_assignment/commons/linkBottomsheet.dart';
-import 'package:treeved_assignment/commons/listBottomSheet.dart';
 
 class PeopleTabs extends StatelessWidget {
   const PeopleTabs({
@@ -24,14 +21,22 @@ class PeopleTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
+
     return Container(
       margin: const EdgeInsets.only(right: 10),
       height: 240,
       width: 170,
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.grey.withOpacity(0.3)),
-        borderRadius: BorderRadius.circular(7),
+        color: themeProvider.themeMode == ThemeMode.light
+            ? Colors.white
+            : TreeVedAppTheme.boxColorDark,
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(
+            color: themeProvider.themeMode == ThemeMode.light
+                ? Color(0xffEAEAEA)
+                : TreeVedAppTheme.boxBorderdark),
       ),
       child: Column(
         children: [
@@ -92,6 +97,9 @@ class Pagestabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
+
     return InkWell(
       onTap: () {
         //
@@ -104,9 +112,14 @@ class Pagestabs extends StatelessWidget {
         height: 240,
         width: 170,
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.grey.withOpacity(0.3)),
+          color: themeProvider.themeMode == ThemeMode.light
+              ? Colors.white
+              : TreeVedAppTheme.boxColorDark,
           borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color(0xffEAEAEA)
+                  : TreeVedAppTheme.boxBorderdark),
         ),
         child: Column(
           children: [
@@ -153,227 +166,13 @@ class Pagestabs extends StatelessWidget {
               child: const Text("  Follow  "),
             ),
             const SizedBox(height: 10),
+//
+//
+
+            //
+            //
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ExploreListTabs extends StatelessWidget {
-  const ExploreListTabs({super.key, this.isUserList});
-  final bool? isUserList;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 11, right: 11),
-      child: InkWell(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return listScreen(
-                listName: "Economics Recources",
-                createdBy: 'Sam Sharma',
-                listlength: '8');
-          }));
-        },
-        child: Container(
-          margin: const EdgeInsets.all(5),
-          height: 100,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Color(0xffEAEAEA)),
-            borderRadius: BorderRadius.circular(4),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromARGB(255, 223, 223, 223),
-                blurRadius: 5,
-                spreadRadius: 1,
-                offset: Offset(0, 3),
-              ),
-            ],
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.all(10),
-                  height: 80,
-                  width: 85,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      image: const DecorationImage(
-                          image: AssetImage("assets/explore.jpg"),
-                          fit: BoxFit.cover)),
-                ),
-              ),
-              Flexible(
-                flex: 7,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    Text(
-                      "Economics Resources",
-                      style: GoogleFonts.roboto(
-                          fontSize: 17, fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 5),
-                    Flexible(
-                      child: Container(
-                        padding: const EdgeInsets.only(right: 13.0),
-                        // width: 195,
-                        child: Text(
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lobortis dignissim tortor. Nunc a suscipit libero. Aliquam convallis tellus sit amet rutrum tristique.",
-                          overflow: TextOverflow.clip,
-                          maxLines: 3,
-                          style: GoogleFonts.roboto(fontSize: 15),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 11),
-                  child: InkWell(
-                      onTap: () {
-                        //
-                        showModalBottomSheet(
-                          context: context,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) =>
-                              listsheet(isUserList: isUserList),
-                        );
-                      },
-                      child: Icon(Icons.more_vert)),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class MovieListTab extends StatelessWidget {
-  const MovieListTab({super.key, this.isUserLink});
-  final bool? isUserLink;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
-    return Container(
-      margin: const EdgeInsets.fromLTRB(11, 7, 11, 4),
-      height: 100,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: Color(0xffEAEAEA)),
-        boxShadow: const [
-          BoxShadow(
-            color: Color.fromARGB(255, 223, 223, 223),
-            blurRadius: 5,
-            spreadRadius: 1,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.all(10),
-            height: 80,
-            width: 85,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                image: const DecorationImage(
-                    image: AssetImage("assets/movie1.jpg"), fit: BoxFit.cover)),
-          ),
-          Flexible(
-            flex: 7,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 11),
-                Flexible(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Flexible(
-                        flex: 3,
-                        child: Text(
-                          "Fight Club",
-                          style: GoogleFonts.roboto(
-                              fontSize: 16, fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                            width: 35,
-                            decoration: const BoxDecoration(
-                                color: Colors.lightGreenAccent,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(7))),
-                            child: Row(
-                              children: const [
-                                Text(" 4 "),
-                                Icon(Icons.star, size: 15)
-                              ],
-                            )),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Container(
-                  padding: const EdgeInsets.only(right: 13.0),
-                  child: Text(
-                    "Movie",
-                    style: GoogleFonts.roboto(fontSize: 13),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                InkWell(
-                  onTap: () {
-                    //
-                  },
-                  child: const Text(
-                    "https://www.imdb.com/title/tt0137523/",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 11, color: Colors.blue),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Flexible(
-            flex: 1,
-            child: Padding(
-              padding: EdgeInsets.only(top: 5.0),
-              child: InkWell(
-                  onTap: () {
-                    showModalBottomSheet(
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) =>
-                            userLinksheet(isUserPost: isUserLink));
-                  },
-                  child: Icon(Icons.more_vert)),
-            ),
-          )
-        ],
       ),
     );
   }

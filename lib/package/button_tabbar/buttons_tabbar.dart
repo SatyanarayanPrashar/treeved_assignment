@@ -10,7 +10,7 @@ class ButtonsTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.controller,
     this.duration = 250,
     this.backgroundColor,
-    this.unselectedBackgroundColor = Colors.red,
+    this.unselectedBackgroundColor,
     this.decoration,
     this.unselectedDecoration,
     this.labelStyle,

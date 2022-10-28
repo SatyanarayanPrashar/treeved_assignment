@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/aboutTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/collectionTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/postsTab.dart';
@@ -32,23 +34,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 headerSliverBuilder: (context, innerBoxIsScrolled) {
                   return <Widget>[
                     SliverAppBar.large(
-                      // automaticallyImplyLeading: !widget.isUserProfile,
+                      automaticallyImplyLeading: !widget.isUserProfile,
                       collapsedHeight: 0,
                       expandedHeight: 300,
                       toolbarHeight: 0,
-                      backgroundColor: Colors.white,
                       flexibleSpace:
                           Profile_Header(isUserProfile: widget.isUserProfile),
                     ),
                     widget.isUserProfile
-                        ? SliverAppBar(
+                        ? const SliverAppBar(
                             expandedHeight: 80,
                             collapsedHeight: 0,
-                            backgroundColor: Colors.transparent,
                             toolbarHeight: 0,
                             flexibleSpace: group_section(),
                           )
-                        : SliverAppBar(
+                        : const SliverAppBar(
                             expandedHeight: 0,
                             collapsedHeight: 0,
                             toolbarHeight: 0,
@@ -73,7 +73,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   ];
                 },
                 body: TabBarView(
-                  physics: BouncingScrollPhysics(),
                   children: [
                     AboutTab(isUserList: widget.isUserProfile),
                     CollectionTab(isUserCollection: widget.isUserProfile),
@@ -102,8 +101,13 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
+
     return Container(
-      color: Colors.white,
+      color: themeProvider.themeMode == ThemeMode.light
+          ? Colors.white
+          : TreeVedAppTheme.boxColorDark,
       child: _tabBar,
     );
   }

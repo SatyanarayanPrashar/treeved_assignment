@@ -4,7 +4,7 @@ import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/commons/bottomSheet.dart';
 import 'package:treeved_assignment/commons/bottomsheetItem.dart';
-import 'package:treeved_assignment/package/slideLink.dart';
+import 'package:treeved_assignment/commons/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
 class PostTile extends StatefulWidget {
@@ -17,9 +17,12 @@ class PostTile extends StatefulWidget {
 }
 
 class _PostTileState extends State<PostTile> {
+  bool isLiked = false;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Container(
       width: size.width,
       child: Column(
@@ -33,7 +36,7 @@ class _PostTileState extends State<PostTile> {
               }));
             },
             child: Padding(
-              padding: const EdgeInsets.all(11),
+              padding: const EdgeInsets.fromLTRB(11, 11, 0, 11),
               child: Row(
                 children: [
                   // Avatar , about and options
@@ -117,7 +120,7 @@ class _PostTileState extends State<PostTile> {
                                     onTap: () {
                                       //
                                     },
-                                    title: "Report this Post",
+                                    title: "Report",
                                   ),
                                 ],
                         ),
@@ -125,7 +128,6 @@ class _PostTileState extends State<PostTile> {
                     },
                     icon: Icon(
                       Icons.more_vert,
-                      color: Colors.black.withOpacity(0.6),
                     ),
                   )
                 ],
@@ -135,7 +137,7 @@ class _PostTileState extends State<PostTile> {
 
           // Post text
           const Padding(
-            padding: EdgeInsets.all(11),
+            padding: EdgeInsets.fromLTRB(11, 0, 11, 11),
             child: ExpandableText(
               "text asd;sdlijavva vfdivjavj;vjanvlsvnanvadnv;ivjav.nvav vv svnav.avjv;lijva. v vsnvinvavn;vna/sv z. cs;c s.vj;as.vidjalsjvdvkj pojdxv;s.ljdkdvn .lixkfjcvj kfxncv.lknflckv.ifxkhcvfi.l",
               expandText: "more",
@@ -166,10 +168,12 @@ class _PostTileState extends State<PostTile> {
           Padding(
             padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   width: 60,
-                  height: 28,
+                  height: 25,
                   child: Stack(
                     children: const [
                       Positioned(
@@ -211,7 +215,7 @@ class _PostTileState extends State<PostTile> {
                   "420 likes",
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 14,
+                    fontSize: 13,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -220,7 +224,7 @@ class _PostTileState extends State<PostTile> {
                   "73 comments",
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 14,
+                    fontSize: 13,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -244,10 +248,16 @@ class _PostTileState extends State<PostTile> {
                   const SizedBox(width: 1),
                   FeedIcons(
                       label: "Like",
-                      icon: TreevedIcons.like,
+                      icon: isLiked
+                          ? Icons.thumb_up
+                          : Icons.thumb_up_alt_outlined,
                       screenSize: size,
+                      color: isLiked ? Colors.blue : null,
                       onTap: () {
                         //
+                        setState(() {
+                          isLiked = !isLiked;
+                        });
                       }),
                   const SizedBox(width: 1),
                   FeedIcons(
@@ -260,7 +270,7 @@ class _PostTileState extends State<PostTile> {
                   const SizedBox(width: 1),
                   FeedIcons(
                       label: "Share",
-                      icon: TreevedIcons.share,
+                      icon: Icons.share,
                       screenSize: size,
                       onTap: () {
                         //

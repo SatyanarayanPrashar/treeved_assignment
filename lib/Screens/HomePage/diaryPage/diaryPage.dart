@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treeved_assignment/Screens/HomePage/diaryPage/calenderHeader.dart';
+import 'package:treeved_assignment/Screens/HomePage/diaryPage/createDiary.dart';
 import 'package:treeved_assignment/Screens/HomePage/diaryPage/diaryContent.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/package/date_utils.dart' as date_util;
@@ -35,9 +36,7 @@ class _DiaryPageState extends State<DiaryPage> {
       child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            elevation: 2,
-            backgroundColor: Colors.white,
-            toolbarHeight: 67 + size.height * 0.225,
+            toolbarHeight: 67 + size.height * 0.2,
             flexibleSpace: Column(
               children: [
                 // SizedBox(height: size.height * 0.08),
@@ -106,6 +105,17 @@ class _DiaryPageState extends State<DiaryPage> {
                 ),
               ],
             ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              //
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return createDiary();
+              }));
+            },
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Icon(Icons.add),
           ),
           body: DiaryContent(
             isGridview: isGridView,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleScreen.dart';
-import 'package:treeved_assignment/package/slideLink.dart';
+import 'package:treeved_assignment/commons/listTab.dart';
+import 'package:treeved_assignment/commons/slideLink.dart';
 
 class PeopleScreen extends StatefulWidget {
   const PeopleScreen({super.key});
@@ -21,7 +22,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
             const SizedBox(height: 7),
             //
             Padding(
-              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              padding: const EdgeInsets.only(left: 11),
               child: Container(
                 color:
                     const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
@@ -58,7 +59,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              padding: const EdgeInsets.only(left: 11),
               child: Container(
                 color:
                     const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
@@ -94,17 +95,17 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 ],
               ),
             ),
-            const ExploreListTabs(isUserList: false),
-            const ExploreListTabs(isUserList: false),
-            const ExploreListTabs(isUserList: false),
+            const ListTabs(isUserList: false),
+            const ListTabs(isUserList: false),
+            const ListTabs(isUserList: false),
 
             Padding(
-              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+              padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
               child: Row(
                 children: [
                   const Icon(Icons.local_movies_outlined),
                   const SizedBox(width: 20),
-                  Text("Movies",
+                  Text("Articles",
                       style: GoogleFonts.roboto(
                           fontSize: 17, fontWeight: FontWeight.w400)),
                   const Spacer(),

@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/HomePage/discoverPages/listScreen.dart';
 import 'package:treeved_assignment/Screens/HomePage/discoverPages/pagesScreen.dart';
 import 'package:treeved_assignment/Screens/HomePage/discoverPages/peopleScreen.dart';
 
 import '../../../package/button_tabbar/buttons_tabbar.dart';
 
-class DiscoverPage extends StatelessWidget {
+class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
 
   @override
+  State<DiscoverPage> createState() => _DiscoverPageState();
+}
+
+class _DiscoverPageState extends State<DiscoverPage>
+    with SingleTickerProviderStateMixin {
+  @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
+
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        elevation: 3,
-        backgroundColor: Colors.white,
-        title: const Text(
+        title: Text(
           "Discover",
-          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
+          style: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Colors.black
+                  : Colors.white),
         ),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 11),
+            padding: EdgeInsets.only(right: 11),
             child: Icon(
               Icons.search,
-              color: Colors.black,
               size: 27,
             ),
           )
@@ -35,14 +47,20 @@ class DiscoverPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 7, 0, 7),
           child: DefaultTabController(
-            length: 5,
+            length: 4,
             child: Column(
               children: <Widget>[
                 ButtonsTabBar(
                   backgroundColor: Colors.blue,
-                  unselectedBackgroundColor: Colors.white,
+                  unselectedBackgroundColor:
+                      themeProvider.themeMode == ThemeMode.light
+                          ? Colors.white
+                          : TreeVedAppTheme.boxColorDark,
                   borderWidth: 1,
-                  unselectedBorderColor: Colors.grey,
+                  unselectedBorderColor:
+                      themeProvider.themeMode == ThemeMode.light
+                          ? Colors.grey
+                          : TreeVedAppTheme.boxBorderdark,
                   borderColor: Colors.blue,
                   radius: 100,
                   unselectedLabelStyle: const TextStyle(color: Colors.grey),
@@ -52,8 +70,7 @@ class DiscoverPage extends StatelessWidget {
                     Tab(text: "     People     "),
                     Tab(text: "     Pages     "),
                     Tab(text: "     Lists     "),
-                    Tab(text: "     Movies     "),
-                    Tab(text: "     Book     "),
+                    Tab(text: "     Articles     "),
                   ],
                 ),
                 const Expanded(
@@ -64,9 +81,6 @@ class DiscoverPage extends StatelessWidget {
                       ListScreen(),
                       Center(
                         child: Icon(Icons.local_movies_outlined),
-                      ),
-                      Center(
-                        child: Icon(Icons.book_sharp),
                       ),
                     ],
                   ),

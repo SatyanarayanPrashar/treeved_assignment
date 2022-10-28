@@ -1,8 +1,10 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/Screens/HomePage/discoverPages/WidgetpeopleScreen.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/groupPages/chatScreen.dart';
-import 'package:treeved_assignment/Screens/groupPages/groupScreen.dart';
+import 'package:treeved_assignment/commons/listTab.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
 class channelScreen extends StatelessWidget {
@@ -10,20 +12,22 @@ class channelScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
+
     return Container(
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
             elevation: 2,
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            ),
-            backgroundColor: Colors.white,
             title: Text(
               "Group",
-              style:
-                  TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: themeProvider.themeMode == ThemeMode.light
+                      ? Colors.black
+                      : Colors.black),
             ),
             actions: [
               IconButton(
@@ -53,12 +57,19 @@ class channelScreen extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(11),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: themeProvider.themeMode == ThemeMode.light
+                        ? Colors.white
+                        : TreeVedAppTheme.boxColorDark,
                     borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: Color(0xffEAEAEA)),
-                    boxShadow: const [
+                    border: Border.all(
+                        color: themeProvider.themeMode == ThemeMode.light
+                            ? Color(0xffEAEAEA)
+                            : TreeVedAppTheme.boxBorderdark),
+                    boxShadow: [
                       BoxShadow(
-                        color: Color.fromARGB(255, 223, 223, 223),
+                        color: themeProvider.themeMode == ThemeMode.light
+                            ? Color.fromARGB(255, 223, 223, 223)
+                            : Colors.white.withOpacity(0.3),
                         blurRadius: 5,
                         spreadRadius: 1,
                         offset: Offset(0, 3),
@@ -74,7 +85,9 @@ class channelScreen extends StatelessWidget {
                         child: Text(
                           "Channel Description",
                           style: TextStyle(
-                              color: Colors.black.withOpacity(0.6),
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.black.withOpacity(0.6)
+                                  : Colors.grey,
                               fontSize: 15,
                               fontWeight: FontWeight.w600),
                         ),
@@ -100,7 +113,7 @@ class channelScreen extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   itemCount: 6,
                   itemBuilder: (context, index) {
-                    return ExploreListTabs();
+                    return ListTabs();
                   },
                 ),
               )

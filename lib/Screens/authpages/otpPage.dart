@@ -13,8 +13,6 @@ class optPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          iconTheme: const IconThemeData(color: Colors.black),
           title: const Text(
             "Enter OTP",
             style: TextStyle(
@@ -63,7 +61,7 @@ class optPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "XXXXXX7296",
+                    "satya@gmail.com",
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                     ),

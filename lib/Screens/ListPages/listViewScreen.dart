@@ -1,9 +1,12 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
 import 'package:treeved_assignment/Screens/ListPages/addLink.dart';
 import 'package:treeved_assignment/Screens/ListPages/createList.dart';
-import 'package:treeved_assignment/package/slideLink.dart';
+import 'package:treeved_assignment/commons/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
 class listScreen extends StatelessWidget {
@@ -24,17 +27,14 @@ class listScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 2,
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.white,
         title: Text(
           listName,
-          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.w500),
         ),
         actions: [
           IconButton(
@@ -51,7 +51,6 @@ class listScreen extends StatelessWidget {
             return addLink();
           }));
         },
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: const Icon(Icons.add),
       ),
       body: Column(
@@ -62,12 +61,19 @@ class listScreen extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(11),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: themeProvider.themeMode == ThemeMode.light
+                    ? Colors.white
+                    : TreeVedAppTheme.boxColorDark,
                 borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: Color(0xffEAEAEA)),
-                boxShadow: const [
+                border: Border.all(
+                    color: themeProvider.themeMode == ThemeMode.light
+                        ? Color(0xffEAEAEA)
+                        : TreeVedAppTheme.boxBorderdark),
+                boxShadow: [
                   BoxShadow(
-                    color: Color.fromARGB(255, 223, 223, 223),
+                    color: themeProvider.themeMode == ThemeMode.light
+                        ? Color.fromARGB(255, 223, 223, 223)
+                        : Colors.white.withOpacity(0.3),
                     blurRadius: 5,
                     spreadRadius: 1,
                     offset: Offset(0, 3),
@@ -86,7 +92,9 @@ class listScreen extends StatelessWidget {
                         Text(
                           "Description",
                           style: TextStyle(
-                              color: Colors.black.withOpacity(0.6),
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.black.withOpacity(0.6)
+                                  : Colors.grey,
                               fontSize: 15,
                               fontWeight: FontWeight.w600),
                         ),

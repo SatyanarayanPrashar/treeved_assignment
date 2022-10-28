@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/collectionTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/postsTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profile_header.dart';
@@ -26,7 +29,6 @@ class pageScreen extends StatelessWidget {
                       collapsedHeight: 0,
                       expandedHeight: 310,
                       toolbarHeight: 0,
-                      backgroundColor: Colors.white,
                       flexibleSpace: Page_Header(isUserProfile: false),
                     ),
                     SliverPersistentHeader(
@@ -48,7 +50,6 @@ class pageScreen extends StatelessWidget {
                   ];
                 },
                 body: TabBarView(
-                  physics: BouncingScrollPhysics(),
                   children: [
                     CollectionTab(),
                     PostTab(),
@@ -76,8 +77,13 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
+
     return Container(
-      color: Colors.white,
+      color: themeProvider.themeMode == ThemeMode.light
+          ? Colors.white
+          : TreeVedAppTheme.boxColorDark,
       child: _tabBar,
     );
   }

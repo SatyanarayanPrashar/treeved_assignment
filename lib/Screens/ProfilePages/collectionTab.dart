@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/ListPages/createList.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/collectionScreen.dart';
 import 'package:treeved_assignment/commons/collecctionBottomsheet.dart';
 
-class CollectionTab extends StatelessWidget {
+class CollectionTab extends StatefulWidget {
   const CollectionTab({super.key, this.isUserCollection});
   final bool? isUserCollection;
 
   @override
+  State<CollectionTab> createState() => _CollectionTabState();
+}
+
+class _CollectionTabState extends State<CollectionTab> {
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return createList();
-          }));
-        },
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: const Icon(Icons.add),
-      ),
       body: GridView.builder(
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.only(
@@ -33,14 +34,46 @@ class CollectionTab extends StatelessWidget {
           mainAxisSpacing: 4,
           mainAxisExtent: 130,
         ),
-        itemCount: 18,
-        itemBuilder: (context, inddex) {
-          return CollectionBloc(
-            isUserCollection: isUserCollection,
-            name: "Entrepreneurship Resources",
-            linkCount: '52',
-            listCount: '7',
-          );
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return index != 5 - 1
+              ? CollectionBloc(
+                  isUserCollection: widget.isUserCollection,
+                  name: "Entrepreneurship Resources",
+                  linkCount: '52',
+                  listCount: '7',
+                )
+              : Container(
+                  margin: const EdgeInsets.only(top: 8),
+                  decoration: BoxDecoration(
+                    color: themeProvider.themeMode == ThemeMode.light
+                        ? Colors.white
+                        : TreeVedAppTheme.boxColorDark,
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                        color: themeProvider.themeMode == ThemeMode.light
+                            ? Color(0xffEAEAEA)
+                            : TreeVedAppTheme.boxBorderdark),
+                    boxShadow: [
+                      BoxShadow(
+                        color: themeProvider.themeMode == ThemeMode.light
+                            ? Color.fromARGB(255, 223, 223, 223)
+                            : Colors.white.withOpacity(0.3),
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.add),
+                      Text("Create Collection"),
+                    ],
+                  ),
+                );
         },
       ),
     );
@@ -63,81 +96,101 @@ class CollectionBloc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
 
-    return Container(
-      // height: size.height,
-      margin: const EdgeInsets.only(top: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(4),
-        boxShadow: [
-          BoxShadow(
-              offset: const Offset(0, 0),
-              blurRadius: 4,
-              color: Colors.black.withOpacity(0.25))
-        ],
-      ),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(11.0),
-            child: Row(
-              children: [
-                Container(
-                  width: 10,
-                  height: size.height * 0.027,
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(2)),
-                ),
-                Flexible(
-                  flex: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      name,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+    return InkWell(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return collectionScreen(
+              isUserCollection: isUserCollection, collectionName: name);
+        }));
+      },
+      child: Container(
+        // height: size.height,
+        margin: const EdgeInsets.only(top: 8),
+        decoration: BoxDecoration(
+          color: themeProvider.themeMode == ThemeMode.light
+              ? Colors.white
+              : TreeVedAppTheme.boxColorDark,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color(0xffEAEAEA)
+                  : TreeVedAppTheme.boxBorderdark),
+          boxShadow: [
+            BoxShadow(
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color.fromARGB(255, 223, 223, 223)
+                  : Colors.white.withOpacity(0.3),
+              blurRadius: 5,
+              spreadRadius: 1,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(11.0),
+              child: Row(
+                children: [
+                  Container(
+                    width: 10,
+                    height: size.height * 0.027,
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(2)),
+                  ),
+                  Flexible(
+                    flex: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 15),
+                      ),
                     ),
                   ),
-                ),
-                Flexible(
-                  // flex: 1,
-                  child: IconButton(
-                    onPressed: () {
-                      //
-                      showModalBottomSheet(
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) =>
-                            collectionsheet(isUserCollection: isUserCollection),
-                      );
-                    },
-                    icon: Icon(Icons.more_vert),
+                  Flexible(
+                    // flex: 1,
+                    child: IconButton(
+                      onPressed: () {
+                        //
+                        showModalBottomSheet(
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) => collectionsheet(
+                              isUserCollection: isUserCollection),
+                        );
+                      },
+                      icon: Icon(Icons.more_vert),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(11),
+              child: Row(
+                children: [
+                  ContentCounts(
+                    linkCount: listCount,
+                    contentIcon: Icons.list_rounded,
                   ),
-                )
-              ],
+                  ContentCounts(
+                    linkCount: linkCount,
+                    contentIcon: Icons.link,
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(11),
-            child: Row(
-              children: [
-                ContentCounts(
-                  linkCount: listCount,
-                  contentIcon: Icons.list_rounded,
-                ),
-                ContentCounts(
-                  linkCount: linkCount,
-                  contentIcon: Icons.link,
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

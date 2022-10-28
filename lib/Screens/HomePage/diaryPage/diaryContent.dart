@@ -1,6 +1,9 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:treeved_assignment/package/slideLink.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
+import 'package:treeved_assignment/commons/slideLink.dart';
 
 class DiaryContent extends StatelessWidget {
   const DiaryContent(
@@ -95,15 +98,24 @@ class gridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: themeProvider.themeMode == ThemeMode.light
+            ? Colors.white
+            : TreeVedAppTheme.boxColorDark,
         borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: Colors.grey.withOpacity(0.3)),
-        boxShadow: const [
+        border: Border.all(
+            color: themeProvider.themeMode == ThemeMode.light
+                ? Color(0xffEAEAEA)
+                : TreeVedAppTheme.boxBorderdark),
+        boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(255, 223, 223, 223),
+            color: themeProvider.themeMode == ThemeMode.light
+                ? Color.fromARGB(255, 223, 223, 223)
+                : Colors.white.withOpacity(0.3),
             blurRadius: 5,
             spreadRadius: 1,
             offset: Offset(0, 3),

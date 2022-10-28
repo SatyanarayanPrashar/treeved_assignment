@@ -20,11 +20,6 @@ class _selectListState extends State<selectList> {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            elevation: 2,
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            ),
-            backgroundColor: Colors.white,
             title: Text(
               "Select List",
               style:

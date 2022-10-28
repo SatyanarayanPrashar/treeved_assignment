@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/colors.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 
 class commonTextField extends StatelessWidget {
   const commonTextField(
@@ -17,6 +20,9 @@ class commonTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: false);
+
     return Column(
       children: [
         Row(
@@ -43,14 +49,20 @@ class commonTextField extends StatelessWidget {
                 prefix: fieldicon,
                 hintText: hint ?? 'Enter $title',
                 hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
-                fillColor: Colors.white,
+                fillColor: themeProvider.themeMode == ThemeMode.light
+                    ? Colors.white
+                    : TreeVedAppTheme.boxColorDark.withOpacity(0.4),
                 filled: true,
                 contentPadding:
                     const EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
                 border: InputBorder.none,
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
-                  borderSide: const BorderSide(color: Colors.white, width: 3.0),
+                  borderSide: BorderSide(
+                      color: themeProvider.themeMode == ThemeMode.light
+                          ? Colors.white
+                          : TreeVedAppTheme.boxBorderdark,
+                      width: 3.0),
                 ),
               ),
             ),

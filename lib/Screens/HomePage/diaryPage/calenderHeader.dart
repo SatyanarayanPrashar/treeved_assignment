@@ -21,12 +21,10 @@ class _CalenderTabState extends State<CalenderTab> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.225,
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
+      height: size.height * 0.2,
+      // color: Colors.lightBlueAccent,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(11, 0, 11, 11),
+        padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
         child: Column(
           children: [
             Flexible(
@@ -144,93 +142,90 @@ class _CalenderTabState extends State<CalenderTab> {
                 },
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 7),
-              child: Container(
-                height: 45,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 7),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: Color(0xff658AC7),
-                              )),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
-                            child: Text(
-                              "Movies 24",
-                              style: TextStyle(
-                                color: Color(0xff658AC7),
-                              ),
+            Container(
+              height: 45,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 7),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Color(0xff658AC7),
+                            )),
+                        child: const Padding(
+                          padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
+                          child: Text(
+                            "Movies 24",
+                            style: TextStyle(
+                              color: Color(0xff658AC7),
                             ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 7),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: Color(0xff658AC7),
-                              )),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
-                            child: Text(
-                              "Books 24",
-                              style: TextStyle(
-                                color: Color(0xff658AC7),
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 7),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Color(0xff658AC7),
+                            )),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
+                          child: Text(
+                            "Books 24",
+                            style: TextStyle(
+                              color: Color(0xff658AC7),
                             ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 7),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: Color(0xff658AC7),
-                              )),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
-                            child: Text(
-                              "TV Shows 24",
-                              style: TextStyle(
-                                color: Color(0xff658AC7),
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 7),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Color(0xff658AC7),
+                            )),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
+                          child: Text(
+                            "TV Shows 24",
+                            style: TextStyle(
+                              color: Color(0xff658AC7),
                             ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 7),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: Color(0xff658AC7),
-                              )),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
-                            child: Text(
-                              "Movies 24",
-                              style: TextStyle(
-                                color: Color(0xff658AC7),
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 7),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Color(0xff658AC7),
+                            )),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(11, 7, 11, 7),
+                          child: Text(
+                            "Movies 24",
+                            style: TextStyle(
+                              color: Color(0xff658AC7),
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             )

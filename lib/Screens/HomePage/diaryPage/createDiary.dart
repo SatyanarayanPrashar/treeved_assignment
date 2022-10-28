@@ -4,11 +4,11 @@ import 'package:treeved_assignment/Screens/ListPages/createList.dart';
 import 'package:treeved_assignment/Screens/ListPages/selectList.dart';
 import 'package:treeved_assignment/commons/commonTextField.dart';
 
-class addLink extends StatefulWidget {
-  const addLink({super.key});
+class createDiary extends StatefulWidget {
+  const createDiary({super.key});
 
   @override
-  State<addLink> createState() => _addLinkState();
+  State<createDiary> createState() => _createDiaryState();
 }
 
 double sliderValue = 0;
@@ -17,7 +17,7 @@ bool resourceExpandisTapped = false;
 String selectedresourceType = "Other";
 String selectedPrefrence = "";
 
-class _addLinkState extends State<addLink> {
+class _createDiaryState extends State<createDiary> {
   @override
   Widget build(BuildContext context) {
     TextEditingController nameController = TextEditingController();
@@ -46,9 +46,8 @@ class _addLinkState extends State<addLink> {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 2,
         title: const Text(
-          "Add Link",
+          "Diary Entry",
           style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
         ),
       ),
@@ -60,16 +59,11 @@ class _addLinkState extends State<addLink> {
           width: size.width,
           child: FloatingActionButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return selectList();
-              }));
+              //
             },
-            backgroundColor: Colors.blue,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
             child: Center(
               child: Text(
-                "Select List",
+                "Add to Diary",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
