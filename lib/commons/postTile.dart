@@ -4,6 +4,7 @@ import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/commons/bottomSheet.dart';
 import 'package:treeved_assignment/commons/bottomsheetItem.dart';
+import 'package:treeved_assignment/commons/feedIcon.dart';
 import 'package:treeved_assignment/commons/slideLink.dart';
 import 'package:treeved_assignment/package/treevedIcon/treeved_icons_icons.dart';
 
