@@ -40,47 +40,48 @@ class _Profile_HeaderState extends State<Profile_Header> {
                 Flexible(
                   flex: 2,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        !widget.isUserProfile
-                            ? Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    print("tapped");
-                                    Navigator.pop(context);
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_back,
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          !widget.isUserProfile
+                              ? Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: InkWell(
+                                    onTap: () {
+                                      print("tapped");
+                                      Navigator.pop(context);
+                                    },
+                                    child: Icon(
+                                      Icons.arrow_back,
+                                    ),
                                   ),
-                                ),
-                              )
-                            : Container(),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: IconButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  backgroundColor: Colors.transparent,
-                                  builder: (context) {
-                                    return settingsBottomsheet(
-                                        isUserProfile: widget.isUserProfile);
-                                  });
-                            },
-                            icon: const Icon(Icons.menu),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                                )
+                              : Container(),
+                          widget.isUserProfile
+                              ? Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          backgroundColor: Colors.transparent,
+                                          builder: (context) {
+                                            return const settingsBottomsheet(
+                                                isUserProfile: true);
+                                          });
+                                    },
+                                    icon: const Icon(Icons.menu),
+                                  ),
+                                )
+                              : Container(),
+                        ],
+                      )),
                 ),
                 const Flexible(
                     flex: 7,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 18),
+                      padding: EdgeInsets.only(top: 18),
                       child: CircleAvatar(
                         radius: 55,
                         child: CircleAvatar(
@@ -241,10 +242,20 @@ class _Profile_HeaderState extends State<Profile_Header> {
                               ),
                               SizedBox(width: size.width * 0.02),
                               InkWell(
-                                  onTap: () {},
-                                  child: Icon(
-                                    Icons.more_vert,
-                                  ))
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      backgroundColor: Colors.transparent,
+                                      builder: (context) {
+                                        return settingsBottomsheet(
+                                            isUserProfile:
+                                                widget.isUserProfile);
+                                      });
+                                },
+                                child: Icon(
+                                  Icons.more_vert,
+                                ),
+                              ),
                             ],
                           ),
                   ),
@@ -254,109 +265,6 @@ class _Profile_HeaderState extends State<Profile_Header> {
           ),
         ),
       ],
-    );
-  }
-}
-
-class group_section extends StatelessWidget {
-  const group_section({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    ThemeProvider themeProvider =
-        Provider.of<ThemeProvider>(context, listen: false);
-
-    return Container(
-      height: 120,
-      decoration: BoxDecoration(
-        border:
-            Border(bottom: BorderSide(color: Colors.black.withOpacity(0.2))),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return index == 0
-                    ? Padding(
-                        padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              child: CircleAvatar(
-                                radius: 24,
-                                child: CircleAvatar(
-                                  radius: 23,
-                                  backgroundColor:
-                                      themeProvider.themeMode == ThemeMode.light
-                                          ? Colors.white
-                                          : Color(0xffEFF3FB),
-                                  child: Icon(Icons.add),
-                                ),
-                              ),
-                            ),
-                            const Flexible(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  "New Group",
-                                  style: TextStyle(
-                                      fontSize: 11, color: Colors.blue),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    : InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => groupPage()));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Flexible(
-                                child: CircleAvatar(
-                                  radius: 24,
-                                  backgroundImage:
-                                      AssetImage("assets/back1.jpg"),
-                                ),
-                              ),
-                              Flexible(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Container(
-                                    width: 52,
-                                    child: const Text(
-                                      "Flim and Cinema",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(fontSize: 11),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-              },
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

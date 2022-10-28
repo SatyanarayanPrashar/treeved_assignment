@@ -25,7 +25,7 @@ class _settingsBottomsheetState extends State<settingsBottomsheet> {
     return CustomBottomSheet(
         height: (widget.isUserProfile ?? false)
             ? size.height * 0.55
-            : size.height * 0.3,
+            : size.height * 0.35,
         childern: (widget.isUserProfile ?? false)
             ? [
                 //
@@ -171,7 +171,12 @@ class _settingsBottomsheetState extends State<settingsBottomsheet> {
                     onTap: () {
                       //
                     },
-                    title: "Unfollow"),
+                    title: "Follow"), // Unfollow if already following
+                BottomSheetItems(
+                    onTap: () {
+                      //
+                    },
+                    title: "Message"),
                 BottomSheetItems(
                     onTap: () {
                       //
@@ -181,7 +186,7 @@ class _settingsBottomsheetState extends State<settingsBottomsheet> {
                     onTap: () {
                       //
                     },
-                    title: "Share Profile"),
+                    title: "Report"),
                 BottomSheetItems(
                     onTap: () {
                       //

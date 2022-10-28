@@ -35,7 +35,6 @@ class BottomSheetItems extends StatelessWidget {
                 style: TextStyle(
                   color: title == "Block" ||
                           title == "Delete" ||
-                          title == "Report" ||
                           title == "Log Out"
                       ? Colors.red
                       : color ?? Theme.of(context).iconTheme.color,

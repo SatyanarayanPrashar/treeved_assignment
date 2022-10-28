@@ -4,6 +4,7 @@ import 'package:treeved_assignment/Constants/colors.dart';
 import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/aboutTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/collectionTab.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/groupSliver.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/postsTab.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profile_header.dart';
 
