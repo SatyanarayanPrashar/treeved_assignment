@@ -18,8 +18,8 @@ class _collectionsheetState extends State<collectionsheet> {
 
     return CustomBottomSheet(
         height: (widget.isUserCollection ?? false)
-            ? size.height * 0.3
-            : size.height * 0.24,
+            ? size.height * 0.32
+            : size.height * 0.26,
         childern: (widget.isUserCollection ?? false)
             ? [
                 BottomSheetItems(

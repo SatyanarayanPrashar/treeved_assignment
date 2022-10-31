@@ -1,5 +1,7 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
 import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/commons/bottomSheet.dart';
@@ -23,6 +25,8 @@ class _PostTileState extends State<PostTile> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
 
     return Container(
       width: size.width,
@@ -33,11 +37,11 @@ class _PostTileState extends State<PostTile> {
           InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ProfilePage(isUserProfile: false);
+                return ProfilePage(isUserProfile: widget.isUserPost ?? false);
               }));
             },
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(11, 11, 0, 11),
+              padding: const EdgeInsets.fromLTRB(11, 0, 0, 11),
               child: Row(
                 children: [
                   // Avatar , about and options
@@ -138,9 +142,9 @@ class _PostTileState extends State<PostTile> {
 
           // Post text
           const Padding(
-            padding: EdgeInsets.fromLTRB(11, 0, 11, 11),
+            padding: EdgeInsets.fromLTRB(11, 0, 11, 4),
             child: ExpandableText(
-              "text asd;sdlijavva vfdivjavj;vjanvlsvnanvadnv;ivjav.nvav vv svnav.avjv;lijva. v vsnvinvavn;vna/sv z. cs;c s.vj;as.vidjalsjvdvkj pojdxv;s.ljdkdvn .lixkfjcvj kfxncv.lknflckv.ifxkhcvfi.l",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lobortis dignissim tortor. Nunc a suscipit libero. Aliquam convallis tellus sit amet rutrum tristique.",
               expandText: "more",
               collapseText: "show less",
               maxLines: 3,
@@ -149,11 +153,8 @@ class _PostTileState extends State<PostTile> {
             ),
           ),
 
-          // link here
-          SlideLink(isUserLink: widget.isUserPost),
-
           const Padding(
-            padding: EdgeInsets.fromLTRB(11, 4, 11, 0),
+            padding: EdgeInsets.fromLTRB(11, 0, 11, 0),
             child: ExpandableText(
               "#movie",
               expandText: "more",
@@ -164,6 +165,9 @@ class _PostTileState extends State<PostTile> {
               linkStyle: TextStyle(decoration: TextDecoration.underline),
             ),
           ),
+
+          // link here
+          SlideLink(isUserLink: widget.isUserPost),
 
           // likes
           Padding(
@@ -184,7 +188,7 @@ class _PostTileState extends State<PostTile> {
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
                             radius: 11,
-                            backgroundColor: Colors.red,
+                            backgroundImage: AssetImage("assets/girl2.jpg"),
                           ),
                         ),
                       ),
@@ -195,7 +199,7 @@ class _PostTileState extends State<PostTile> {
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
                             radius: 11,
-                            backgroundColor: Colors.blue,
+                            backgroundImage: AssetImage("assets/boy2.png"),
                           ),
                         ),
                       ),
@@ -205,7 +209,7 @@ class _PostTileState extends State<PostTile> {
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
                             radius: 11,
-                            backgroundColor: Colors.green,
+                            backgroundImage: AssetImage("assets/girl1.jpg"),
                           ),
                         ),
                       ),
@@ -253,7 +257,11 @@ class _PostTileState extends State<PostTile> {
                           ? Icons.thumb_up
                           : Icons.thumb_up_alt_outlined,
                       screenSize: size,
-                      color: isLiked ? Colors.blue : null,
+                      color: isLiked
+                          ? Colors.blue
+                          : themeProvider.themeMode == ThemeMode.light
+                              ? Colors.black.withOpacity(0.6)
+                              : Colors.white,
                       onTap: () {
                         //
                         setState(() {
@@ -264,6 +272,9 @@ class _PostTileState extends State<PostTile> {
                   FeedIcons(
                       label: "Comment",
                       icon: TreevedIcons.comment,
+                      color: themeProvider.themeMode == ThemeMode.light
+                          ? Colors.black.withOpacity(0.6)
+                          : Colors.white,
                       screenSize: size,
                       onTap: () {
                         //
@@ -272,6 +283,9 @@ class _PostTileState extends State<PostTile> {
                   FeedIcons(
                       label: "Share",
                       icon: Icons.share,
+                      color: themeProvider.themeMode == ThemeMode.light
+                          ? Colors.black.withOpacity(0.6)
+                          : Colors.white,
                       screenSize: size,
                       onTap: () {
                         //
@@ -281,8 +295,76 @@ class _PostTileState extends State<PostTile> {
               ),
             ),
           ),
+          // Divider(
+          //   color: Colors.grey.withOpacity(0.5),
+          //   thickness: 1,
+          // ),
+          const Padding(
+            padding: EdgeInsets.only(left: 11, top: 4),
+            child: Text(
+              "Comments",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+
+          // if number of comments != 0
+
+          Container(
+            child: Padding(
+              padding: EdgeInsets.only(left: 11),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    radius: 12,
+                    backgroundColor: Colors.white,
+                    child: CircleAvatar(
+                      radius: 11,
+                      backgroundImage: AssetImage("assets/girl2.jpg"),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 4, right: 11, top: 4),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Elon Musk",
+                            style: TextStyle(
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.black.withOpacity(0.6)
+                                  : Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lobortis dignissim tortor. Nunc a suscipit libero. Aliquam convallis tellus sit amet rutrum tristique.",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.black.withOpacity(0.6)
+                                  : Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Divider(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withOpacity(0.7),
             thickness: 1,
           ),
         ],

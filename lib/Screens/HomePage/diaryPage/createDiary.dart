@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treeved_assignment/Constants/colors.dart';
 import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
-import 'package:treeved_assignment/Screens/AuthPages/textField.dart';
-import 'package:treeved_assignment/Screens/ListPages/createList.dart';
-import 'package:treeved_assignment/Screens/ListPages/selectList.dart';
 import 'package:treeved_assignment/commons/commonTextField.dart';
 
 class createDiary extends StatefulWidget {

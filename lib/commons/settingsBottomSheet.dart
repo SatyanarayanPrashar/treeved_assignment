@@ -24,8 +24,9 @@ class _settingsBottomsheetState extends State<settingsBottomsheet> {
 
     return CustomBottomSheet(
         height: (widget.isUserProfile ?? false)
-            ? size.height * 0.55
-            : size.height * 0.35,
+            ? size.height * 0.9
+            : size.height * 0.37,
+        topdivider: false,
         childern: (widget.isUserProfile ?? false)
             ? [
                 //

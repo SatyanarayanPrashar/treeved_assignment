@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treeved_assignment/Constants/colors.dart';
 import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
-import 'package:treeved_assignment/Screens/ListPages/createList.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/collectionScreen.dart';
+import 'package:treeved_assignment/Screens/ProfilePages/createCollectionPage.dart';
 import 'package:treeved_assignment/commons/collecctionBottomsheet.dart';
 
 class CollectionTab extends StatefulWidget {
@@ -43,37 +43,47 @@ class _CollectionTabState extends State<CollectionTab> {
                   linkCount: '52',
                   listCount: '7',
                 )
-              : Container(
-                  margin: const EdgeInsets.only(top: 8),
-                  decoration: BoxDecoration(
-                    color: themeProvider.themeMode == ThemeMode.light
-                        ? Colors.white
-                        : TreeVedAppTheme.boxColorDark,
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(
-                        color: themeProvider.themeMode == ThemeMode.light
-                            ? Color(0xffEAEAEA)
-                            : TreeVedAppTheme.boxBorderdark),
-                    boxShadow: [
-                      BoxShadow(
-                        color: themeProvider.themeMode == ThemeMode.light
-                            ? Color.fromARGB(255, 223, 223, 223)
-                            : Colors.white.withOpacity(0.3),
-                        blurRadius: 5,
-                        spreadRadius: 1,
-                        offset: Offset(0, 3),
+              : widget.isUserCollection ?? false
+                  ? InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return createCollectionPage();
+                        }));
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 8),
+                        decoration: BoxDecoration(
+                          color: themeProvider.themeMode == ThemeMode.light
+                              ? Colors.white
+                              : TreeVedAppTheme.boxColorDark,
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Color(0xffEAEAEA)
+                                  : TreeVedAppTheme.boxBorderdark),
+                          boxShadow: [
+                            BoxShadow(
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Color.fromARGB(255, 223, 223, 223)
+                                  : Colors.white.withOpacity(0.3),
+                              blurRadius: 5,
+                              spreadRadius: 1,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add),
+                            Text("Create Collection"),
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.add),
-                      Text("Create Collection"),
-                    ],
-                  ),
-                );
+                    )
+                  : Container();
         },
       ),
     );

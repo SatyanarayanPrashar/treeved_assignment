@@ -26,7 +26,7 @@ class BottomSheetItems extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          height: 45,
+          height: 44,
           padding: const EdgeInsets.symmetric(horizontal: 11),
           child: Row(
             children: [

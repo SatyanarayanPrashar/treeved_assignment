@@ -18,8 +18,8 @@ class _userLinksheetState extends State<userLinksheet> {
 
     return CustomBottomSheet(
         height: (widget.isUserPost ?? false)
-            ? size.height * 0.47
-            : size.height * 0.34,
+            ? size.height * 0.5
+            : size.height * 0.38,
         childern: (widget.isUserPost ?? false)
             ? [
                 BottomSheetItems(
