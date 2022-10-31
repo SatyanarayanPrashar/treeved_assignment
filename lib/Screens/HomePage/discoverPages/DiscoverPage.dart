@@ -30,89 +30,93 @@ class _DiscoverPageState extends State<DiscoverPage>
         Provider.of<ThemeProvider>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-          "Discover",
-          style: TextStyle(
-              fontWeight: FontWeight.w500,
-              color: themeProvider.themeMode == ThemeMode.light
-                  ? Colors.black
-                  : Colors.white),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 11),
-            child: Icon(
-              Icons.search,
-              size: 27,
-            ),
-          )
-        ],
-        flexibleSpace: Column(
-          children: [
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(95),
+        child: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text(
+            "Discover",
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: themeProvider.themeMode == ThemeMode.light
+                    ? Colors.black
+                    : Colors.white),
+          ),
+          actions: const [
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 11, 0, 11),
-              child: Container(
-                  height: size.height * 0.042,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        discovertag(
-                          tagTitle: 'People',
-                          scrollFunction: () {
-                            setState(() {
-                              selectedTag = "People";
-                            });
-                            Scrollable.ensureVisible(
-                              peopleKey.currentContext ?? context,
-                              duration: const Duration(milliseconds: 400),
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                        ),
-                        discovertag(
-                          tagTitle: 'Pages',
-                          scrollFunction: () {
-                            setState(() {
-                              selectedTag = "Pages";
-                            });
-                            Scrollable.ensureVisible(
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                                pagesKey.currentContext ?? context);
-                          },
-                        ),
-                        discovertag(
-                          tagTitle: 'Lists',
-                          scrollFunction: () {
-                            setState(() {
-                              selectedTag = "Lists";
-                            });
-                            Scrollable.ensureVisible(
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                                listKey.currentContext ?? context);
-                          },
-                        ),
-                        discovertag(
-                          tagTitle: 'Articles',
-                          scrollFunction: () {
-                            setState(() {
-                              selectedTag = "Articles";
-                            });
-                            Scrollable.ensureVisible(
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                                articleKey.currentContext ?? context);
-                          },
-                        ),
-                      ],
-                    ),
-                  )),
-            ),
+              padding: EdgeInsets.only(right: 11),
+              child: Icon(
+                Icons.search,
+                size: 27,
+              ),
+            )
           ],
+          flexibleSpace: Column(
+            children: [
+              SizedBox(height: 75),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 11, 0, 11),
+                child: Container(
+                    height: size.height * 0.042,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          discovertag(
+                            tagTitle: 'People',
+                            scrollFunction: () {
+                              setState(() {
+                                selectedTag = "People";
+                              });
+                              Scrollable.ensureVisible(
+                                peopleKey.currentContext ?? context,
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                          ),
+                          discovertag(
+                            tagTitle: 'Pages',
+                            scrollFunction: () {
+                              setState(() {
+                                selectedTag = "Pages";
+                              });
+                              Scrollable.ensureVisible(
+                                  duration: const Duration(milliseconds: 400),
+                                  curve: Curves.easeInOut,
+                                  pagesKey.currentContext ?? context);
+                            },
+                          ),
+                          discovertag(
+                            tagTitle: 'Lists',
+                            scrollFunction: () {
+                              setState(() {
+                                selectedTag = "Lists";
+                              });
+                              Scrollable.ensureVisible(
+                                  duration: const Duration(milliseconds: 400),
+                                  curve: Curves.easeInOut,
+                                  listKey.currentContext ?? context);
+                            },
+                          ),
+                          discovertag(
+                            tagTitle: 'Articles',
+                            scrollFunction: () {
+                              setState(() {
+                                selectedTag = "Articles";
+                              });
+                              Scrollable.ensureVisible(
+                                  duration: const Duration(milliseconds: 400),
+                                  curve: Curves.easeInOut,
+                                  articleKey.currentContext ?? context);
+                            },
+                          ),
+                        ],
+                      ),
+                    )),
+              ),
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
