@@ -31,14 +31,17 @@ class _HomePageState extends State<HomePage> {
         Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedFontSize: 10,
+        unselectedFontSize: 10,
         unselectedIconTheme: IconThemeData(
           color: themeProvider.themeMode == ThemeMode.light
-              ? Colors.black
+              ? Colors.black.withOpacity(0.38)
               : Colors.white,
         ),
         unselectedLabelStyle: TextStyle(
           color: themeProvider.themeMode == ThemeMode.light
-              ? Colors.red
+              ? Colors.black.withOpacity(0.38)
               : Colors.white,
         ),
         items: const <BottomNavigationBarItem>[
@@ -75,9 +78,9 @@ class _HomePageState extends State<HomePage> {
           });
         },
         unselectedItemColor: themeProvider.themeMode == ThemeMode.light
-            ? Colors.black
+            ? Colors.black.withOpacity(0.38)
             : Colors.white,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Color(0xff008FE4),
         showUnselectedLabels: true,
         currentIndex: index,
       ),

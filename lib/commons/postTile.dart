@@ -2,7 +2,6 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
-import 'package:treeved_assignment/Screens/HomePage/Feedpage/FeedScreen.dart';
 import 'package:treeved_assignment/Screens/ProfilePages/profilePage.dart';
 import 'package:treeved_assignment/commons/bottomSheet.dart';
 import 'package:treeved_assignment/commons/bottomsheetItem.dart';
@@ -30,6 +29,8 @@ class _PostTileState extends State<PostTile> {
 
     return Container(
       width: size.width,
+      color: Color(0xfffbfcfe),
+      // color: Colors.red,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,12 +42,12 @@ class _PostTileState extends State<PostTile> {
               }));
             },
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(11, 0, 0, 11),
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 11),
               child: Row(
                 children: [
                   // Avatar , about and options
                   const CircleAvatar(
-                    radius: 27,
+                    radius: 24,
                     backgroundImage: AssetImage("assets/boy1.png"),
                   ),
                   const SizedBox(
@@ -59,21 +60,21 @@ class _PostTileState extends State<PostTile> {
                         "Anupam Mishra",
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 15,
+                          fontSize: 14,
                         ),
                       ),
                       Text(
                         "Entrepreneur",
                         style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 14,
+                          fontSize: 12,
                         ),
                       ),
                       Text(
                         "18 minutes ago",
                         style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 13,
+                          fontSize: 9,
                         ),
                       ),
                     ],
@@ -133,6 +134,10 @@ class _PostTileState extends State<PostTile> {
                     },
                     icon: Icon(
                       Icons.more_vert,
+                      size: 21,
+                      color: themeProvider.themeMode == ThemeMode.light
+                          ? Colors.black.withOpacity(0.6)
+                          : Colors.white,
                     ),
                   )
                 ],
@@ -141,27 +146,15 @@ class _PostTileState extends State<PostTile> {
           ),
 
           // Post text
-          const Padding(
-            padding: EdgeInsets.fromLTRB(11, 0, 11, 4),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: ExpandableText(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lobortis dignissim tortor. Nunc a suscipit libero. Aliquam convallis tellus sit amet rutrum tristique.",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lobortis dignissim tortor. Nunc a suscipit libero. Aliquam convallis tellus sit amet rutrum tristique Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit..",
+              style: TextStyle(fontSize: 14),
               expandText: "more",
               collapseText: "show less",
               maxLines: 3,
-              linkColor: Colors.grey,
-              linkStyle: TextStyle(decoration: TextDecoration.underline),
-            ),
-          ),
-
-          const Padding(
-            padding: EdgeInsets.fromLTRB(11, 0, 11, 0),
-            child: ExpandableText(
-              "#movie",
-              expandText: "more",
-              style: TextStyle(color: Colors.blue),
-              collapseText: "show less",
-              maxLines: 1,
-              linkColor: Colors.grey,
+              linkColor: Colors.black.withOpacity(0.3),
               linkStyle: TextStyle(decoration: TextDecoration.underline),
             ),
           ),
@@ -169,9 +162,22 @@ class _PostTileState extends State<PostTile> {
           // link here
           SlideLink(isUserLink: widget.isUserPost),
 
+          const Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: ExpandableText(
+              "#movie",
+              expandText: "more",
+              style: TextStyle(color: Colors.blue, fontSize: 12),
+              collapseText: "show less",
+              maxLines: 1,
+              linkColor: Colors.grey,
+              linkStyle: TextStyle(decoration: TextDecoration.underline),
+            ),
+          ),
           // likes
+
           Padding(
-            padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
+            padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               // mainAxisAlignment: MainAxisAlignment.center,
@@ -184,10 +190,10 @@ class _PostTileState extends State<PostTile> {
                       Positioned(
                         left: 30,
                         child: CircleAvatar(
-                          radius: 12,
+                          radius: 10,
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
-                            radius: 11,
+                            radius: 9,
                             backgroundImage: AssetImage("assets/girl2.jpg"),
                           ),
                         ),
@@ -195,20 +201,20 @@ class _PostTileState extends State<PostTile> {
                       Positioned(
                         left: 15,
                         child: CircleAvatar(
-                          radius: 12,
+                          radius: 10,
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
-                            radius: 11,
+                            radius: 9,
                             backgroundImage: AssetImage("assets/boy2.png"),
                           ),
                         ),
                       ),
                       Positioned(
                         child: CircleAvatar(
-                          radius: 12,
+                          radius: 10,
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
-                            radius: 11,
+                            radius: 9,
                             backgroundImage: AssetImage("assets/girl1.jpg"),
                           ),
                         ),
@@ -220,7 +226,7 @@ class _PostTileState extends State<PostTile> {
                   "420 likes",
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 13,
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -229,7 +235,7 @@ class _PostTileState extends State<PostTile> {
                   "73 comments",
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 13,
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -239,7 +245,7 @@ class _PostTileState extends State<PostTile> {
 
           // action bar
           Divider(
-            color: Colors.grey.withOpacity(0.5),
+            color: Color(0xffEAEAEA),
             thickness: 1,
           ),
 
@@ -295,17 +301,19 @@ class _PostTileState extends State<PostTile> {
               ),
             ),
           ),
-          // Divider(
-          //   color: Colors.grey.withOpacity(0.5),
-          //   thickness: 1,
-          // ),
-          const Padding(
-            padding: EdgeInsets.only(left: 11, top: 4),
+          Divider(
+            color: Color(0xffEAEAEA),
+            thickness: 1,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 20),
             child: Text(
               "Comments",
               style: TextStyle(
-                color: Colors.grey,
-                fontSize: 13,
+                color: themeProvider.themeMode == ThemeMode.light
+                    ? Colors.black.withOpacity(0.6)
+                    : Colors.grey,
+                fontSize: 12,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -315,21 +323,21 @@ class _PostTileState extends State<PostTile> {
 
           Container(
             child: Padding(
-              padding: EdgeInsets.only(left: 11),
+              padding: EdgeInsets.only(left: 20, right: 20),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const CircleAvatar(
-                    radius: 12,
+                    radius: 10,
                     backgroundColor: Colors.white,
                     child: CircleAvatar(
-                      radius: 11,
+                      radius: 9,
                       backgroundImage: AssetImage("assets/girl2.jpg"),
                     ),
                   ),
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 4, right: 11, top: 4),
+                      padding: EdgeInsets.only(left: 4, right: 11, top: 0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -364,7 +372,7 @@ class _PostTileState extends State<PostTile> {
             ),
           ),
           Divider(
-            color: Colors.grey.withOpacity(0.7),
+            color: Color(0xffEAEAEA),
             thickness: 1,
           ),
         ],

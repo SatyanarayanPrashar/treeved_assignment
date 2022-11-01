@@ -29,253 +29,280 @@ class _DiscoverPageState extends State<DiscoverPage>
     ThemeProvider themeProvider =
         Provider.of<ThemeProvider>(context, listen: false);
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(95),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text(
-            "Discover",
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                color: themeProvider.themeMode == ThemeMode.light
-                    ? Colors.black
-                    : Colors.white),
-          ),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(right: 11),
-              child: Icon(
-                Icons.search,
-                size: 27,
-              ),
-            )
-          ],
-          flexibleSpace: Column(
-            children: [
-              SizedBox(height: 75),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 11, 0, 11),
-                child: Container(
-                    height: size.height * 0.042,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          discovertag(
-                            tagTitle: 'People',
-                            scrollFunction: () {
-                              setState(() {
-                                selectedTag = "People";
-                              });
-                              Scrollable.ensureVisible(
-                                peopleKey.currentContext ?? context,
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                              );
-                            },
-                          ),
-                          discovertag(
-                            tagTitle: 'Pages',
-                            scrollFunction: () {
-                              setState(() {
-                                selectedTag = "Pages";
-                              });
-                              Scrollable.ensureVisible(
-                                  duration: const Duration(milliseconds: 400),
-                                  curve: Curves.easeInOut,
-                                  pagesKey.currentContext ?? context);
-                            },
-                          ),
-                          discovertag(
-                            tagTitle: 'Lists',
-                            scrollFunction: () {
-                              setState(() {
-                                selectedTag = "Lists";
-                              });
-                              Scrollable.ensureVisible(
-                                  duration: const Duration(milliseconds: 400),
-                                  curve: Curves.easeInOut,
-                                  listKey.currentContext ?? context);
-                            },
-                          ),
-                          discovertag(
-                            tagTitle: 'Articles',
-                            scrollFunction: () {
-                              setState(() {
-                                selectedTag = "Articles";
-                              });
-                              Scrollable.ensureVisible(
-                                  duration: const Duration(milliseconds: 400),
-                                  curve: Curves.easeInOut,
-                                  articleKey.currentContext ?? context);
-                            },
-                          ),
-                        ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(105),
+          child: AppBar(
+            automaticallyImplyLeading: false,
+            elevation: 0,
+            flexibleSpace: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                        width:
+                            themeProvider.themeMode == ThemeMode.light ? 1 : 3,
+                        color: themeProvider.themeMode == ThemeMode.light
+                            ? Color(0xffEAEAEA)
+                            : TreeVedAppTheme.boxBorderdark),
+                    boxShadow: [
+                      BoxShadow(
+                        color: themeProvider.themeMode == ThemeMode.light
+                            ? Color.fromARGB(255, 223, 223, 223)
+                            : Colors.transparent,
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                        offset: Offset(0, 3),
                       ),
-                    )),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Discover",
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500,
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.black
+                                  : Colors.white),
+                        ),
+                        Icon(
+                          Icons.search,
+                          size: 27,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 11, 0, 11),
+                  child: Container(
+                      height: size.height * 0.042,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            discovertag(
+                              tagTitle: 'People',
+                              scrollFunction: () {
+                                setState(() {
+                                  selectedTag = "People";
+                                });
+                                Scrollable.ensureVisible(
+                                  peopleKey.currentContext ?? context,
+                                  duration: const Duration(milliseconds: 400),
+                                  curve: Curves.easeInOut,
+                                );
+                              },
+                            ),
+                            discovertag(
+                              tagTitle: 'Pages',
+                              scrollFunction: () {
+                                setState(() {
+                                  selectedTag = "Pages";
+                                });
+                                Scrollable.ensureVisible(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut,
+                                    pagesKey.currentContext ?? context);
+                              },
+                            ),
+                            discovertag(
+                              tagTitle: 'Lists',
+                              scrollFunction: () {
+                                setState(() {
+                                  selectedTag = "Lists";
+                                });
+                                Scrollable.ensureVisible(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut,
+                                    listKey.currentContext ?? context);
+                              },
+                            ),
+                            discovertag(
+                              tagTitle: 'Articles',
+                              scrollFunction: () {
+                                setState(() {
+                                  selectedTag = "Articles";
+                                });
+                                Scrollable.ensureVisible(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut,
+                                    articleKey.currentContext ?? context);
+                              },
+                            ),
+                          ],
+                        ),
+                      )),
+                ),
+              ],
+            ),
+          ),
+        ),
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 11, left: 11),
+                child: Container(
+                  key: peopleKey,
+                  color:
+                      const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
+                  height: 240,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: 6,
+                    itemBuilder: (context, index) => PeopleTabs(
+                      name: 'Sam Sharma',
+                      about: 'Designer/Animator/Feminist',
+                      imageDes: 'assets/girl1.jpg',
+                    ),
+                  ),
+                ),
               ),
+              const SizedBox(height: 10),
+              Padding(
+                key: pagesKey,
+                padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.table_chart_outlined),
+                    const SizedBox(width: 10),
+                    Text("Pages you may like",
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w400)),
+                    const Spacer(),
+                    TextButton(
+                        onPressed: () {
+                          //
+                        },
+                        child: const Text("See more")),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 11),
+                child: Container(
+                  color:
+                      const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
+                  height: 240,
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 6,
+                    itemBuilder: (context, index) => Pagestabs(
+                      name: 'Microanimations',
+                      imageDes: 'assets/girl2.jpg',
+                      bgimage: 'assets/back1.jpg',
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                key: listKey,
+                padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.list),
+                    const SizedBox(width: 20),
+                    Text("Explore Lists",
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w400)),
+                    const Spacer(),
+                    TextButton(
+                        onPressed: () {
+                          //
+                        },
+                        child: const Text("See more")),
+                  ],
+                ),
+              ),
+              const ListTabs(isUserList: false),
+              const ListTabs(isUserList: false),
+              const ListTabs(isUserList: false),
+              Padding(
+                key: articleKey,
+                padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.local_movies_outlined),
+                    const SizedBox(width: 20),
+                    Text("Articles",
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w400)),
+                    const Spacer(),
+                    TextButton(
+                        onPressed: () {
+                          //
+                        },
+                        child: const Text("See more")),
+                    const SizedBox(width: 11),
+                  ],
+                ),
+              ),
+              SlideLink(),
+              SlideLink(),
+              SlideLink(),
             ],
           ),
         ),
+        // body: SafeArea(
+        //   child: Padding(
+        //     padding: const EdgeInsets.fromLTRB(0, 7, 0, 7),
+        //     child: DefaultTabController(
+        //       length: 4,
+        //       child: Column(
+        //         children: [
+        //           ButtonsTabBar(
+        //             backgroundColor: Colors.blue,
+        //             unselectedBackgroundColor:
+        //                 themeProvider.themeMode == ThemeMode.light
+        //                     ? Colors.white
+        //                     : TreeVedAppTheme.boxColorDark,
+        //             borderWidth: 1,
+        //             unselectedBorderColor:
+        //                 themeProvider.themeMode == ThemeMode.light
+        //                     ? Colors.grey
+        //                     : TreeVedAppTheme.boxBorderdark,
+        //             borderColor: Colors.blue,
+        //             radius: 100,
+        //             unselectedLabelStyle: const TextStyle(color: Colors.grey),
+        //             labelStyle: const TextStyle(
+        //                 color: Colors.white, fontWeight: FontWeight.bold),
+        //             tabs: const [
+        //               Tab(text: "     People     "),
+        //               Tab(text: "     Pages     "),
+        //               Tab(text: "     Lists     "),
+        //               Tab(text: "     Articles     "),
+        //             ],
+        //           ),
+        //           const Expanded(
+        //             child: TabBarView(
+        //               children: [
+        // PeopleScreen(),
+        //                 PagesScreen(),
+        //                 ListScreen(),
+        //                 Center(
+        //                   child: Icon(Icons.local_movies_outlined),
+        //                 ),
+        //               ],
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 11, left: 11),
-              child: Container(
-                key: peopleKey,
-                color:
-                    const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
-                height: 240,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: 6,
-                  itemBuilder: (context, index) => PeopleTabs(
-                    name: 'Sam Sharma',
-                    about: 'Designer/Animator/Feminist',
-                    imageDes: 'assets/girl1.jpg',
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              key: pagesKey,
-              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-              child: Row(
-                children: [
-                  const Icon(Icons.table_chart_outlined),
-                  const SizedBox(width: 10),
-                  Text("Pages you may like",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
-                  const Spacer(),
-                  TextButton(
-                      onPressed: () {
-                        //
-                      },
-                      child: const Text("See more")),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 11),
-              child: Container(
-                color:
-                    const Color.fromARGB(255, 209, 209, 209).withOpacity(0.1),
-                height: 240,
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 6,
-                  itemBuilder: (context, index) => Pagestabs(
-                    name: 'Microanimations',
-                    imageDes: 'assets/girl2.jpg',
-                    bgimage: 'assets/back1.jpg',
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              key: listKey,
-              padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-              child: Row(
-                children: [
-                  const Icon(Icons.list),
-                  const SizedBox(width: 20),
-                  Text("Explore Lists",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
-                  const Spacer(),
-                  TextButton(
-                      onPressed: () {
-                        //
-                      },
-                      child: const Text("See more")),
-                ],
-              ),
-            ),
-            const ListTabs(isUserList: false),
-            const ListTabs(isUserList: false),
-            const ListTabs(isUserList: false),
-            Padding(
-              key: articleKey,
-              padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
-              child: Row(
-                children: [
-                  const Icon(Icons.local_movies_outlined),
-                  const SizedBox(width: 20),
-                  Text("Articles",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
-                  const Spacer(),
-                  TextButton(
-                      onPressed: () {
-                        //
-                      },
-                      child: const Text("See more")),
-                  const SizedBox(width: 11),
-                ],
-              ),
-            ),
-            SlideLink(),
-            SlideLink(),
-            SlideLink(),
-          ],
-        ),
-      ),
-      // body: SafeArea(
-      //   child: Padding(
-      //     padding: const EdgeInsets.fromLTRB(0, 7, 0, 7),
-      //     child: DefaultTabController(
-      //       length: 4,
-      //       child: Column(
-      //         children: [
-      //           ButtonsTabBar(
-      //             backgroundColor: Colors.blue,
-      //             unselectedBackgroundColor:
-      //                 themeProvider.themeMode == ThemeMode.light
-      //                     ? Colors.white
-      //                     : TreeVedAppTheme.boxColorDark,
-      //             borderWidth: 1,
-      //             unselectedBorderColor:
-      //                 themeProvider.themeMode == ThemeMode.light
-      //                     ? Colors.grey
-      //                     : TreeVedAppTheme.boxBorderdark,
-      //             borderColor: Colors.blue,
-      //             radius: 100,
-      //             unselectedLabelStyle: const TextStyle(color: Colors.grey),
-      //             labelStyle: const TextStyle(
-      //                 color: Colors.white, fontWeight: FontWeight.bold),
-      //             tabs: const [
-      //               Tab(text: "     People     "),
-      //               Tab(text: "     Pages     "),
-      //               Tab(text: "     Lists     "),
-      //               Tab(text: "     Articles     "),
-      //             ],
-      //           ),
-      //           const Expanded(
-      //             child: TabBarView(
-      //               children: [
-      // PeopleScreen(),
-      //                 PagesScreen(),
-      //                 ListScreen(),
-      //                 Center(
-      //                   child: Icon(Icons.local_movies_outlined),
-      //                 ),
-      //               ],
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

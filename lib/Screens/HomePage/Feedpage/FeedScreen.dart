@@ -40,17 +40,20 @@ class _FeedPageState extends State<FeedPage> with TickerProviderStateMixin {
         Provider.of<ThemeProvider>(context, listen: true);
 
     return Scaffold(
+      backgroundColor: Color(0xffFBFCFE),
       appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Row(
-            children: [
-              Container(
-                  height: 37,
-                  child: themeProvider.themeMode == ThemeMode.light
-                      ? Image(image: AssetImage("assets/Icons/Logo_lm.png"))
-                      : Image(image: AssetImage("assets/Icons/Logo_dm.png")))
-            ],
-          )),
+        automaticallyImplyLeading: false,
+        elevation: 3,
+        title: Row(
+          children: [
+            Container(
+                height: 37,
+                child: themeProvider.themeMode == ThemeMode.light
+                    ? Image(image: AssetImage("assets/Icons/Logo_lm.png"))
+                    : Image(image: AssetImage("assets/Icons/Logo_dm.png")))
+          ],
+        ),
+      ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: List.generate(icons.length, (int index) {

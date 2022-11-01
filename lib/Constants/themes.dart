@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData lightTheme = ThemeData(
     fontFamily: 'GoogleFonts.notoSans',
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Color(0xffF5F5F5),
+    scaffoldBackgroundColor: Color(0xffFBFCFE),
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.white,
       elevation: 3,

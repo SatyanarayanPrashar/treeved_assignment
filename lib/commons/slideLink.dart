@@ -66,7 +66,10 @@ class _SlideLinkState extends State<SlideLink> {
           ),
         ],
       ),
-      child: LinkTab(isUserLink: widget.isUserLink),
+      child: LinkTab(
+        isUserLink: widget.isUserLink,
+        title: "Fight Club",
+      ),
     );
   }
 }
@@ -79,6 +82,7 @@ class Actionmessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
+      margin: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 211, 231, 244),
         borderRadius: BorderRadius.circular(20),
@@ -91,27 +95,31 @@ class Actionmessage extends StatelessWidget {
         ],
       ),
       child: Center(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            message,
-            style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-          ),
-          const Icon(
-            Icons.done,
-            color: Colors.green,
-          )
-        ],
-      )),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              message,
+              style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+            ),
+            const Icon(
+              Icons.done,
+              color: Colors.green,
+            )
+          ],
+        ),
+      ),
     );
   }
 }
 
 class LinkTab extends StatefulWidget {
-  const LinkTab({super.key, this.isUserLink});
+  const LinkTab({super.key, this.isUserLink, this.title});
   final bool? isUserLink;
+  final String? title;
 
   @override
   State<LinkTab> createState() => _LinkTabState();
@@ -125,116 +133,148 @@ class _LinkTabState extends State<LinkTab> {
         Provider.of<ThemeProvider>(context, listen: true);
 
     return Container(
-      margin: const EdgeInsets.fromLTRB(11, 7, 11, 4),
-      height: 100,
+      margin: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+      height: 80,
       width: double.infinity,
       decoration: BoxDecoration(
         color: themeProvider.themeMode == ThemeMode.light
             ? Colors.white
             : TreeVedAppTheme.boxColorDark,
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
             color: themeProvider.themeMode == ThemeMode.light
-                ? Color(0xffEAEAEA)
+                ? TreeVedAppTheme.boxBorder
                 : TreeVedAppTheme.boxBorderdark),
         boxShadow: [
           BoxShadow(
             color: themeProvider.themeMode == ThemeMode.light
-                ? Color.fromARGB(255, 223, 223, 223)
-                : Colors.white.withOpacity(0.3),
-            blurRadius: 5,
-            spreadRadius: 1,
-            offset: Offset(0, 3),
+                ? Color(0xff17056EAC)
+                : Color(0xff17056EAC),
+            blurRadius: 10,
+            spreadRadius: 3,
+            offset: Offset(0, 4),
           ),
         ],
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.all(10),
-            height: 80,
-            width: 85,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                image: const DecorationImage(
-                    image: AssetImage("assets/movie1.jpg"), fit: BoxFit.cover)),
-          ),
-          Flexible(
-            flex: 7,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 11),
-                Flexible(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
+      child: Container(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: const EdgeInsets.all(12),
+              height: 56,
+              width: 56,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  image: const DecorationImage(
+                      image: AssetImage("assets/movie1.jpg"),
+                      fit: BoxFit.cover)),
+            ),
+            Flexible(
+              flex: 7,
+              child: Container(
+                color: Colors.yellow,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Flexible(
-                        flex: 3,
-                        child: Text(
-                          "Fight Club",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                            width: 35,
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            widget.title ?? "NA",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.black.withOpacity(0.8)
+                                  : Colors.white,
+                            ),
+                          ),
+                          Spacer(),
+                          Container(
+                            // padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+                            width: 37,
+                            height: 21,
                             decoration: const BoxDecoration(
-                                color: Colors.lightGreenAccent,
+                                color: Color(0xffCEFFD9),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7))),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Text(" 4 "),
-                                Icon(Icons.star, size: 15)
+                                Text(
+                                  " 4 ",
+                                  style: TextStyle(
+                                    color: Color(0xff1F4E0F),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 12,
+                                  color: Color(0xff1F4E0F),
+                                )
                               ],
-                            )),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  backgroundColor: Colors.transparent,
+                                  builder: (context) => userLinksheet(
+                                      isUserPost: widget.isUserLink));
+                            },
+                            child: Icon(
+                              Icons.more_vert,
+                              size: 21,
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.black.withOpacity(0.6)
+                                  : Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
+
+                      Container(
+                        padding: const EdgeInsets.only(right: 13.0),
+                        child: Text(
+                          "Movie",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                            color: themeProvider.themeMode == ThemeMode.light
+                                ? Colors.black.withOpacity(0.3)
+                                : Colors.white,
+                          ),
+                        ),
+                      ),
+                      // const SizedBox(height: 20),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          //
+                        },
+                        child: const Text(
+                          "https://www.imdb.com/title/tt0137523/",
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Color(0xff008FE4),
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
-                const SizedBox(height: 5),
-                Container(
-                  padding: const EdgeInsets.only(right: 13.0),
-                  child: Text(
-                    "Movie",
-                    style: GoogleFonts.roboto(fontSize: 13),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                InkWell(
-                  onTap: () {
-                    //
-                  },
-                  child: const Text(
-                    "https://www.imdb.com/title/tt0137523/",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 11, color: Colors.blue),
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
-          Flexible(
-            flex: 1,
-            child: Padding(
-              padding: EdgeInsets.only(top: 5.0),
-              child: InkWell(
-                  onTap: () {
-                    showModalBottomSheet(
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) =>
-                            userLinksheet(isUserPost: widget.isUserLink));
-                  },
-                  child: Icon(Icons.more_vert)),
-            ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
