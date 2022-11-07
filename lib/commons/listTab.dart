@@ -7,8 +7,9 @@ import 'package:treeved_assignment/Screens/ListPages/listViewScreen.dart';
 import 'package:treeved_assignment/commons/listBottomSheet.dart';
 
 class ListTabs extends StatefulWidget {
-  const ListTabs({super.key, this.isUserList});
+  const ListTabs({super.key, this.isUserList, this.title});
   final bool? isUserList;
+  final String? title;
 
   @override
   State<ListTabs> createState() => _ListTabsState();
@@ -20,104 +21,118 @@ class _ListTabsState extends State<ListTabs> {
     ThemeProvider themeProvider =
         Provider.of<ThemeProvider>(context, listen: true);
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 11, right: 11),
-      child: InkWell(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return listScreen(
-                listName: "Economics Recources",
-                createdBy: 'Sam Sharma',
-                listlength: '8');
-          }));
-        },
-        child: Container(
-          margin: const EdgeInsets.all(5),
-          height: 100,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: themeProvider.themeMode == ThemeMode.light
-                ? Colors.white
-                : TreeVedAppTheme.boxColorDark,
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(
-                color: themeProvider.themeMode == ThemeMode.light
-                    ? Color(0xffEAEAEA)
-                    : TreeVedAppTheme.boxBorderdark),
-            boxShadow: [
-              BoxShadow(
-                color: themeProvider.themeMode == ThemeMode.light
-                    ? Color.fromARGB(255, 223, 223, 223)
-                    // : Colors.white.withOpacity(0.3),
-                    : Colors.transparent,
-                blurRadius: 5,
-                spreadRadius: 1,
-                offset: Offset(0, 3),
+    return InkWell(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return listScreen(
+              listName: widget.title ?? "",
+              createdBy: 'Sam Sharma',
+              listlength: '8');
+        }));
+      },
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+        height: 88,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: themeProvider.themeMode == ThemeMode.light
+              ? Colors.white
+              : TreeVedAppTheme.boxColorDark,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color(0xffEAEAEA)
+                  : TreeVedAppTheme.boxBorderdark),
+          boxShadow: [
+            BoxShadow(
+              color: themeProvider.themeMode == ThemeMode.light
+                  ? Color(0xff17056EAC)
+                  : Colors.transparent,
+              blurRadius: 10,
+              spreadRadius: 3,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: const EdgeInsets.all(12),
+              height: 64,
+              width: 64,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                image: const DecorationImage(
+                    image: AssetImage("assets/explore.jpg"), fit: BoxFit.cover),
               ),
-            ],
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              Center(
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 12, 12, 0),
                 child: Container(
-                  margin: const EdgeInsets.all(10),
-                  height: 80,
-                  width: 85,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      image: const DecorationImage(
-                          image: AssetImage("assets/explore.jpg"),
-                          fit: BoxFit.cover)),
-                ),
-              ),
-              Flexible(
-                flex: 7,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    Text(
-                      "Economics Resources",
-                      style: GoogleFonts.roboto(
-                          fontSize: 17, fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 5),
-                    Flexible(
-                      child: Container(
-                        padding: const EdgeInsets.only(right: 13.0),
-                        // width: 195,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              widget.title ?? "NA",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color:
+                                    themeProvider.themeMode == ThemeMode.light
+                                        ? Colors.black.withOpacity(0.8)
+                                        : Colors.white,
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                //
+                                showModalBottomSheet(
+                                  context: context,
+                                  backgroundColor: Colors.transparent,
+                                  builder: (context) =>
+                                      listsheet(isUserList: widget.isUserList),
+                                );
+                              },
+                              child: Icon(
+                                Icons.more_vert,
+                                size: 21,
+                                color:
+                                    themeProvider.themeMode == ThemeMode.light
+                                        ? Colors.black.withOpacity(0.6)
+                                        : Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
                         child: Text(
                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lobortis dignissim tortor. Nunc a suscipit libero. Aliquam convallis tellus sit amet rutrum tristique.",
                           overflow: TextOverflow.clip,
                           maxLines: 3,
-                          style: GoogleFonts.roboto(fontSize: 15),
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: themeProvider.themeMode == ThemeMode.light
+                                ? Colors.black.withOpacity(0.6)
+                                : Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 11),
-                  child: InkWell(
-                      onTap: () {
-                        //
-                        showModalBottomSheet(
-                          context: context,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) =>
-                              listsheet(isUserList: widget.isUserList),
-                        );
-                      },
-                      child: Icon(Icons.more_vert)),
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

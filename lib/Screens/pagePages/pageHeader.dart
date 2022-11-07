@@ -43,6 +43,9 @@ class Page_Header extends StatelessWidget {
                             },
                             child: Icon(
                               Icons.arrow_back,
+                              color: themeProvider.themeMode == ThemeMode.light
+                                  ? Colors.black.withOpacity(0.6)
+                                  : Colors.white.withOpacity(0.3),
                             ),
                           ),
                         ),
@@ -179,10 +182,14 @@ class Page_Header extends StatelessWidget {
                         SizedBox(width: size.width * 0.02),
                         SizedBox(width: size.width * 0.02),
                         InkWell(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.more_vert,
-                            ))
+                          onTap: () {},
+                          child: Icon(
+                            Icons.more_vert,
+                            color: themeProvider.themeMode == ThemeMode.light
+                                ? Colors.black.withOpacity(0.6)
+                                : Colors.white.withOpacity(0.3),
+                          ),
+                        )
                       ],
                     ),
                   ),

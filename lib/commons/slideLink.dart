@@ -133,7 +133,7 @@ class _LinkTabState extends State<LinkTab> {
         Provider.of<ThemeProvider>(context, listen: true);
 
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+      margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       height: 80,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -173,9 +173,8 @@ class _LinkTabState extends State<LinkTab> {
             Flexible(
               flex: 7,
               child: Container(
-                color: Colors.yellow,
                 child: Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.fromLTRB(0, 12, 12, 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -192,9 +191,8 @@ class _LinkTabState extends State<LinkTab> {
                                   : Colors.white,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
-                            // padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
                             width: 37,
                             height: 21,
                             decoration: const BoxDecoration(
@@ -220,20 +218,24 @@ class _LinkTabState extends State<LinkTab> {
                               ],
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  backgroundColor: Colors.transparent,
-                                  builder: (context) => userLinksheet(
-                                      isUserPost: widget.isUserLink));
-                            },
-                            child: Icon(
-                              Icons.more_vert,
-                              size: 21,
-                              color: themeProvider.themeMode == ThemeMode.light
-                                  ? Colors.black.withOpacity(0.6)
-                                  : Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 6),
+                            child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    backgroundColor: Colors.transparent,
+                                    builder: (context) => userLinksheet(
+                                        isUserPost: widget.isUserLink));
+                              },
+                              child: Icon(
+                                Icons.more_vert,
+                                size: 21,
+                                color:
+                                    themeProvider.themeMode == ThemeMode.light
+                                        ? Colors.black.withOpacity(0.6)
+                                        : Colors.white,
+                              ),
                             ),
                           ),
                         ],

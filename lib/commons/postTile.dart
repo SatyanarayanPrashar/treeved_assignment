@@ -29,7 +29,10 @@ class _PostTileState extends State<PostTile> {
 
     return Container(
       width: size.width,
-      color: Color(0xfffbfcfe),
+      color: themeProvider.themeMode == ThemeMode.light
+          ? Color(0xfffbfcfe)
+          : Color(0xff15161a).withOpacity(0.94),
+
       // color: Colors.red,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +45,7 @@ class _PostTileState extends State<PostTile> {
               }));
             },
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 0, 11),
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 8),
               child: Row(
                 children: [
                   // Avatar , about and options
@@ -147,14 +150,16 @@ class _PostTileState extends State<PostTile> {
 
           // Post text
           Padding(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 8),
             child: ExpandableText(
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lobortis dignissim tortor. Nunc a suscipit libero. Aliquam convallis tellus sit amet rutrum tristique Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit..",
               style: TextStyle(fontSize: 14),
               expandText: "more",
               collapseText: "show less",
               maxLines: 3,
-              linkColor: Colors.black.withOpacity(0.3),
+              linkColor: themeProvider.themeMode == ThemeMode.light
+                  ? Colors.black.withOpacity(0.3)
+                  : Colors.white.withOpacity(0.4),
               linkStyle: TextStyle(decoration: TextDecoration.underline),
             ),
           ),
@@ -163,7 +168,7 @@ class _PostTileState extends State<PostTile> {
           SlideLink(isUserLink: widget.isUserPost),
 
           const Padding(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: EdgeInsets.fromLTRB(20, 8, 20, 9),
             child: ExpandableText(
               "#movie",
               expandText: "more",
@@ -177,7 +182,7 @@ class _PostTileState extends State<PostTile> {
           // likes
 
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               // mainAxisAlignment: MainAxisAlignment.center,
@@ -245,7 +250,9 @@ class _PostTileState extends State<PostTile> {
 
           // action bar
           Divider(
-            color: Color(0xffEAEAEA),
+            color: themeProvider.themeMode == ThemeMode.light
+                ? Color(0xffEAEAEA)
+                : Colors.white.withOpacity(0.4),
             thickness: 1,
           ),
 
@@ -302,7 +309,9 @@ class _PostTileState extends State<PostTile> {
             ),
           ),
           Divider(
-            color: Color(0xffEAEAEA),
+            color: themeProvider.themeMode == ThemeMode.light
+                ? Color(0xffEAEAEA)
+                : Colors.white.withOpacity(0.4),
             thickness: 1,
           ),
           Padding(
@@ -372,7 +381,9 @@ class _PostTileState extends State<PostTile> {
             ),
           ),
           Divider(
-            color: Color(0xffEAEAEA),
+            color: themeProvider.themeMode == ThemeMode.light
+                ? Color(0xffEAEAEA)
+                : Colors.white.withOpacity(0.4),
             thickness: 1,
           ),
         ],

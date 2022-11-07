@@ -37,7 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     SliverAppBar.large(
                       automaticallyImplyLeading: !widget.isUserProfile,
                       collapsedHeight: 0,
-                      expandedHeight: 300,
+                      expandedHeight: widget.isUserProfile ? 250 : 300,
                       toolbarHeight: 0,
                       flexibleSpace:
                           Profile_Header(isUserProfile: widget.isUserProfile),

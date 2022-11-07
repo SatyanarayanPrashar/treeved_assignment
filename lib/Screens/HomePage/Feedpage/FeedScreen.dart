@@ -122,7 +122,7 @@ class _FeedPageState extends State<FeedPage> with TickerProviderStateMixin {
       ),
       body: ListView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: 10,
+        itemCount: 7,
         itemBuilder: (context, index) {
           return PostTile(isUserPost: false);
         },

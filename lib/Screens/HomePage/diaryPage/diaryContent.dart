@@ -106,19 +106,19 @@ class gridView extends StatelessWidget {
         color: themeProvider.themeMode == ThemeMode.light
             ? Colors.white
             : TreeVedAppTheme.boxColorDark,
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
             color: themeProvider.themeMode == ThemeMode.light
-                ? Color(0xffEAEAEA)
+                ? TreeVedAppTheme.boxBorder
                 : TreeVedAppTheme.boxBorderdark),
         boxShadow: [
           BoxShadow(
             color: themeProvider.themeMode == ThemeMode.light
-                ? Color.fromARGB(255, 223, 223, 223)
-                : Colors.white.withOpacity(0.3),
-            blurRadius: 5,
-            spreadRadius: 1,
-            offset: Offset(0, 3),
+                ? Color(0xff17056EAC)
+                : Color(0xff17056EAC),
+            blurRadius: 10,
+            spreadRadius: 3,
+            offset: Offset(0, 4),
           ),
         ],
       ),

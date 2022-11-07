@@ -66,7 +66,6 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.all(11),
               child: ElevatedButton(
                 onPressed: () {
-                  log("to forgot Home page");
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return HomePage();
                   }));

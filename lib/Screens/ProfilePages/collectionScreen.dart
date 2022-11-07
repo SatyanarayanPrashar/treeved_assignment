@@ -34,7 +34,10 @@ class collectionScreen extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           itemCount: 4,
           itemBuilder: (context, index) {
-            return ListTabs(isUserList: isUserCollection);
+            return Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: ListTabs(isUserList: isUserCollection),
+            );
           },
         ),
       ),

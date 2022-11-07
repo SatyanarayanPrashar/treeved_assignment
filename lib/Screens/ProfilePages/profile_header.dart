@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treeved_assignment/Constants/colors.dart';
 import 'package:treeved_assignment/Constants/notifiers/themes_providers.dart';
-import 'package:treeved_assignment/Screens/GroupPages/groupScreen.dart';
-import 'package:treeved_assignment/commons/bottomSheet.dart';
-import 'package:treeved_assignment/commons/bottomsheetItem.dart';
 import 'package:treeved_assignment/commons/settingsBottomSheet.dart';
 
 class Profile_Header extends StatefulWidget {
@@ -24,6 +21,9 @@ class _Profile_HeaderState extends State<Profile_Header> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    ThemeProvider themeProvider =
+        Provider.of<ThemeProvider>(context, listen: true);
+
     return Column(
       children: [
         Flexible(
@@ -38,7 +38,7 @@ class _Profile_HeaderState extends State<Profile_Header> {
             child: Column(
               children: [
                 Flexible(
-                  flex: 2,
+                  flex: 1,
                   child: Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Row(
@@ -46,7 +46,7 @@ class _Profile_HeaderState extends State<Profile_Header> {
                         children: [
                           !widget.isUserProfile
                               ? Padding(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding: const EdgeInsets.only(left: 16),
                                   child: InkWell(
                                     onTap: () {
                                       print("tapped");
@@ -54,13 +54,33 @@ class _Profile_HeaderState extends State<Profile_Header> {
                                     },
                                     child: Icon(
                                       Icons.arrow_back,
+                                      color: themeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? Colors.black.withOpacity(0.63)
+                                          : Colors.white,
                                     ),
                                   ),
                                 )
-                              : Container(),
+                              : Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 8),
+                                  child: InkWell(
+                                      onTap: () {
+                                        //
+                                        print("tapped");
+                                      },
+                                      child: Icon(
+                                        Icons.edit_outlined,
+                                        size: 22,
+                                        color: themeProvider.themeMode ==
+                                                ThemeMode.light
+                                            ? Colors.black.withOpacity(0.63)
+                                            : Colors.white,
+                                      )),
+                                ),
                           widget.isUserProfile
                               ? Padding(
-                                  padding: const EdgeInsets.only(right: 10),
+                                  padding: const EdgeInsets.only(right: 16),
                                   child: IconButton(
                                     onPressed: () {
                                       showModalBottomSheet(
@@ -71,7 +91,13 @@ class _Profile_HeaderState extends State<Profile_Header> {
                                                 isUserProfile: true);
                                           });
                                     },
-                                    icon: const Icon(Icons.menu),
+                                    icon: Icon(
+                                      Icons.menu,
+                                      color: themeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? Colors.black.withOpacity(0.63)
+                                          : Colors.white,
+                                    ),
                                   ),
                                 )
                               : Container(),
@@ -79,7 +105,7 @@ class _Profile_HeaderState extends State<Profile_Header> {
                       )),
                 ),
                 const Flexible(
-                    flex: 7,
+                    flex: 6,
                     child: Padding(
                       padding: EdgeInsets.only(top: 18),
                       child: CircleAvatar(
@@ -117,7 +143,7 @@ class _Profile_HeaderState extends State<Profile_Header> {
                   ),
                 ),
                 Flexible(
-                  flex: 2,
+                  flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Row(
@@ -148,39 +174,12 @@ class _Profile_HeaderState extends State<Profile_Header> {
                     ),
                   ),
                 ),
-                Flexible(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: widget.isUserProfile
-                        ? InkWell(
-                            onTap: () {
-                              //
-                              print("tapped");
-                            },
-                            child: Container(
-                              height: 32,
-                              width: 105,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        spreadRadius: 1,
-                                        blurRadius: 5)
-                                  ]),
-                              child: const Center(
-                                child: Text(
-                                  "  Edit Profie  ",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        : Row(
+                !widget.isUserProfile
+                    ? Flexible(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               InkWell(
@@ -258,8 +257,9 @@ class _Profile_HeaderState extends State<Profile_Header> {
                               ),
                             ],
                           ),
-                  ),
-                ),
+                        ),
+                      )
+                    : Container(),
               ],
             ),
           ),

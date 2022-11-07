@@ -30,18 +30,25 @@ class _AboutTabState extends State<AboutTab> {
           IntroductionTile(),
           InterestsTile(),
           const Padding(
-            padding: EdgeInsets.fromLTRB(11, 21, 11, 11),
+            padding: EdgeInsets.fromLTRB(11, 11, 11, 11),
             child: Text(
               "⭐  Pinned Links",
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
             ),
           ),
-          SlideLink(isUserLink: widget.isUserList),
-          SlideLink(isUserLink: widget.isUserList),
-          SlideLink(isUserLink: widget.isUserList),
-          SlideLink(isUserLink: widget.isUserList),
+          SizedBox(
+            height: 265,
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: 3,
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.only(bottom: 8),
+                child: SlideLink(isUserLink: widget.isUserList),
+              ),
+            ),
+          ),
           Padding(
-            padding: EdgeInsets.fromLTRB(11, 21, 11, 11),
+            padding: EdgeInsets.fromLTRB(11, 0, 11, 11),
             child: Row(
               children: [
                 Image(image: AssetImage("assets/Icons/pin.png")),
@@ -52,9 +59,17 @@ class _AboutTabState extends State<AboutTab> {
               ],
             ),
           ),
-          ListTabs(isUserList: widget.isUserList),
-          ListTabs(isUserList: widget.isUserList),
-          ListTabs(isUserList: widget.isUserList),
+          SizedBox(
+            height: 295,
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: 3,
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.only(bottom: 8),
+                child: ListTabs(isUserList: widget.isUserList),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(11),
             child: Container(
@@ -115,7 +130,7 @@ class InterestsTile extends StatelessWidget {
     ThemeProvider themeProvider =
         Provider.of<ThemeProvider>(context, listen: true);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Container(
         // height: 180,
         width: size.width,
@@ -158,6 +173,7 @@ class InterestsTile extends StatelessWidget {
                 child: Text(
                   "Economics",
                   style: TextStyle(
+                    fontSize: 12,
                     color: Color(0xff658AC7),
                   ),
                 ),
@@ -171,6 +187,7 @@ class InterestsTile extends StatelessWidget {
                 child: Text(
                   "Matematics",
                   style: TextStyle(
+                    fontSize: 12,
                     color: Color(0xff658AC7),
                   ),
                 ),
@@ -184,6 +201,7 @@ class InterestsTile extends StatelessWidget {
                 child: Text(
                   "Science",
                   style: TextStyle(
+                    fontSize: 12,
                     color: Color(0xff658AC7),
                   ),
                 ),
@@ -197,6 +215,7 @@ class InterestsTile extends StatelessWidget {
                 child: Text(
                   "Crypto",
                   style: TextStyle(
+                    fontSize: 12,
                     color: Color(0xff658AC7),
                   ),
                 ),
@@ -221,7 +240,7 @@ class IntroductionTile extends StatelessWidget {
         Provider.of<ThemeProvider>(context, listen: true);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
+      padding: const EdgeInsets.fromLTRB(16, 17, 16, 11),
       child: Container(
         padding: const EdgeInsets.fromLTRB(11, 17, 11, 11),
         width: size.width,
@@ -255,7 +274,7 @@ class IntroductionTile extends StatelessWidget {
                 "Introduction",
                 style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 15,
+                    fontSize: 14,
                     fontWeight: FontWeight.w600),
               ),
             ),
@@ -263,7 +282,7 @@ class IntroductionTile extends StatelessWidget {
               padding: EdgeInsets.all(7),
               child: ExpandableText(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu sed ipsum nunc a id dictumst dolor a quis suspendisse Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu sed ipsum nunc a id dictumst dolor a quis suspendisse Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu sed ipsum nunc a id dictumst dolor a quis suspendisse",
-                // style: TextStyle(color: Colors.black),
+                style: TextStyle(fontSize: 13),
                 expandText: "show more",
                 collapseText: "show less",
                 maxLines: 3,
